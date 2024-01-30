@@ -35,10 +35,12 @@ function NavButton({ label }: { label: string }): ReactElement {
 	const [hovered, setHovered] = useState(false);
 
 	const navBtnStyle: CSS.Properties = {
-		border: 0,
+		padding: '0.75rem',
+		borderStyle: 'solid',
+		borderColor: '#2C1450',
 		fontSize: '12pt',
 		color: hovered ? '#9FA5FF' : '#1A2131',
-		backgroundColor: hovered ? '#00067D' : '#9cadce',
+		backgroundColor: hovered ? '#2C1450' : '#C4A5E7',
 	};
 
 	return <button
