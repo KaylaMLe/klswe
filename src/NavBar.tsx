@@ -7,9 +7,12 @@ export function NavBar(): ReactElement {
 		backgroundColor: '#9cadce',
 		color: '#1A2131',
 		boxSizing: 'border-box',
+		height: '10vh',
+		minHeight: '64px',
 		width: '100vw',
 		padding: '0.75rem',
 		display: 'flex',
+		alignItems: 'center',
 		justifyContent: 'space-between',
 	});
 
@@ -26,9 +29,16 @@ export function NavBar(): ReactElement {
 function MainTitle(): ReactElement {
 	const titleStyle: string = css({
 		margin: 0,
+		display: 'flex',
+		alignItems: 'center',
 	});
 
-	return <h1 className={titleStyle}>Kayla Le</h1>;
+	const linkStyle: string = css({
+		color: 'inherit',
+		textDecoration: 'none',
+	});
+
+	return <h1 className={titleStyle}><a className={linkStyle} href='https://www.klswe.com'>Kayla Le</a></h1>;
 }
 
 function NavButton({ label }: { label: string }): ReactElement {
@@ -44,6 +54,7 @@ function NavButton({ label }: { label: string }): ReactElement {
 		from {
 			background-color: #C4A5E7;
 			color: #1A2131;
+			border-radius: '0.75rem';
 		}
 		to {
 			background-color: #2C1450;
@@ -62,18 +73,18 @@ function NavButton({ label }: { label: string }): ReactElement {
 		}
 	`;
 
-
 	const navBtnStyle: string = css({
+		marginLeft: '0.1rem',
 		padding: '0.75rem',
-		borderRadius: '0.5rem',
+		borderRadius: '1rem',
 		borderStyle: 'solid',
 		borderColor: '#2C1450',
 		fontSize: '12pt',
 		backgroundColor: hovered ? '#2C1450' : '#C4A5E7',
 		color: hovered ? '#9FA5FF' : '#1A2131',
 		'@media(prefers-reduced-motion: no-preference)': {
-			animation: hovered ? `${hoverAnimation} 0.75s ease-in-out 0s 1 normal`
-				: mouseLeave ? `${reverseAnimation} 0.75s ease-in-out 0s 1 normal` : '',
+			animation: hovered ? `${hoverAnimation} 0.5s ease-in-out 0s 1 normal`
+				: mouseLeave ? `${reverseAnimation} 0.5s ease-in-out 0s 1 normal` : '',
 		},
 	});
 
