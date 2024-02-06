@@ -1,11 +1,12 @@
 import { ReactElement, useState } from 'react';
 import { css } from '@emotion/css';
-import chime from './assets/audio/chime.mp3';
-import flower from './assets/images/flower.png';
-import tree from './assets/images/tree.png';
-import voloff from './assets/images/voloff.png';
-import volon from './assets/images/volon.png';
+import chime from '../assets/audio/chime.mp3';
+import flower from '../assets/images/flower.png';
+import tree from '../assets/images/tree.png';
+import voloff from '../assets/images/voloff.png';
+import volon from '../assets/images/volon.png';
 import { keyframes } from '@emotion/react';
+import { NavBar } from '../NavBar';
 
 
 interface FlowerProps {
@@ -28,9 +29,12 @@ export function Home(): ReactElement {
 	});
 
 	return (
-		<div className={homeStyle}>
-			<MuteBtn onClick={() => { setMuted(!muted) }} muted={muted} />
-			<Tree muted={muted} />
+		<div>
+			<NavBar />
+			<div className={homeStyle}>
+				<MuteBtn onClick={() => { setMuted(!muted) }} muted={muted} />
+				<Tree muted={muted} />
+			</div>
 		</div>
 	);
 }
