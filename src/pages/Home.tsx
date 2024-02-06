@@ -17,8 +17,12 @@ interface FlowerProps {
 
 export function Home(): ReactElement {
 	const [muted, setMuted] = useState(false);
-	const homeStyle: string = css({
-		boxSizing: 'inherit',
+
+	const pageStyle = css({
+		height: '100vh',
+	});
+	const homeStyle = css({
+		boxSizing: 'border-box',
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
@@ -28,7 +32,7 @@ export function Home(): ReactElement {
 	});
 
 	return (
-		<div>
+		<div className={pageStyle}>
 			<NavBar />
 			<div className={homeStyle}>
 				<MuteBtn onClick={() => { setMuted(!muted) }} muted={muted} />
@@ -51,7 +55,7 @@ function MuteBtn({ onClick, muted }: { onClick: () => void, muted: boolean }): R
 		fontSize: '11pt',
 		padding: '8px',
 		position: 'absolute',
-		top: '5px',
+		top: '10px',
 		left: '5px',
 		width: '200px',
 	});

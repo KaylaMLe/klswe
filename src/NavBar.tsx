@@ -8,10 +8,11 @@ export function NavBar(): ReactElement {
 	const navBarStyle: string = css({
 		backgroundColor: '#9cadce',
 		color: '#1A2131',
-		boxSizing: 'border-box',
+		boxShadow: '0 0 5px 5px #9cadce',
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'space-between',
+		boxSizing: 'border-box',
 		padding: '0.75rem',
 		height: '10vh',
 		minHeight: '64px',
