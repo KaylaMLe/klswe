@@ -62,12 +62,12 @@ function NavButton({ label, link, targetPage }:
 		if (pageNumber === targetPage) {
 			navigate(link);
 		}
-	}, [pageNumber]);
+	}, [pageNumber, link, navigate, targetPage]);
 
 	const navBtnStyle: string = css({
 		cursor: 'pointer',
-		backgroundColor: pageNumber == targetPage ? '#2C1450' : '#C4A5E7',
-		color: pageNumber == targetPage ? '#C4A5E7' : '#2C1450',
+		backgroundColor: pageNumber === targetPage ? '#2C1450' : '#C4A5E7',
+		color: pageNumber === targetPage ? '#C4A5E7' : '#2C1450',
 		borderColor: '#2C1450',
 		borderRadius: '1rem',
 		borderStyle: 'solid',
