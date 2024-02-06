@@ -74,6 +74,7 @@ function NavButton({ label }: { label: string }): ReactElement {
 	`;
 
 	const navBtnStyle: string = css({
+		cursor: 'pointer',
 		marginLeft: '0.1rem',
 		padding: '0.75rem',
 		borderRadius: '1rem',
