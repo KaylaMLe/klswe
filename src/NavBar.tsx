@@ -24,7 +24,9 @@ export function NavBar(): ReactElement {
 			<MainTitle />
 			<div>
 				<NavButton label='About me' link='/about-me' targetPage={ABOUT_ME} />
-				<NavButton label='My projects' link='/my-projects' targetPage={MY_PROJECTS} />
+				<a href='https://github.com/KaylaMLe'>
+					<NavButton label='My projects' link='/' targetPage={MY_PROJECTS} />
+				</a>
 			</div>
 		</div>
 	);
