@@ -2,9 +2,9 @@ import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { PageNumberProvider } from './pages/PageNumberContext';
 import { Home } from './pages/Home';
 import { AboutMe } from './pages/AboutMe';
-import { PageNumberProvider } from './pages/PageNumberContext';
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement

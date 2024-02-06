@@ -1,12 +1,11 @@
+import { css, keyframes } from '@emotion/css';
 import { ReactElement, useState } from 'react';
-import { css } from '@emotion/css';
+import { NavBar } from '../NavBar';
 import chime from '../assets/audio/chime.mp3';
 import flower from '../assets/images/flower.png';
 import tree from '../assets/images/tree.png';
 import voloff from '../assets/images/voloff.png';
 import volon from '../assets/images/volon.png';
-import { keyframes } from '@emotion/react';
-import { NavBar } from '../NavBar';
 
 
 interface FlowerProps {
@@ -20,11 +19,11 @@ export function Home(): ReactElement {
 	const [muted, setMuted] = useState(false);
 	const homeStyle: string = css({
 		boxSizing: 'inherit',
-		height: '90vh',
-		minHeight: '375px',
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
+		height: '90vh',
+		minHeight: '375px',
 		position: 'relative',
 	});
 
@@ -42,19 +41,19 @@ export function Home(): ReactElement {
 function MuteBtn({ onClick, muted }: { onClick: () => void, muted: boolean }): ReactElement {
 	const muteBtnStyle = css({
 		cursor: 'pointer',
+		backgroundColor: '#EEA8D9',
+		borderColor: '#602267',
+		borderRadius: '2rem',
+		borderStyle: 'solid',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'space-between',
+		fontSize: '11pt',
+		padding: '8px',
 		position: 'absolute',
 		top: '5px',
 		left: '5px',
 		width: '200px',
-		fontSize: '11pt',
-		backgroundColor: '#EEA8D9',
-		borderRadius: '2rem',
-		borderStyle: 'solid',
-		borderColor: '#602267',
-		padding: '8px',
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'space-between',
 	});
 
 	return (

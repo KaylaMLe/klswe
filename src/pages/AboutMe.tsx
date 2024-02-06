@@ -13,9 +13,9 @@ export function AboutMe(): ReactElement {
 
 function TextBox(): ReactElement {
 	const textBoxStyle = css({
+		backgroundColor: '#00007A',
 		color: '#A3A3FF',
 		borderRadius: '0.1rem',
-		backgroundColor: '#00007A',
 		boxShadow: '0 0 5px 5px #00007A',
 		marginTop: '4px',
 		marginLeft: '2px',

@@ -1,22 +1,21 @@
-import { css, keyframes } from '@emotion/css';
-import { ReactElement, useEffect, useLayoutEffect, useState } from 'react';
+import { css } from '@emotion/css';
+import { ReactElement, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PageNumberProvider, usePageNumber } from './pages/PageNumberContext';
+import { usePageNumber } from './pages/PageNumberContext';
 import { HOME, ABOUT_ME, MY_PROJECTS } from './pages/PageNumbers';
-
 
 export function NavBar(): ReactElement {
 	const navBarStyle: string = css({
 		backgroundColor: '#9cadce',
 		color: '#1A2131',
 		boxSizing: 'border-box',
-		height: '10vh',
-		minHeight: '64px',
-		width: '100vw',
-		padding: '0.75rem',
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'space-between',
+		padding: '0.75rem',
+		height: '10vh',
+		minHeight: '64px',
+		width: '100vw',
 	});
 
 	return (
@@ -55,7 +54,6 @@ function NavButton({ label, link, targetPage }:
 	{ label: string, link: string, targetPage: number }): ReactElement {
 	const navigate = useNavigate();
 	const { pageNumber, setPageNumber } = usePageNumber();
-	console.log(`page number ${pageNumber} target page ${targetPage}`);
 	// navigate after pageNumber is set so button style updates properly
 	useEffect(() => {
 		if (pageNumber === targetPage) {
@@ -65,14 +63,14 @@ function NavButton({ label, link, targetPage }:
 
 	const navBtnStyle: string = css({
 		cursor: 'pointer',
-		marginLeft: '0.1rem',
-		padding: '0.75rem',
-		borderRadius: '1rem',
-		borderStyle: 'solid',
-		borderColor: '#2C1450',
-		fontSize: '12pt',
 		backgroundColor: pageNumber == targetPage ? '#2C1450' : '#C4A5E7',
 		color: pageNumber == targetPage ? '#C4A5E7' : '#2C1450',
+		borderColor: '#2C1450',
+		borderRadius: '1rem',
+		borderStyle: 'solid',
+		fontSize: '12pt',
+		marginLeft: '0.1rem',
+		padding: '0.75rem',
 		'@media(prefers-reduced-motion: no-preference)': {
 			transition: 'background-color 0.5s ease, color 0.5s ease',
 		},
