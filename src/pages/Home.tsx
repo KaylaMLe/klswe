@@ -1,7 +1,7 @@
 import { css, keyframes } from '@emotion/css';
 import { ReactElement, useState } from 'react';
 import { NavBar } from '../NavBar';
-import chime from '../assets/audio/chime.mp3';
+import chime from '../assets/audio/chime.wav';
 import flower from '../assets/images/flower.png';
 import tree from '../assets/images/tree.png';
 import voloff from '../assets/images/voloff.png';
