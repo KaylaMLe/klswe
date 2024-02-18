@@ -1,9 +1,8 @@
 import { css } from '@emotion/css';
-import { ReactElement } from 'react';
 import { NavBar } from '../NavBar';
 import placeholder from '../assets/images/portrait-placeholder.png';
 
-export function AboutMe(): ReactElement {
+export function AboutMe(): JSX.Element {
 	const pageStyle = css({
 		height: '100vh',
 	});
@@ -16,7 +15,7 @@ export function AboutMe(): ReactElement {
 	);
 }
 
-function AboutMeBg(): ReactElement {
+function AboutMeBg(): JSX.Element {
 	const textBoxStyle = css({
 		backgroundColor: '#00007A',
 		color: '#CCCCFF',
@@ -47,7 +46,7 @@ function AboutMeBg(): ReactElement {
 	);
 }
 
-function Portrait(): ReactElement {
+function Portrait(): JSX.Element {
 	const portraitStyle = css({
 		borderRadius: '50%',
 		height: '192px',

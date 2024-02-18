@@ -1,11 +1,11 @@
 import { css } from '@emotion/css';
-import { ReactElement, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { usePageNumber } from './pages/PageNumberContext';
 import { HOME, ABOUT_ME, MY_PROJECTS } from './pages/PageNumbers';
 
-export function NavBar(): ReactElement {
-	const navBarStyle: string = css({
+export function NavBar(): JSX.Element {
+	const navBarStyle = css({
 		backgroundColor: '#9cadce',
 		color: '#1A2131',
 		boxShadow: '0 0 5px 5px #9cadce',
@@ -32,11 +32,11 @@ export function NavBar(): ReactElement {
 	);
 }
 
-function MainTitle(): ReactElement {
+function MainTitle(): JSX.Element {
 	const { setPageNumber } = usePageNumber();
 	const navigate = useNavigate();
 
-	const titleStyle: string = css({
+	const titleStyle = css({
 		cursor: 'pointer',
 		margin: 0,
 		display: 'flex',
@@ -54,7 +54,7 @@ function MainTitle(): ReactElement {
 }
 
 function NavButton({ label, link, targetPage }:
-	{ label: string, link: string, targetPage: number }): ReactElement {
+	{ label: string, link: string, targetPage: number }): JSX.Element {
 	const navigate = useNavigate();
 	const { pageNumber, setPageNumber } = usePageNumber();
 	// navigate after pageNumber is set so button style updates properly
@@ -64,7 +64,7 @@ function NavButton({ label, link, targetPage }:
 		}
 	}, [pageNumber, link, navigate, targetPage]);
 
-	const navBtnStyle: string = css({
+	const navBtnStyle = css({
 		cursor: 'pointer',
 		backgroundColor: pageNumber === targetPage ? '#2C1450' : '#C4A5E7',
 		color: pageNumber === targetPage ? '#C4A5E7' : '#2C1450',

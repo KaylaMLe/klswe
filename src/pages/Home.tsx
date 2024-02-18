@@ -1,5 +1,5 @@
 import { css, keyframes } from '@emotion/css';
-import { ReactElement, useState } from 'react';
+import { useState } from 'react';
 import { NavBar } from '../NavBar';
 import chime from '../assets/audio/chime.wav';
 import flower from '../assets/images/flower.png';
@@ -15,7 +15,7 @@ interface FlowerProps {
 	rotation: number;
 };
 
-export function Home(): ReactElement {
+export function Home(): JSX.Element {
 	const [muted, setMuted] = useState(false);
 
 	const pageStyle = css({
@@ -42,7 +42,7 @@ export function Home(): ReactElement {
 	);
 }
 
-function MuteBtn({ onClick, muted }: { onClick: () => void, muted: boolean }): ReactElement {
+function MuteBtn({ onClick, muted }: { onClick: () => void, muted: boolean }): JSX.Element {
 	const muteBtnStyle = css({
 		cursor: 'pointer',
 		backgroundColor: '#EEA8D9',
@@ -68,11 +68,11 @@ function MuteBtn({ onClick, muted }: { onClick: () => void, muted: boolean }): R
 	);
 }
 
-function Tree({ muted }: { muted: boolean }): ReactElement {
+function Tree({ muted }: { muted: boolean }): JSX.Element {
 	const [flowerProps, setFlowerProps] = useState<FlowerProps[]>([]);
 	const [flowerId, setFlowerId] = useState(0);
 
-	const treeBoxStyle: string = css({
+	const treeBoxStyle = css({
 		cursor: 'pointer',
 		position: 'relative',
 	});
@@ -118,7 +118,7 @@ function Tree({ muted }: { muted: boolean }): ReactElement {
 }
 
 function Flower({ id, dX, dY, rotation }
-	: { id: number, dX: number, dY: number, rotation: number }): ReactElement {
+	: { id: number, dX: number, dY: number, rotation: number }): JSX.Element {
 	const spinAnimation = keyframes`
 		from {
 			rotate: 0deg;
@@ -128,7 +128,7 @@ function Flower({ id, dX, dY, rotation }
 		}
 	`;
 
-	const flowerStyle: string = css({
+	const flowerStyle = css({
 		position: 'absolute',
 		left: `${dX}px`,
 		top: `${dY}px`,

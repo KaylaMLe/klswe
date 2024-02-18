@@ -1,4 +1,4 @@
-import { ReactElement, createContext, useContext, useState } from 'react';
+import { createContext, ReactNode, useContext, useState } from 'react';
 
 interface PageNumberContextType {
 	pageNumber: number;
@@ -15,7 +15,7 @@ const PageNumberContext = createContext<PageNumberContextType>(defaultContextVal
 export const usePageNumber = () => useContext(PageNumberContext);
 
 interface PageNumberProviderProps {
-	children: ReactElement;
+	children: ReactNode;
 }
 
 export const PageNumberProvider: React.FC<PageNumberProviderProps> = ({ children }) => {
