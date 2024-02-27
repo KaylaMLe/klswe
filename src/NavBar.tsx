@@ -1,8 +1,30 @@
 import { css } from '@emotion/css';
-import React, { useEffect } from 'react';
+import React, { ReactElement, ReactNode, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { usePageNumber } from './pages/PageNumberContext';
-import { HOME, ABOUT_ME, MY_PROJECTS } from './pages/PageNumbers';
+import { HOME, ABOUT_ME } from './pages/PageNumbers';
+import dropdownClosed from './assets/images/dropdown-closed.png';
+import externaldark from './assets/images/external-dark.png';
+import externallight from './assets/images/external-light.png';
+
+const navBtnStyle = css({
+	backgroundColor: '#C4A5E7',
+	color: '#2C1450',
+	borderColor: '#2C1450',
+	borderRadius: '1rem',
+	borderStyle: 'solid',
+	fontSize: '12pt',
+	marginLeft: '0.1rem',
+	padding: '0.75rem',
+	'@media(prefers-reduced-motion: no-preference)': {
+		transition: 'background-color 0.5s ease, color 0.5s ease',
+	},
+	':hover': {
+		backgroundColor: '#2C1450',
+		color: '#C4A5E7',
+	},
+});
+
 
 export function NavBar(): React.JSX.Element {
 	const navBarStyle = css({
@@ -19,14 +41,21 @@ export function NavBar(): React.JSX.Element {
 		width: '100vw',
 	});
 
+	const btnRowStyle = css({
+		position: 'relative',
+		display: 'flex',
+		alignItems: 'flex-start',
+	});
+
 	return (
 		<div className={navBarStyle}>
 			<MainTitle />
-			<div>
-				<NavButton label='About me' link='/about-me' targetPage={ABOUT_ME} />
-				<a href='https://github.com/KaylaMLe'>
-					<NavButton label='My projects' link='/' targetPage={MY_PROJECTS} />
-				</a>
+			<div className={btnRowStyle}>
+				<NavBtn label='About me' link='/about-me' targetPage={ABOUT_ME} />
+				<ExternalBtn label='My projects' link='https://github.com/KaylaMLe' />
+				<DropDownBtn label='My projects'>
+					<div></div>
+				</DropDownBtn>
 			</div>
 		</div>
 	);
@@ -52,7 +81,7 @@ function MainTitle(): React.JSX.Element {
 	);
 }
 
-function NavButton({ label, link, targetPage }:
+function NavBtn({ label, link, targetPage }:
 	{ label: string, link: string, targetPage: number }): React.JSX.Element {
 	const navigate = useNavigate();
 	const { pageNumber, setPageNumber } = usePageNumber();
@@ -63,11 +92,42 @@ function NavButton({ label, link, targetPage }:
 		}
 	}, [pageNumber, link, navigate, targetPage]);
 
-	const navBtnStyle = css({
-		backgroundColor: pageNumber === targetPage ? '#2C1450' : '#C4A5E7',
-		color: pageNumber === targetPage ? '#C4A5E7' : '#2C1450',
-		borderColor: '#2C1450',
-		borderRadius: '1rem',
+	return (
+		<button
+			className={navBtnStyle}
+			onClick={() => { setPageNumber(targetPage) }}
+		>
+			{label}
+		</button >
+	);
+}
+
+function ExternalBtn({ label, link }:
+	{ label: string, link: string }): ReactElement {
+	const [hover, setHover] = useState(false);
+
+	return (
+		<a href={link}>
+			<button
+				className={navBtnStyle}
+				onMouseEnter={() => { setHover(true) }}
+				onMouseLeave={() => { setHover(false) }}
+			>
+				{label}
+				<img src={hover ? externallight : externaldark} />
+			</button >
+		</a>
+	);
+}
+
+function DropDownBtn({ label, children }: { label: string, children: ReactNode }) {
+	const [hover, setHover] = useState(false);
+
+	const dropDownStyle = css({
+		backgroundColor: '#A3A3FF',
+		color: '#000080',
+		borderColor: '#000080',
+		borderRadius: '0.5rem',
 		borderStyle: 'solid',
 		fontSize: '12pt',
 		marginLeft: '0.1rem',
@@ -76,17 +136,20 @@ function NavButton({ label, link, targetPage }:
 			transition: 'background-color 0.5s ease, color 0.5s ease',
 		},
 		':hover': {
-			backgroundColor: '#2C1450',
-			color: '#C4A5E7',
+			backgroundColor: '#000080',
+			color: '#A3A3FF',
 		},
 	});
 
 	return (
-		<button
-			className={navBtnStyle}
-			onClick={() => { setPageNumber(targetPage) }}
+		<div
+			className={dropDownStyle}
+			onMouseEnter={() => { setHover(true) }}
+			onMouseLeave={() => { setHover(false) }}
 		>
 			{label}
-		</button >
+			<img src={dropdownClosed} />
+			{children}
+		</div>
 	);
 }
