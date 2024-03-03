@@ -8,25 +8,6 @@ import ddClosedLight from './assets/images/dd-closed-light.png';
 import dropdownOpen from './assets/images/dropdown-open.png';
 import externalLink from './assets/images/external-link.png';
 
-const navBtnStyle = css({
-	backgroundColor: '#C4A5E7',
-	color: '#2C1450',
-	borderColor: '#2C1450',
-	borderRadius: '1rem',
-	borderStyle: 'solid',
-	fontSize: '12pt',
-	marginLeft: '0.1rem',
-	padding: '0.75rem',
-	'@media(prefers-reduced-motion: no-preference)': {
-		transition: 'background-color 0.5s ease, color 0.5s ease',
-	},
-	':hover': {
-		backgroundColor: '#2C1450',
-		color: '#C4A5E7',
-	},
-});
-
-
 export function NavBar(): React.JSX.Element {
 	const navBarStyle = css({
 		backgroundColor: '#9cadce',
@@ -66,6 +47,7 @@ function MainTitle(): React.JSX.Element {
 	const navigate = useNavigate();
 
 	const titleStyle = css({
+		cursor: 'pointer',
 		margin: 0,
 		display: 'flex',
 		alignItems: 'center',
@@ -91,6 +73,24 @@ function NavBtn({ label, link, targetPage }:
 			navigate(link);
 		}
 	}, [pageNumber, link, navigate, targetPage]);
+
+	const navBtnStyle = css({
+		backgroundColor: pageNumber === targetPage ? '#2C1450' : '#C4A5E7',
+		color: pageNumber === targetPage ? '#C4A5E7' : '#2C1450',
+		borderColor: '#2C1450',
+		borderRadius: '1rem',
+		borderStyle: 'solid',
+		fontSize: '12pt',
+		marginLeft: '0.1rem',
+		padding: '0.75rem',
+		'@media(prefers-reduced-motion: no-preference)': {
+			transition: 'background-color 0.5s ease, color 0.5s ease',
+		},
+		':hover': {
+			backgroundColor: '#2C1450',
+			color: '#C4A5E7',
+		},
+	});
 
 	return (
 		<button
