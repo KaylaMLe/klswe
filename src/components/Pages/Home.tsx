@@ -1,6 +1,5 @@
 import { css, keyframes } from '@emotion/css';
 import React, { useState } from 'react';
-import { NavBar } from '../NavBar/NavBar';
 import chime from '../../assets/audio/chime.wav';
 import flower from '../../assets/images/flower.png';
 import tree from '../../assets/images/tree.png';
@@ -18,9 +17,6 @@ interface FlowerProps {
 export function Home(): React.JSX.Element {
 	const [muted, setMuted] = useState(false);
 
-	const pageStyle = css({
-		height: '100vh',
-	});
 	const homeStyle = css({
 		boxSizing: 'border-box',
 		display: 'flex',
@@ -32,12 +28,9 @@ export function Home(): React.JSX.Element {
 	});
 
 	return (
-		<div className={pageStyle}>
-			<NavBar />
-			<div className={homeStyle}>
-				<MuteBtn onClick={() => { setMuted(!muted) }} muted={muted} />
-				<Tree muted={muted} />
-			</div>
+		<div className={homeStyle}>
+			<MuteBtn onClick={() => { setMuted(!muted) }} muted={muted} />
+			<Tree muted={muted} />
 		</div>
 	);
 }

@@ -1,22 +1,8 @@
 import { css } from '@emotion/css';
 import React from 'react';
-import { NavBar } from '../NavBar/NavBar';
 import placeholder from '../../assets/images/portrait-placeholder.png';
 
 export function AboutMe(): React.JSX.Element {
-	const pageStyle = css({
-		height: '100vh',
-	});
-
-	return (
-		<div className={pageStyle}>
-			<NavBar />
-			<AboutMeBg />
-		</div>
-	);
-}
-
-function AboutMeBg(): React.JSX.Element {
 	const textBoxStyle = css({
 		backgroundColor: '#00007A',
 		color: '#CCCCFF',
