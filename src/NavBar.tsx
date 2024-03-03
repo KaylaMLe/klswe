@@ -53,9 +53,9 @@ export function NavBar(): React.JSX.Element {
 			<MainTitle />
 			<div className={btnRowStyle}>
 				<NavBtn label='About me' link='/about-me' targetPage={ABOUT_ME} />
-				<DropDownBtn label='Projects'>
+				<DropDownMenu label='Projects'>
 					<ExternalLink text='Check out my GitHub profile' link='https://github.com/KaylaMLe' />
-				</DropDownBtn>
+				</DropDownMenu>
 			</div>
 		</div>
 	);
@@ -102,11 +102,15 @@ function NavBtn({ label, link, targetPage }:
 	);
 }
 
-function DropDownBtn({ label, children }: { label: string, children: ReactNode }): React.JSX.Element {
+function DropDownMenu({ label, children }: { label: string, children: ReactNode }): React.JSX.Element {
 	const [hovered, setHovered] = useState(false);
 	const [expanded, setExpanded] = useState(false);
 
-	const dropDownStyle = css({
+	const ddContainer = css({
+		position: 'relative',
+	});
+
+	const ddBtn = css({
 		backgroundColor: expanded ? '#000080' : '#A3A3FF',
 		color: expanded ? '#A3A3FF' : '#000080',
 		borderColor: '#000080',
@@ -115,7 +119,6 @@ function DropDownBtn({ label, children }: { label: string, children: ReactNode }
 		fontSize: '12pt',
 		marginLeft: '0.1rem',
 		padding: '0.75rem',
-		position: 'relative',
 		'@media(prefers-reduced-motion: no-preference)': {
 			transition: 'background-color 0.5s ease, color 0.5s ease',
 		},
@@ -125,34 +128,40 @@ function DropDownBtn({ label, children }: { label: string, children: ReactNode }
 		},
 	});
 
-	const dropDownContent = css({
+	const ddContent = css({
 		backgroundColor: '#000080',
 		borderRadius: '0.5rem',
 		padding: '0.75rem',
-		width: '20vw',
+		width: '15vw',
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'flex-end',
 		position: 'absolute',
 		top: '80%',// overlays content on top of drop down button
-		right: '-2px'// neatly aligns content with the right side of the button
+		right: '0',
+		zIndex: '1',
 	});
 
 	return (
-		<button
-			className={dropDownStyle}
-			onClick={() => { setExpanded(!expanded) }}
-			onMouseEnter={() => { setHovered(true) }}
-			onMouseLeave={() => { setHovered(false) }}
-		>
-			{label}
-			<img
-				src={expanded ? dropdownOpen : hovered ? ddClosedLight : ddClosedDark}
-				alt={expanded ? 'open dropdown menu' : 'closed dropdown menu'}
-			/>
+		<div className={ddContainer}>
+			<button
+				className={ddBtn}
+				onClick={() => { setExpanded(!expanded) }}
+				onMouseEnter={() => { setHovered(true) }}
+				onMouseLeave={() => { setHovered(false) }}
+			>
+				{label}
+				<img
+					src={expanded ? dropdownOpen : hovered ? ddClosedLight : ddClosedDark}
+					alt={expanded ? 'open dropdown menu' : 'closed dropdown menu'}
+				/>
+			</button>
 			{expanded &&
-				<div className={dropDownContent}>
+				<div className={ddContent}>
 					{children}
 				</div>
 			}
-		</button>
+		</div>
 	);
 }
 
