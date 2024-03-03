@@ -1,5 +1,5 @@
 import { css, keyframes } from '@emotion/css';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { NavBar } from '../NavBar';
 import chime from '../assets/audio/chime.wav';
 import flower from '../assets/images/flower.png';
@@ -15,7 +15,7 @@ interface FlowerProps {
 	rotation: number;
 };
 
-export function Home(): JSX.Element {
+export function Home(): React.JSX.Element {
 	const [muted, setMuted] = useState(false);
 
 	const pageStyle = css({
@@ -42,7 +42,7 @@ export function Home(): JSX.Element {
 	);
 }
 
-function MuteBtn({ onClick, muted }: { onClick: () => void, muted: boolean }): JSX.Element {
+function MuteBtn({ onClick, muted }: { onClick: () => void, muted: boolean }): React.JSX.Element {
 	const muteBtnStyle = css({
 		cursor: 'pointer',
 		backgroundColor: '#EEA8D9',
@@ -68,7 +68,7 @@ function MuteBtn({ onClick, muted }: { onClick: () => void, muted: boolean }): J
 	);
 }
 
-function Tree({ muted }: { muted: boolean }): JSX.Element {
+function Tree({ muted }: { muted: boolean }): React.JSX.Element {
 	const [flowerProps, setFlowerProps] = useState<FlowerProps[]>([]);
 	const [flowerId, setFlowerId] = useState(0);
 
@@ -118,7 +118,7 @@ function Tree({ muted }: { muted: boolean }): JSX.Element {
 }
 
 function Flower({ id, dX, dY, rotation }
-	: { id: number, dX: number, dY: number, rotation: number }): JSX.Element {
+	: { id: number, dX: number, dY: number, rotation: number }): React.JSX.Element {
 	const spinAnimation = keyframes`
 		from {
 			rotate: 0deg;

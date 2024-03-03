@@ -1,10 +1,10 @@
 import { css } from '@emotion/css';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { usePageNumber } from './pages/PageNumberContext';
 import { HOME, ABOUT_ME, MY_PROJECTS } from './pages/PageNumbers';
 
-export function NavBar(): JSX.Element {
+export function NavBar(): React.JSX.Element {
 	const navBarStyle = css({
 		backgroundColor: '#9cadce',
 		color: '#1A2131',
@@ -32,7 +32,7 @@ export function NavBar(): JSX.Element {
 	);
 }
 
-function MainTitle(): JSX.Element {
+function MainTitle(): React.JSX.Element {
 	const { setPageNumber } = usePageNumber();
 	const navigate = useNavigate();
 
@@ -54,7 +54,7 @@ function MainTitle(): JSX.Element {
 }
 
 function NavButton({ label, link, targetPage }:
-	{ label: string, link: string, targetPage: number }): JSX.Element {
+	{ label: string, link: string, targetPage: number }): React.JSX.Element {
 	const navigate = useNavigate();
 	const { pageNumber, setPageNumber } = usePageNumber();
 	// navigate after pageNumber is set so button style updates properly
