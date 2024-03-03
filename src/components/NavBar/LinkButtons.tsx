@@ -1,8 +1,8 @@
 import { css } from '@emotion/css';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { usePageNumber } from './pages/PageNumberContext';
-import externalLink from './assets/images/external-link.png';
+import { usePageNumber } from '../../hooks/PageNumberContext';
+import externalLink from '../../assets/images/external-link.png';
 
 export function ExternalLink({ text, link }: { text: string, link: string }): React.JSX.Element {
 	const externalLinkStyle = css(

@@ -1,11 +1,11 @@
 import { css, keyframes } from '@emotion/css';
 import React, { useState } from 'react';
-import { NavBar } from '../NavBar';
-import chime from '../assets/audio/chime.wav';
-import flower from '../assets/images/flower.png';
-import tree from '../assets/images/tree.png';
-import voloff from '../assets/images/voloff.png';
-import volon from '../assets/images/volon.png';
+import { NavBar } from '../NavBar/NavBar';
+import chime from '../../assets/audio/chime.wav';
+import flower from '../../assets/images/flower.png';
+import tree from '../../assets/images/tree.png';
+import voloff from '../../assets/images/voloff.png';
+import volon from '../../assets/images/volon.png';
 
 
 interface FlowerProps {

@@ -1,8 +1,8 @@
 import { css } from '@emotion/css';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { usePageNumber } from './pages/PageNumberContext';
-import { HOME, ABOUT_ME, REACT_FUN } from './pages/PageNumbers';
+import { usePageNumber } from '../../hooks/PageNumberContext';
+import { HOME, ABOUT_ME, REACT_FUN } from '../../hooks/PageNumbers';
 import { DropDownMenu } from './DropDownMenu';
 import { ExternalLink, InternalLink } from './LinkButtons';
 

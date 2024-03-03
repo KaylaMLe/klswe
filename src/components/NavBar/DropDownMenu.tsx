@@ -1,8 +1,8 @@
 import { css } from '@emotion/css';
 import React, { ReactNode, useState } from 'react';
-import ddClosedDark from './assets/images/dd-closed-dark.png';
-import ddClosedLight from './assets/images/dd-closed-light.png';
-import dropdownOpen from './assets/images/dropdown-open.png';
+import ddClosedDark from '../../assets/images/dd-closed-dark.png';
+import ddClosedLight from '../../assets/images/dd-closed-light.png';
+import dropdownOpen from '../../assets/images/dropdown-open.png';
 
 export function DropDownMenu({ label, children }:
 	{ label: string, children: ReactNode }): React.JSX.Element {
