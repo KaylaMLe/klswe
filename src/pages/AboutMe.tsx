@@ -58,6 +58,7 @@ function Portrait(): React.JSX.Element {
 
 	return (
 		<img
+			id='main'
 			className={portraitStyle}
 			src={imgSrc}
 			alt='A professional head shot of myself'

@@ -31,6 +31,7 @@ export function NavBar(): React.JSX.Element {
 
 	return (
 		<div className={navBarStyle}>
+			<SkipToMain />
 			<MainTitle />
 			<div className={btnRowStyle}>
 				<NavBtn label='About me' link='/about-me' targetPage={ABOUT_ME} />
@@ -39,6 +40,27 @@ export function NavBar(): React.JSX.Element {
 				</DropDownMenu>
 			</div>
 		</div>
+	);
+}
+
+function SkipToMain(): React.JSX.Element {
+	const skipStyle = css({
+		color: 'black',
+		position: 'absolute',
+		left: '-100%',
+		':focus': {
+			left: 'auto',
+			top: '8vh',
+		},
+	});
+
+	return (
+		<a
+			className={skipStyle}
+			href='#main'
+		>
+			Skip to main content
+		</a>
 	);
 }
 

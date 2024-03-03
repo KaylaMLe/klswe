@@ -60,7 +60,7 @@ function MuteBtn({ onClick, muted }: { onClick: () => void, muted: boolean }): R
 	});
 
 	return (
-		<button className={muteBtnStyle} onClick={onClick}>
+		<button id='main' className={muteBtnStyle} onClick={onClick}>
 			<img src={muted ? volon : voloff} alt='Toggle sound effects' />
 			{muted ? 'Unmute sound effects' : 'Mute sound effects'}
 		</button>
