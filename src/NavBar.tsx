@@ -155,9 +155,10 @@ function DropDownMenu({ label, children }: { label: string, children: ReactNode 
 		borderRadius: '0.5rem',
 		padding: '0.75rem',
 		width: '15vw',
+		minWidth: '128px',
 		display: 'flex',
 		flexDirection: 'column',
-		alignItems: 'flex-end',
+		alignItems: 'center',
 		position: 'absolute',
 		top: '80%',// overlays content on top of drop down button
 		right: '0',

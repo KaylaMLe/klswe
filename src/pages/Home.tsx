@@ -57,6 +57,7 @@ function MuteBtn({ onClick, muted }: { onClick: () => void, muted: boolean }): R
 		top: '10px',
 		left: '5px',
 		width: '200px',
+		zIndex: '1',
 	});
 
 	return (
