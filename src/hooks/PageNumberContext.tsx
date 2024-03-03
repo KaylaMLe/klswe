@@ -1,29 +1,29 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
 
-interface PageNumberContextType {
-	pageNumber: number;
-	setPageNumber: (number: number) => void;
+interface CurrentPageContextType {
+	currentPage: number;
+	setCurrentPage: (number: number) => void;
 }
 
-const defaultContextValue: PageNumberContextType = {
-	pageNumber: 0,
-	setPageNumber: () => { },
+const defaultContextValue: CurrentPageContextType = {
+	currentPage: 0,
+	setCurrentPage: () => { },
 };
 
-const PageNumberContext = createContext<PageNumberContextType>(defaultContextValue);
+const CurrentPageContext = createContext<CurrentPageContextType>(defaultContextValue);
 
-export const usePageNumber = () => useContext(PageNumberContext);
+export const useCurrentPage = () => useContext(CurrentPageContext);
 
-interface PageNumberProviderProps {
+interface CurrentPageProviderProps {
 	children: ReactNode;
 }
 
-export const PageNumberProvider: React.FC<PageNumberProviderProps> = ({ children }) => {
-	const [pageNumber, setPageNumber] = useState(5);
+export const CurrentPageProvider: React.FC<CurrentPageProviderProps> = ({ children }) => {
+	const [currentPage, setCurrentPage] = useState(0);
 
 	return (
-		<PageNumberContext.Provider value={{ pageNumber, setPageNumber }}>
+		<CurrentPageContext.Provider value={{ currentPage, setCurrentPage }}>
 			{children}
-		</PageNumberContext.Provider>
+		</CurrentPageContext.Provider>
 	);
 };

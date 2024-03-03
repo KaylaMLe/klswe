@@ -1,7 +1,7 @@
 import { css } from '@emotion/css';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { usePageNumber } from '../../hooks/PageNumberContext';
+import { useCurrentPage } from '../../hooks/PageNumberContext';
 import { HOME, ABOUT_ME, REACT_FUN } from '../../hooks/PageNumbers';
 import { DropDownMenu } from './DropDownMenu';
 import { ExternalLink, InternalLink } from './LinkButtons';
@@ -75,7 +75,6 @@ export function NavBar(): React.JSX.Element {
 			<div className={btnRowStyle}>
 				<InternalLink
 					text='About me'
-					link='/about-me'
 					targetPage={ABOUT_ME}
 					styleFunction={navBtnStyle}
 				/>
@@ -83,7 +82,6 @@ export function NavBar(): React.JSX.Element {
 					<ExternalLink text='Check out my GitHub profile' link='https://github.com/KaylaMLe' />
 					<InternalLink
 						text='React fun'
-						link='/react-fun'
 						targetPage={REACT_FUN}
 						styleFunction={dropDownItemStyle}
 					/>
@@ -98,9 +96,9 @@ function SkipToMain(): React.JSX.Element {
 		color: 'black',
 		position: 'absolute',
 		left: '-100%',
+		top: '55px',
 		':focus': {
 			left: 'auto',
-			top: '55px',
 		},
 	});
 
@@ -115,7 +113,7 @@ function SkipToMain(): React.JSX.Element {
 }
 
 function MainTitle(): React.JSX.Element {
-	const { setPageNumber } = usePageNumber();
+	const { setCurrentPage } = useCurrentPage();
 	const navigate = useNavigate();
 
 	const titleStyle = css({
@@ -127,8 +125,8 @@ function MainTitle(): React.JSX.Element {
 
 	return (
 		<h1 className={titleStyle} onClick={() => {
-			navigate('/');
-			setPageNumber(HOME);
+			navigate(HOME.link);
+			setCurrentPage(HOME.pageNumber);
 		}}>
 			Kayla Le
 		</h1>

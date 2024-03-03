@@ -1,7 +1,8 @@
 import { css } from '@emotion/css';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { usePageNumber } from '../../hooks/PageNumberContext';
+import { PageType } from '../../hooks/PageNumbers';
+import { useCurrentPage } from '../../hooks/PageNumberContext';
 import externalLink from '../../assets/images/external-link.png';
 
 export function ExternalLink({ text, link }: { text: string, link: string }): React.JSX.Element {
@@ -23,24 +24,24 @@ export function ExternalLink({ text, link }: { text: string, link: string }): Re
 	);
 }
 
-export function InternalLink({ text, link, targetPage, styleFunction }:
+export function InternalLink({ text, targetPage, styleFunction }:
 	{
-		text: string, link: string, targetPage: number,
+		text: string, targetPage: PageType,
 		styleFunction: (t: number, c: number) => string
 	}): React.JSX.Element {
 	const navigate = useNavigate();
-	const { pageNumber, setPageNumber } = usePageNumber();
+	const { currentPage, setCurrentPage } = useCurrentPage();
 	// navigate after pageNumber is set so button style updates properly
 	useEffect(() => {
-		if (pageNumber === targetPage) {
-			navigate(link);
+		if (currentPage === targetPage.pageNumber) {
+			navigate(targetPage.link);
 		}
-	}, [pageNumber, link, navigate, targetPage]);
+	}, [currentPage, navigate, targetPage]);
 
 	return (
 		<button
-			className={styleFunction(targetPage, pageNumber)}
-			onClick={() => { setPageNumber(targetPage) }}
+			className={styleFunction(targetPage.pageNumber, currentPage)}
+			onClick={() => { setCurrentPage(targetPage.pageNumber) }}
 		>
 			{text}
 		</button >
