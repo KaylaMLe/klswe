@@ -102,8 +102,19 @@ function Tree({ muted }: { muted: boolean }): React.JSX.Element {
 		}
 	};
 
+	const handleKeyDown = (event: React.KeyboardEvent) => {
+		if (event.key === 'Enter' || event.key === ' ') {
+			addFlower();
+		}
+	};
+
 	return (
-		<div className={treeBoxStyle} onClick={addFlower}>
+		<div
+			className={treeBoxStyle}
+			tabIndex={0}
+			onClick={addFlower}
+			onKeyDown={handleKeyDown}
+		>
 			<audio id="clickSound">
 				<source src={chime}></source>
 				Your browser does not support the audio element.

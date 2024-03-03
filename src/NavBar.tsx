@@ -50,7 +50,7 @@ function SkipToMain(): React.JSX.Element {
 		left: '-100%',
 		':focus': {
 			left: 'auto',
-			top: '8vh',
+			top: '55px',
 		},
 	});
 
