@@ -1,9 +1,51 @@
 import { css } from '@emotion/css';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { usePageNumber } from './pages/PageNumberContext';
-import { HOME, ABOUT_ME } from './pages/PageNumbers';
-import { DropDownMenu, ExternalLink } from './DropDownMenu';
+import { HOME, ABOUT_ME, REACT_FUN } from './pages/PageNumbers';
+import { DropDownMenu } from './DropDownMenu';
+import { ExternalLink, InternalLink } from './LinkButtons';
+
+function navBtnStyle(targetPage: number, currentPage: number): string {
+	const navBtnStyle = css({
+		backgroundColor: currentPage === targetPage ? '#2C1450' : '#C4A5E7',
+		color: currentPage === targetPage ? '#C4A5E7' : '#2C1450',
+		borderColor: '#2C1450',
+		borderRadius: '1rem',
+		borderStyle: 'solid',
+		marginLeft: '0.1rem',
+		padding: '0.75rem',
+		'@media(prefers-reduced-motion: no-preference)': {
+			transition: 'background-color 0.5s ease, color 0.5s ease',
+		},
+		':hover': {
+			backgroundColor: '#2C1450',
+			color: '#C4A5E7',
+		},
+	});
+
+	return navBtnStyle;
+}
+
+function dropDownItemStyle(targetPage: number, currentPage: number): string {
+	const ddItemStyle = css({
+		backgroundColor: currentPage === targetPage ? '#A3A3FF' : '#000080',
+		color: currentPage === targetPage ? '#000080' : '#A3A3FF',
+		borderStyle: 'none',
+		borderRadius: '0.5rem',
+		padding: '0.5rem',
+		width: '100%',
+		'@media(prefers-reduced-motion: no-preference)': {
+			transition: 'background-color 0.5s ease, color 0.5s ease',
+		},
+		':hover': {
+			backgroundColor: '#A3A3FF',
+			color: '#000080',
+		},
+	});
+
+	return ddItemStyle;
+}
 
 export function NavBar(): React.JSX.Element {
 	const navBarStyle = css({
@@ -31,9 +73,20 @@ export function NavBar(): React.JSX.Element {
 			<SkipToMain />
 			<MainTitle />
 			<div className={btnRowStyle}>
-				<NavBtn label='About me' link='/about-me' targetPage={ABOUT_ME} />
+				<InternalLink
+					text='About me'
+					link='/about-me'
+					targetPage={ABOUT_ME}
+					styleFunction={navBtnStyle}
+				/>
 				<DropDownMenu label='Projects'>
 					<ExternalLink text='Check out my GitHub profile' link='https://github.com/KaylaMLe' />
+					<InternalLink
+						text='React fun'
+						link='/react-fun'
+						targetPage={REACT_FUN}
+						styleFunction={dropDownItemStyle}
+					/>
 				</DropDownMenu>
 			</div>
 		</div>
@@ -79,44 +132,5 @@ function MainTitle(): React.JSX.Element {
 		}}>
 			Kayla Le
 		</h1>
-	);
-}
-
-function NavBtn({ label, link, targetPage }:
-	{ label: string, link: string, targetPage: number }): React.JSX.Element {
-	const navigate = useNavigate();
-	const { pageNumber, setPageNumber } = usePageNumber();
-	// navigate after pageNumber is set so button style updates properly
-	useEffect(() => {
-		if (pageNumber === targetPage) {
-			navigate(link);
-		}
-	}, [pageNumber, link, navigate, targetPage]);
-
-	const navBtnStyle = css({
-		backgroundColor: pageNumber === targetPage ? '#2C1450' : '#C4A5E7',
-		color: pageNumber === targetPage ? '#C4A5E7' : '#2C1450',
-		borderColor: '#2C1450',
-		borderRadius: '1rem',
-		borderStyle: 'solid',
-		fontSize: '12pt',
-		marginLeft: '0.1rem',
-		padding: '0.75rem',
-		'@media(prefers-reduced-motion: no-preference)': {
-			transition: 'background-color 0.5s ease, color 0.5s ease',
-		},
-		':hover': {
-			backgroundColor: '#2C1450',
-			color: '#C4A5E7',
-		},
-	});
-
-	return (
-		<button
-			className={navBtnStyle}
-			onClick={() => { setPageNumber(targetPage) }}
-		>
-			{label}
-		</button >
 	);
 }

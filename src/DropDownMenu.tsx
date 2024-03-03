@@ -3,7 +3,6 @@ import React, { ReactNode, useState } from 'react';
 import ddClosedDark from './assets/images/dd-closed-dark.png';
 import ddClosedLight from './assets/images/dd-closed-light.png';
 import dropdownOpen from './assets/images/dropdown-open.png';
-import externalLink from './assets/images/external-link.png';
 
 export function DropDownMenu({ label, children }:
 	{ label: string, children: ReactNode }): React.JSX.Element {
@@ -20,7 +19,6 @@ export function DropDownMenu({ label, children }:
 		borderColor: '#000080',
 		borderRadius: '0.5rem',
 		borderStyle: 'solid',
-		fontSize: '12pt',
 		marginLeft: '0.1rem',
 		padding: '0.75rem',
 		'@media(prefers-reduced-motion: no-preference)': {
@@ -35,7 +33,7 @@ export function DropDownMenu({ label, children }:
 	const ddContent = css({
 		backgroundColor: '#000080',
 		borderRadius: '0.5rem',
-		padding: '0.75rem',
+		gap: '0.5rem',
 		width: '15vw',
 		minWidth: '128px',
 		display: 'flex',
@@ -70,17 +68,3 @@ export function DropDownMenu({ label, children }:
 	);
 }
 
-export function ExternalLink({ text, link }: { text: string, link: string }): React.JSX.Element {
-	const externalLinkStyle = css(
-		{
-			color: '#A3A3FF',
-		}
-	);
-
-	return (
-		<a className={externalLinkStyle} href={link}>
-			{text}
-			<img src={externalLink} alt='external link' />
-		</a>
-	);
-}
