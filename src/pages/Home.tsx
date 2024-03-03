@@ -72,6 +72,7 @@ function Tree({ muted }: { muted: boolean }): React.JSX.Element {
 	const [flowerId, setFlowerId] = useState(0);
 
 	const treeBoxStyle = css({
+		cursor: 'pointer',
 		position: 'relative',
 	});
 
