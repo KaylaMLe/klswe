@@ -1,11 +1,12 @@
 import { css } from '@emotion/css';
-import React, { ReactElement, ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { usePageNumber } from './pages/PageNumberContext';
 import { HOME, ABOUT_ME } from './pages/PageNumbers';
-import dropdownClosed from './assets/images/dropdown-closed.png';
-import externaldark from './assets/images/external-dark.png';
-import externallight from './assets/images/external-light.png';
+import ddClosedDark from './assets/images/dd-closed-dark.png';
+import ddClosedLight from './assets/images/dd-closed-light.png';
+import dropdownOpen from './assets/images/dropdown-open.png';
+import externalLink from './assets/images/external-link.png';
 
 const navBtnStyle = css({
 	backgroundColor: '#C4A5E7',
@@ -42,9 +43,9 @@ export function NavBar(): React.JSX.Element {
 	});
 
 	const btnRowStyle = css({
-		position: 'relative',
 		display: 'flex',
 		alignItems: 'flex-start',
+		justifyContent: 'flex-end',
 	});
 
 	return (
@@ -52,9 +53,8 @@ export function NavBar(): React.JSX.Element {
 			<MainTitle />
 			<div className={btnRowStyle}>
 				<NavBtn label='About me' link='/about-me' targetPage={ABOUT_ME} />
-				<ExternalBtn label='My projects' link='https://github.com/KaylaMLe' />
-				<DropDownBtn label='My projects'>
-					<div></div>
+				<DropDownBtn label='Projects'>
+					<ExternalLink text='Check out my GitHub profile' link='https://github.com/KaylaMLe' />
 				</DropDownBtn>
 			</div>
 		</div>
@@ -102,36 +102,20 @@ function NavBtn({ label, link, targetPage }:
 	);
 }
 
-function ExternalBtn({ label, link }:
-	{ label: string, link: string }): ReactElement {
-	const [hover, setHover] = useState(false);
-
-	return (
-		<a href={link}>
-			<button
-				className={navBtnStyle}
-				onMouseEnter={() => { setHover(true) }}
-				onMouseLeave={() => { setHover(false) }}
-			>
-				{label}
-				<img src={hover ? externallight : externaldark} />
-			</button >
-		</a>
-	);
-}
-
-function DropDownBtn({ label, children }: { label: string, children: ReactNode }) {
-	const [hover, setHover] = useState(false);
+function DropDownBtn({ label, children }: { label: string, children: ReactNode }): React.JSX.Element {
+	const [hovered, setHovered] = useState(false);
+	const [expanded, setExpanded] = useState(false);
 
 	const dropDownStyle = css({
-		backgroundColor: '#A3A3FF',
-		color: '#000080',
+		backgroundColor: expanded ? '#000080' : '#A3A3FF',
+		color: expanded ? '#A3A3FF' : '#000080',
 		borderColor: '#000080',
 		borderRadius: '0.5rem',
 		borderStyle: 'solid',
 		fontSize: '12pt',
 		marginLeft: '0.1rem',
 		padding: '0.75rem',
+		position: 'relative',
 		'@media(prefers-reduced-motion: no-preference)': {
 			transition: 'background-color 0.5s ease, color 0.5s ease',
 		},
@@ -141,15 +125,48 @@ function DropDownBtn({ label, children }: { label: string, children: ReactNode }
 		},
 	});
 
+	const dropDownContent = css({
+		backgroundColor: '#000080',
+		borderRadius: '0.5rem',
+		padding: '0.75rem',
+		width: '20vw',
+		position: 'absolute',
+		top: '80%',// overlays content on top of drop down button
+		right: '-2px'// neatly aligns content with the right side of the button
+	});
+
 	return (
-		<div
+		<button
 			className={dropDownStyle}
-			onMouseEnter={() => { setHover(true) }}
-			onMouseLeave={() => { setHover(false) }}
+			onClick={() => { setExpanded(!expanded) }}
+			onMouseEnter={() => { setHovered(true) }}
+			onMouseLeave={() => { setHovered(false) }}
 		>
 			{label}
-			<img src={dropdownClosed} />
-			{children}
-		</div>
+			<img
+				src={expanded ? dropdownOpen : hovered ? ddClosedLight : ddClosedDark}
+				alt={expanded ? 'open dropdown menu' : 'closed dropdown menu'}
+			/>
+			{expanded &&
+				<div className={dropDownContent}>
+					{children}
+				</div>
+			}
+		</button>
+	);
+}
+
+function ExternalLink({ text, link }: { text: string, link: string }): React.JSX.Element {
+	const externalLinkStyle = css(
+		{
+			color: '#A3A3FF',
+		}
+	);
+
+	return (
+		<a className={externalLinkStyle} href={link}>
+			{text}
+			<img src={externalLink} alt='external link' />
+		</a>
 	);
 }
