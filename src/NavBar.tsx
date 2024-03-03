@@ -37,7 +37,6 @@ function MainTitle(): React.JSX.Element {
 	const navigate = useNavigate();
 
 	const titleStyle = css({
-		cursor: 'pointer',
 		margin: 0,
 		display: 'flex',
 		alignItems: 'center',
@@ -65,7 +64,6 @@ function NavButton({ label, link, targetPage }:
 	}, [pageNumber, link, navigate, targetPage]);
 
 	const navBtnStyle = css({
-		cursor: 'pointer',
 		backgroundColor: pageNumber === targetPage ? '#2C1450' : '#C4A5E7',
 		color: pageNumber === targetPage ? '#C4A5E7' : '#2C1450',
 		borderColor: '#2C1450',

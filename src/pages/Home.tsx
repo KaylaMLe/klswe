@@ -44,7 +44,6 @@ export function Home(): React.JSX.Element {
 
 function MuteBtn({ onClick, muted }: { onClick: () => void, muted: boolean }): React.JSX.Element {
 	const muteBtnStyle = css({
-		cursor: 'pointer',
 		backgroundColor: '#EEA8D9',
 		borderColor: '#602267',
 		borderRadius: '2rem',
@@ -73,7 +72,6 @@ function Tree({ muted }: { muted: boolean }): React.JSX.Element {
 	const [flowerId, setFlowerId] = useState(0);
 
 	const treeBoxStyle = css({
-		cursor: 'pointer',
 		position: 'relative',
 	});
 
