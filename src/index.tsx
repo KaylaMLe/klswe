@@ -2,10 +2,11 @@ import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HOME, ABOUT_ME, FLEXBOX_FUN } from './hooks/PageNumbers';
 import { CurrentPageProvider } from './hooks/PageNumberContext';
 import { Home } from './components/Pages/Home';
 import { AboutMe } from './components/Pages/AboutMe';
-import { ReactFun } from './components/Pages/ReactFun';
+import { FlexboxFun } from './components/Pages/FlexboxFun';
 import { Page } from './components/Pages/Page';
 
 const root = ReactDOM.createRoot(
@@ -16,20 +17,20 @@ root.render(
 		<CurrentPageProvider>
 			<Router>
 				<Routes>
-					<Route path='/' element={
+					<Route path={HOME.link} element={
 						<Page>
 							<Home />
 						</Page>
 					}
 					/>
-					<Route path='/about-me' element={
+					<Route path={ABOUT_ME.link} element={
 						<Page>
 							<AboutMe />
 						</Page>}
 					/>
-					<Route path='/react-fun' element={
+					<Route path={FLEXBOX_FUN.link} element={
 						<Page>
-							<ReactFun />
+							<FlexboxFun />
 						</Page>
 					} />
 				</Routes>

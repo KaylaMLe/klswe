@@ -2,7 +2,7 @@ import { css } from '@emotion/css';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCurrentPage } from '../../hooks/PageNumberContext';
-import { HOME, ABOUT_ME, REACT_FUN } from '../../hooks/PageNumbers';
+import { HOME, ABOUT_ME, FLEXBOX_FUN } from '../../hooks/PageNumbers';
 import { DropDownMenu } from './DropDownMenu';
 import { ExternalLink, InternalLink } from './LinkButtons';
 
@@ -82,7 +82,7 @@ export function NavBar(): React.JSX.Element {
 					<ExternalLink text='Check out my GitHub profile' link='https://github.com/KaylaMLe' />
 					<InternalLink
 						text='React fun'
-						targetPage={REACT_FUN}
+						targetPage={FLEXBOX_FUN}
 						styleFunction={dropDownItemStyle}
 					/>
 				</DropDownMenu>
