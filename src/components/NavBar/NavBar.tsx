@@ -81,7 +81,7 @@ export function NavBar(): React.JSX.Element {
 				<DropDownMenu label='Projects'>
 					<ExternalLink text='Check out my GitHub profile' link='https://github.com/KaylaMLe' />
 					<InternalLink
-						text='React fun'
+						text='Flexbox Fun'
 						targetPage={FLEXBOX_FUN}
 						styleFunction={dropDownItemStyle}
 					/>
