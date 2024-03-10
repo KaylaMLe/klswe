@@ -21,13 +21,12 @@ root.render(
 						<Page>
 							<Home />
 						</Page>
-					}
-					/>
+					} />
 					<Route path={ABOUT_ME.link} element={
 						<Page>
 							<AboutMe />
-						</Page>}
-					/>
+						</Page>
+					} />
 					<Route path={FLEXBOX_FUN.link} element={
 						<Page>
 							<FlexboxFun />

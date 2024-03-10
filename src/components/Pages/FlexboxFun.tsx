@@ -39,7 +39,7 @@ export function FlexboxFun(): React.JSX.Element {
 	};
 
 	return (
-		<div id='main' className={pageStyle}>
+		<div className={pageStyle}>
 			<SettingsRow>
 				<ColorChanger
 					label='Background color'

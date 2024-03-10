@@ -1,10 +1,10 @@
 import { css } from '@emotion/css';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useCurrentPage } from '../../hooks/PageNumberContext';
+import { Link } from 'react-router-dom';
 import { HOME, ABOUT_ME, FLEXBOX_FUN } from '../../hooks/PageNumbers';
 import { DropDownMenu } from './DropDownMenu';
 import { ExternalLink, InternalLink } from './LinkButtons';
+import { useCurrentPage } from '../../hooks/PageNumberContext';
 
 function navBtnStyle(targetPage: number, currentPage: number): string {
 	const navBtnStyle = css({
@@ -13,6 +13,7 @@ function navBtnStyle(targetPage: number, currentPage: number): string {
 		borderColor: '#2C1450',
 		borderRadius: '1rem',
 		borderStyle: 'solid',
+		textDecoration: 'none',
 		marginLeft: '0.1rem',
 		padding: '0.75rem',
 		'@media(prefers-reduced-motion: no-preference)': {
@@ -33,7 +34,10 @@ function dropDownItemStyle(targetPage: number, currentPage: number): string {
 		color: currentPage === targetPage ? '#000080' : '#A3A3FF',
 		borderStyle: 'none',
 		borderRadius: '0.5rem',
+		textDecoration: 'none',
 		padding: '0.5rem',
+		boxSizing: 'border-box',
+		textAlign: 'center',
 		width: '100%',
 		'@media(prefers-reduced-motion: no-preference)': {
 			transition: 'background-color 0.5s ease, color 0.5s ease',
@@ -114,21 +118,16 @@ function SkipToMain(): React.JSX.Element {
 
 function MainTitle(): React.JSX.Element {
 	const { setCurrentPage } = useCurrentPage();
-	const navigate = useNavigate();
-
 	const titleStyle = css({
-		cursor: 'pointer',
-		margin: 0,
-		display: 'flex',
-		alignItems: 'center',
+		textDecoration: 'none',
+		color: 'inherit',
 	});
 
 	return (
-		<h1 className={titleStyle} onClick={() => {
-			navigate(HOME.link);
-			setCurrentPage(HOME.pageNumber);
-		}}>
-			Kayla Le
-		</h1>
+		<Link to={HOME.link} className={titleStyle} onClick={() => { setCurrentPage(HOME.pageNumber) }}>
+			<h1>
+				Kayla Le
+			</h1>
+		</Link>
 	);
 }

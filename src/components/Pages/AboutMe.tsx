@@ -7,7 +7,6 @@ export function AboutMe(): React.JSX.Element {
 		backgroundColor: '#00007A',
 		color: '#CCCCFF',
 		boxShadow: '0 0 5px 5px #00007A',
-		fontSize: '12pt',
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
@@ -44,10 +43,9 @@ function Portrait(): React.JSX.Element {
 
 	return (
 		<img
-			id='main'
 			className={portraitStyle}
 			src={imgSrc}
-			alt='A professional head shot of myself'
+			alt='Professional head shot of myself'
 		/>
 	);
 }

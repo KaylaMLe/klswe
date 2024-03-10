@@ -2,11 +2,11 @@ body {
 	background-color: #d1cfe2;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 	height: 100%;
+	font-size: 1.25em;
 	margin: 0;
 	padding: 0;
 }
 
 button {
-	font-size: 12pt;
 	cursor: pointer;
 }

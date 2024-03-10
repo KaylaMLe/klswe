@@ -13,7 +13,9 @@ export function Page({ children }: { children: ReactNode }): React.JSX.Element {
 	return (
 		<div className={pageStyle}>
 			<NavBar />
-			{children}
+			<div id='main' tabIndex={-1} role='none'>
+				{children}
+			</div>
 		</div>
 	);
 }

@@ -41,21 +41,23 @@ function MuteBtn({ onClick, muted }: { onClick: () => void, muted: boolean }): R
 		borderColor: '#602267',
 		borderRadius: '2rem',
 		borderStyle: 'solid',
+		fontSize: '0.85em',
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		fontSize: '11pt',
 		padding: '8px',
 		position: 'absolute',
 		top: '10px',
 		left: '5px',
 		width: '200px',
-		zIndex: '1',
 	});
 
 	return (
-		<button id='main' className={muteBtnStyle} onClick={onClick}>
-			<img src={muted ? volon : voloff} alt='Toggle sound effects' />
+		<button
+			className={muteBtnStyle}
+			onClick={onClick}
+		>
+			<img src={muted ? volon : voloff} alt='' />
 			{muted ? 'Unmute sound effects' : 'Mute sound effects'}
 		</button>
 	);
@@ -66,8 +68,9 @@ function Tree({ muted }: { muted: boolean }): React.JSX.Element {
 	const [flowerId, setFlowerId] = useState(0);
 
 	const treeBoxStyle = css({
-		cursor: 'pointer',
 		position: 'relative',
+		background: 'none',
+		border: 'none',
 	});
 
 	const addFlower = () => {
@@ -103,21 +106,31 @@ function Tree({ muted }: { muted: boolean }): React.JSX.Element {
 	};
 
 	return (
-		<div
+		<button
 			className={treeBoxStyle}
-			tabIndex={0}
 			onClick={addFlower}
 			onKeyDown={handleKeyDown}
+			aria-label='Press space or enter to play a chime and add a flower to the tree.'
 		>
-			<audio id="clickSound">
+			<audio id='clickSound'>
 				<source src={chime}></source>
 				Your browser does not support the audio element.
 			</audio>
-			<img src={tree} alt='A drawing of a bonsai tree' />
+			<img
+				src={tree}
+				alt={`Drawing of a bonsai tree${flowerProps.length === 1 ? ' with a light pink flower on it'
+					: flowerProps.length > 0 ? ' with light pink flowers on it' : ''}`}
+			/>
 			{flowerProps.map(props => (
-				<Flower key={props.id} id={props.id} dX={props.dX} dY={props.dY} rotation={props.rotation} />
+				<Flower
+					key={props.id}
+					id={props.id}
+					dX={props.dX}
+					dY={props.dY}
+					rotation={props.rotation}
+				/>
 			))}
-		</div>
+		</button>
 	);
 }
 
@@ -147,7 +160,7 @@ function Flower({ id, dX, dY, rotation }
 			id={id.toString()}
 			className={flowerStyle}
 			src={flower}
-			alt='A drawing of a pink flower'
+			alt=''
 		/>
 	);
 }
