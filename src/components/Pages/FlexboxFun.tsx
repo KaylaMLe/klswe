@@ -137,8 +137,8 @@ function SelectInput({ label, id, optionValues, currentValue, onChange }:
 
 	const options = [];
 
-	for (const i of optionValues) {
-		options.push(<option value={i}>{i}</option>);
+	for (let i = 0; i < optionValues.length; i++) {
+		options.push(<option key={i} value={optionValues[i]}>{optionValues[i]}</option>);
 	}
 
 	return (
