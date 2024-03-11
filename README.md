@@ -21,10 +21,10 @@ Prerequisites:
 
 	```npm install```
 
-4. Run the app locally. The page will launch on port 3000
+4. Run the app locally. The page will launch on port 5173.
 
-	```npm start```
+	```npm run dev```
 
 5. Open the following link in your web browser to access the page.
 
-	[http://localhost:3000](http://localhost:3000)
+	[http://localhost:5173](http://localhost:5173)

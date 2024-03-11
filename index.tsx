@@ -1,9 +1,9 @@
-import './index.css';
+import './src/index.css';
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import routes from './routes';
-import { CurrentPageProvider } from './hooks/PageNumberContext';
+import routes from './src/routes';
+import { CurrentPageProvider } from './src/hooks/PageNumberContext';
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement

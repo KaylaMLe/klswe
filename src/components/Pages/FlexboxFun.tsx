@@ -135,7 +135,7 @@ function SelectInput({ label, id, optionValues, currentValue, onChange }:
 		gap: '0.5rem',
 	});
 
-	const options = [];
+	const options: ReactNode[] = [];
 
 	for (let i = 0; i < optionValues.length; i++) {
 		options.push(<option key={i} value={optionValues[i]}>{optionValues[i]}</option>);

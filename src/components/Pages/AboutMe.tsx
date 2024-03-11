@@ -43,7 +43,7 @@ function Portrait(): React.JSX.Element {
 		width: '192px',
 	});
 
-	const imgSrc = process.env.REACT_APP_PORTRAIT_IMG_URL || placeholder;
+	const imgSrc = import.meta.env.VITE_PORTRAIT_IMG_URL || placeholder;
 
 	return (
 		<img
