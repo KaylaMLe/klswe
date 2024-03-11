@@ -22,7 +22,7 @@ export default function AboutMe(): React.JSX.Element {
 		<Page pageNumber={ABOUT_ME.pageNumber}>
 			<div className={textBoxStyle}>
 				<Portrait />
-				<p>{import.meta.env.VITE_ABOUT_ME_TXT}</p>
+				<p>{import.meta.env.VITE_ABOUT_ME_TXT || 'Hi!'}</p>
 			</div>
 		</Page>
 	);
