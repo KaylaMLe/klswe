@@ -1,7 +1,9 @@
 import { css } from '@emotion/css';
 import React, { ReactNode, useState } from 'react';
+import { FLEXBOX_FUN } from '../../hooks/PageNumbers';
+import { Page } from './Page';
 
-export function FlexboxFun(): React.JSX.Element {
+export default function FlexboxFun(): React.JSX.Element {
 	const [bgColor, setBgColor] = useState('#ffffff');
 	const [boxColor, setBoxColor] = useState('#000000');
 	const [alignment, setAlignment] = useState('baseline');
@@ -39,43 +41,45 @@ export function FlexboxFun(): React.JSX.Element {
 	};
 
 	return (
-		<div className={pageStyle}>
-			<SettingsRow>
-				<ColorChanger
-					label='Background color'
-					id='bgColorPicker'
-					currentColor={bgColor}
-					onChange={handleBgColorChange}
-				/>
-				<ColorChanger
-					label='Box color'
-					id='boxColorPicker'
-					currentColor={boxColor}
-					onChange={handleBoxColorChange}
-				/>
-				<SelectInput
-					label='align-items'
-					id='alignmentChanger'
-					optionValues={['baseline', 'center', 'end', 'flex-end', 'flex-start', 'inherit',
-						'initial', 'normal', 'revert', 'revert-layer', 'self-end', 'self-start', 'start',
-						'stretch', 'unset']}
-					currentValue={alignment}
-					onChange={handleAlignmentChange}
-				/>
-				<SelectInput
-					label='justify-content'
-					id='justificationChanger'
-					optionValues={['center', 'end', 'flex-end', 'flex-start', 'inherit', 'left', 'normal',
-						'revert', 'revert-layer', 'right', 'space-around', 'space-between', 'space-evenly',
-						'start', 'stretch', 'unset']}
-					currentValue={justification}
-					onChange={handleJustificationChange}
-				/>
-			</SettingsRow>
-			<ComponentsBox bgColor={bgColor} alignItems={alignment} justifyContent={justification}>
-				<div className={boxStyle}></div>
-			</ComponentsBox>
-		</div>
+		<Page pageNumber={FLEXBOX_FUN.pageNumber}>
+			<div className={pageStyle}>
+				<SettingsRow>
+					<ColorChanger
+						label='Background color'
+						id='bgColorPicker'
+						currentColor={bgColor}
+						onChange={handleBgColorChange}
+					/>
+					<ColorChanger
+						label='Box color'
+						id='boxColorPicker'
+						currentColor={boxColor}
+						onChange={handleBoxColorChange}
+					/>
+					<SelectInput
+						label='align-items'
+						id='alignmentChanger'
+						optionValues={['baseline', 'center', 'end', 'flex-end', 'flex-start', 'inherit',
+							'initial', 'normal', 'revert', 'revert-layer', 'self-end', 'self-start', 'start',
+							'stretch', 'unset']}
+						currentValue={alignment}
+						onChange={handleAlignmentChange}
+					/>
+					<SelectInput
+						label='justify-content'
+						id='justificationChanger'
+						optionValues={['center', 'end', 'flex-end', 'flex-start', 'inherit', 'left', 'normal',
+							'revert', 'revert-layer', 'right', 'space-around', 'space-between', 'space-evenly',
+							'start', 'stretch', 'unset']}
+						currentValue={justification}
+						onChange={handleJustificationChange}
+					/>
+				</SettingsRow>
+				<ComponentsBox bgColor={bgColor} alignItems={alignment} justifyContent={justification}>
+					<div className={boxStyle}></div>
+				</ComponentsBox>
+			</div>
+		</Page>
 	);
 }
 
