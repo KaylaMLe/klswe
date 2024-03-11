@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { HOME, ABOUT_ME, FLEXBOX_FUN } from '../../hooks/PageNumbers';
 import { DropDownMenu } from './DropDownMenu';
 import { ExternalLink, InternalLink } from './LinkButtons';
-import { useCurrentPage } from '../../hooks/PageNumberContext';
 
 function navBtnStyle(targetPage: number, currentPage: number): string {
 	const navBtnStyle = css({
@@ -117,14 +116,13 @@ function SkipToMain(): React.JSX.Element {
 }
 
 function MainTitle(): React.JSX.Element {
-	const { setCurrentPage } = useCurrentPage();
 	const titleStyle = css({
 		textDecoration: 'none',
 		color: 'inherit',
 	});
 
 	return (
-		<Link to={HOME.link} className={titleStyle} onClick={() => { setCurrentPage(HOME.pageNumber) }}>
+		<Link to={HOME.link} className={titleStyle}>
 			<h1>
 				Kayla Le
 			</h1>

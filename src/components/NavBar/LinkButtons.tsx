@@ -36,13 +36,12 @@ export function InternalLink({ text, targetPage, styleFunction }:
 		text: string, targetPage: PageType,
 		styleFunction: (t: number, c: number) => string
 	}): React.JSX.Element {
-	const { currentPage, setCurrentPage } = useCurrentPage();
+	const { currentPage } = useCurrentPage();
 
 	return (
 		<Link
 			className={styleFunction(targetPage.pageNumber, currentPage)}
 			to={targetPage.link}
-			onClick={() => { setCurrentPage(targetPage.pageNumber) }}
 		>
 			{text}
 		</Link >

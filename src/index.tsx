@@ -18,17 +18,17 @@ root.render(
 			<Router>
 				<Routes>
 					<Route path={HOME.link} element={
-						<Page>
+						<Page pageNumber={HOME.pageNumber}>
 							<Home />
 						</Page>
 					} />
 					<Route path={ABOUT_ME.link} element={
-						<Page>
+						<Page pageNumber={ABOUT_ME.pageNumber}>
 							<AboutMe />
 						</Page>
 					} />
 					<Route path={FLEXBOX_FUN.link} element={
-						<Page>
+						<Page pageNumber={FLEXBOX_FUN.pageNumber}>
 							<FlexboxFun />
 						</Page>
 					} />
