@@ -77,12 +77,12 @@ function Tree({ muted }: { muted: boolean }): React.JSX.Element {
 		border: 'none',
 	});
 
-	const addFlower = () => {
-		if (flowerProps.length === 64) {
-			setFlowerProps(flowerProps.slice(1));
-		}
+	const FLOWER_LIMIT = 128;
+	// slice removes oldest flower props in list
+	const sliceInd = Number(flowerProps.length >= FLOWER_LIMIT);
 
-		setFlowerProps([...flowerProps,
+	const addFlower = () => {
+		setFlowerProps([...flowerProps.slice(sliceInd, FLOWER_LIMIT),
 		{
 			id: flowerId,
 			// flower can be positioned across entire width of tree (258 px)
@@ -92,7 +92,7 @@ function Tree({ muted }: { muted: boolean }): React.JSX.Element {
 			rotation: Math.floor(Math.random() * 360),
 		}]);
 
-		setFlowerId((flowerId + 1) % 64);
+		setFlowerId((flowerId + 1) % FLOWER_LIMIT);
 
 		if (!muted) {
 			const audioElement = document.getElementById('clickSound') as HTMLAudioElement;
