@@ -1,4 +1,5 @@
-import { createContext, ReactNode, useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
+import { ContextProviderProps } from './ContextProviderProps';
 
 interface CurrentPageContextType {
 	currentPage: number;
@@ -14,11 +15,7 @@ const CurrentPageContext = createContext<CurrentPageContextType>(defaultContextV
 
 export const useCurrentPage = () => useContext(CurrentPageContext);
 
-interface CurrentPageProviderProps {
-	children: ReactNode;
-}
-
-export const CurrentPageProvider: React.FC<CurrentPageProviderProps> = ({ children }) => {
+export const CurrentPageProvider: React.FC<ContextProviderProps> = ({ children }) => {
 	const [currentPage, setCurrentPage] = useState(0);
 
 	return (

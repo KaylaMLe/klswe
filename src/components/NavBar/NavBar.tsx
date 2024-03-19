@@ -1,9 +1,11 @@
 import { css } from '@emotion/css';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useCurrentPage } from '../../hooks/PageNumberContext';
+import { useIsMobile } from '../../hooks/ViewPortContext';
 import { HOME, ABOUT_ME, FLEXBOX_FUN } from '../../hooks/PageNumbers';
 import { DropDownMenu } from './DropDownMenu';
 import { ExternalLink, InternalLink } from './LinkButtons';
+import { MainTitle } from './MainTitle';
 
 function navBtnStyle(targetPage: number, currentPage: number): string {
 	const navBtnStyle = css({
@@ -13,7 +15,6 @@ function navBtnStyle(targetPage: number, currentPage: number): string {
 		borderRadius: '1rem',
 		borderStyle: 'solid',
 		textDecoration: 'none',
-		marginLeft: '0.1rem',
 		padding: '0.75rem',
 		'@media(prefers-reduced-motion: no-preference)': {
 			transition: 'background-color 0.5s ease, color 0.5s ease',
@@ -51,30 +52,50 @@ function dropDownItemStyle(targetPage: number, currentPage: number): string {
 }
 
 export function NavBar(): React.JSX.Element {
+	const { currentPage } = useCurrentPage();
+	const { isMobile } = useIsMobile();
+	const [isHome, setIsHome] = React.useState(false);
+
 	const navBarStyle = css({
-		backgroundColor: '#9cadce',
 		color: '#1A2131',
-		boxShadow: '0 0 5px 5px #9cadce',
 		display: 'flex',
 		alignItems: 'center',
+	});
+
+	const homeStyle = css({
+		paddingTop: isMobile ? '0' : '5vmin',
+		paddingLeft: isMobile ? '0' : '5vmin',
+		boxSizing: 'border-box',
+		flexDirection: 'column',
+		height: isMobile ? '50%' : '100%',
+		width: isMobile ? '100%' : '60%',
+	});
+
+	const notHomeStyle = css({
+		flexDirection: isMobile ? 'column' : 'row',
 		justifyContent: 'space-between',
 		boxSizing: 'border-box',
-		padding: '0.75rem',
-		height: '10vh',
+		paddingLeft: isMobile ? '0' : '5vmin',
+		height: '20%',
 		minHeight: '64px',
-		width: '100vw',
+		width: '100%',
 	});
 
 	const btnRowStyle = css({
 		display: 'flex',
 		alignItems: 'flex-start',
-		justifyContent: 'flex-end',
+		justifyContent: isMobile ? 'center' : isHome ? 'flex-start' : 'flex-end',
+		width: isHome ? '100%' : '50%',
 	});
 
+	useEffect(() => {
+		setIsHome(currentPage === HOME.pageNumber);
+	}, [currentPage]);
+
 	return (
-		<div className={navBarStyle}>
+		<div className={`${navBarStyle} ${isHome ? homeStyle : notHomeStyle}`}>
 			<SkipToMain />
-			<MainTitle />
+			<MainTitle isHome={isHome} />
 			<div className={btnRowStyle}>
 				<InternalLink
 					text='About me'
@@ -112,20 +133,5 @@ function SkipToMain(): React.JSX.Element {
 		>
 			Skip to main content
 		</a>
-	);
-}
-
-function MainTitle(): React.JSX.Element {
-	const titleStyle = css({
-		textDecoration: 'none',
-		color: 'inherit',
-	});
-
-	return (
-		<Link to={HOME.link} className={titleStyle}>
-			<h1>
-				Kayla Le
-			</h1>
-		</Link>
 	);
 }

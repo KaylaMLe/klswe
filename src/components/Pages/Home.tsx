@@ -1,5 +1,6 @@
 import { css, keyframes } from '@emotion/css';
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
+import { useIsMobile } from '../../hooks/ViewPortContext';
 import { HOME } from '../../hooks/PageNumbers';
 import { Page } from './Page';
 import chime from '../../assets/audio/chime.wav';
@@ -18,15 +19,16 @@ interface FlowerProps {
 
 export default function Home(): React.JSX.Element {
 	const [muted, setMuted] = useState(false);
+	const { isMobile } = useIsMobile();
 
 	const homeStyle = css({
-		boxSizing: 'border-box',
 		display: 'flex',
-		alignItems: 'center',
+		flexDirection: 'column',
+		alignItems: isMobile ? 'center' : 'flex-start',
 		justifyContent: 'center',
-		height: '90vh',
-		minHeight: '375px',
-		position: 'relative',
+		height: '100%',
+		minHeight: isMobile ? '600px' : '200px',
+		width: '100%',
 	});
 
 	return (
@@ -50,10 +52,6 @@ function MuteBtn({ onClick, muted }: { onClick: () => void, muted: boolean }): R
 		alignItems: 'center',
 		justifyContent: 'space-between',
 		padding: '8px',
-		position: 'absolute',
-		top: '10px',
-		left: '5px',
-		width: '200px',
 	});
 
 	return (
@@ -68,27 +66,39 @@ function MuteBtn({ onClick, muted }: { onClick: () => void, muted: boolean }): R
 }
 
 function Tree({ muted }: { muted: boolean }): React.JSX.Element {
+	const { isMobile } = useIsMobile();
 	const [flowerProps, setFlowerProps] = useState<FlowerProps[]>([]);
 	const [flowerId, setFlowerId] = useState(0);
 
 	const treeBoxStyle = css({
 		position: 'relative',
-		background: 'none',
+		background: `none`,
 		border: 'none',
+		display: 'flex',
+		height: '80%',
+		minHeight: '150px',
+		width: '100%',
+		marginRight: isMobile ? '0' : '5vmin',
+		marginTop: isMobile ? '5vw' : '0',
 	});
 
-	const FLOWER_LIMIT = 128;
+	const treeImgStyle = css({
+		height: '100%',
+		width: '100%',
+	});
+
+	const FLOWER_LIMIT = 256;
 	// slice removes oldest flower props in list
 	const sliceInd = Number(flowerProps.length >= FLOWER_LIMIT);
 
-	const addFlower = () => {
+	const addFlower = useCallback(() => {
 		setFlowerProps([...flowerProps.slice(sliceInd, FLOWER_LIMIT),
 		{
 			id: flowerId,
-			// flower can be positioned across entire width of tree (258 px)
-			dX: Math.floor(Math.random() * 259),
-			// flower height is limited to branches (top 169 px)
-			dY: Math.floor(Math.random() * 170),
+			// flower can be positioned across entire width of tree (100%)
+			dX: Math.random() * 100,
+			// flower height is limited to branches (top 50%)
+			dY: Math.random() * 50,
 			rotation: Math.floor(Math.random() * 360),
 		}]);
 
@@ -99,9 +109,11 @@ function Tree({ muted }: { muted: boolean }): React.JSX.Element {
 
 			if (audioElement) {
 				audioElement.play();
+			} else {
+				console.error('Audio element not found');
 			}
 		}
-	};
+	}, [flowerProps, flowerId, muted]);
 
 	const handleKeyDown = (event: React.KeyboardEvent) => {
 		if (event.key === 'Enter' || event.key === ' ') {
@@ -121,9 +133,10 @@ function Tree({ muted }: { muted: boolean }): React.JSX.Element {
 				Your browser does not support the audio element.
 			</audio>
 			<img
+				className={treeImgStyle}
 				src={tree}
 				alt={`Drawing of a bonsai tree${flowerProps.length === 1 ? ' with a light pink flower on it'
-					: flowerProps.length > 0 ? ' with light pink flowers on it' : ''}`}
+					: flowerProps.length > 0 ? ` with ${flowerProps.length} light pink flowers on it` : ''}`}
 			/>
 			{flowerProps.map(props => (
 				<Flower
@@ -151,8 +164,8 @@ function Flower({ id, dX, dY, rotation }
 
 	const flowerStyle = css({
 		position: 'absolute',
-		left: `${dX}px`,
-		top: `${dY}px`,
+		left: `${dX}%`,
+		top: `${dY}%`,
 		rotate: `${rotation}deg`,
 		'@media(prefers-reduced-motion: no-preference)': {
 			animation: `${spinAnimation} 0.5s ease-in-out`

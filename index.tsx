@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import routes from './src/routes';
 import { CurrentPageProvider } from './src/hooks/PageNumberContext';
+import { IsMobileProvider } from './src/hooks/ViewPortContext';
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
@@ -11,17 +12,19 @@ const root = ReactDOM.createRoot(
 
 root.render(
 	<React.StrictMode>
-		<CurrentPageProvider>
-			<Router>
-				<Suspense fallback={<p>Loading...</p>}>
-					<Routes>
-						{
-							routes.map((route, index) =>
-								<Route key={index} path={route.path} element={<route.component />} />)
-						}
-					</Routes>
-				</Suspense>
-			</Router>
-		</CurrentPageProvider>
+		<IsMobileProvider>
+			<CurrentPageProvider>
+				<Router>
+					<Suspense fallback={<p color='white'>Loading...</p>}>
+						<Routes>
+							{
+								routes.map((route, index) =>
+									<Route key={index} path={route.path} element={<route.component />} />)
+							}
+						</Routes>
+					</Suspense>
+				</Router>
+			</CurrentPageProvider>
+		</IsMobileProvider>
 	</React.StrictMode>
 );
