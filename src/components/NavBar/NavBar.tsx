@@ -1,8 +1,8 @@
 import { css } from '@emotion/css';
-import React, { useEffect } from 'react';
-import { useCurrentPage } from '../../hooks/PageNumberContext';
-import { useIsMobile } from '../../hooks/ViewPortContext';
-import { HOME, ABOUT_ME, FLEXBOX_FUN } from '../../hooks/PageNumbers';
+import React from 'react';
+import { ABOUT_ME, FLEXBOX_FUN } from '../../hooks/PageNumbers';
+import { navBarStyles, btnRowStyles } from '../styles/NavBar/NavBarStyles';
+import { ResponsiveNavComponent } from '../ResponsiveComponents/ResponsiveNavComponent';
 import { DropDownMenu } from './DropDownMenu';
 import { ExternalLink, InternalLink } from './LinkButtons';
 import { MainTitle } from './MainTitle';
@@ -52,51 +52,11 @@ function dropDownItemStyle(targetPage: number, currentPage: number): string {
 }
 
 export function NavBar(): React.JSX.Element {
-	const { currentPage } = useCurrentPage();
-	const { isMobile } = useIsMobile();
-	const [isHome, setIsHome] = React.useState(false);
-
-	const navBarStyle = css({
-		color: '#1A2131',
-		display: 'flex',
-		alignItems: 'center',
-	});
-
-	const homeStyle = css({
-		paddingTop: isMobile ? '0' : '5vmin',
-		paddingLeft: isMobile ? '0' : '5vmin',
-		boxSizing: 'border-box',
-		flexDirection: 'column',
-		height: isMobile ? '50%' : '100%',
-		width: isMobile ? '100%' : '60%',
-	});
-
-	const notHomeStyle = css({
-		flexDirection: isMobile ? 'column' : 'row',
-		justifyContent: 'space-between',
-		boxSizing: 'border-box',
-		paddingLeft: isMobile ? '0' : '5vmin',
-		height: '20%',
-		minHeight: '64px',
-		width: '100%',
-	});
-
-	const btnRowStyle = css({
-		display: 'flex',
-		alignItems: 'flex-start',
-		justifyContent: isMobile ? 'center' : isHome ? 'flex-start' : 'flex-end',
-		width: isHome ? '100%' : '50%',
-	});
-
-	useEffect(() => {
-		setIsHome(currentPage === HOME.pageNumber);
-	}, [currentPage]);
-
 	return (
-		<div className={`${navBarStyle} ${isHome ? homeStyle : notHomeStyle}`}>
+		<ResponsiveNavComponent Component='nav' allStyles={navBarStyles}>
 			<SkipToMain />
-			<MainTitle isHome={isHome} />
-			<div className={btnRowStyle}>
+			<MainTitle />
+			<ResponsiveNavComponent Component='div' allStyles={btnRowStyles}>
 				<InternalLink
 					text='About me'
 					targetPage={ABOUT_ME}
@@ -110,8 +70,8 @@ export function NavBar(): React.JSX.Element {
 						styleFunction={dropDownItemStyle}
 					/>
 				</DropDownMenu>
-			</div>
-		</div>
+			</ResponsiveNavComponent>
+		</ResponsiveNavComponent>
 	);
 }
 

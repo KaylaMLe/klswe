@@ -1,24 +1,16 @@
 import { css } from '@emotion/css';
 import React, { ReactNode, useEffect } from 'react';
-import { NavBar } from '../NavBar/NavBar';
+import { HOME } from '../../hooks/PageNumbers';
+import { pageStyles } from '../styles/Pages/PageStyles';
 import { useCurrentPage } from '../../hooks/PageNumberContext';
 import { useIsMobile } from '../../hooks/ViewPortContext';
-import { HOME } from '../../hooks/PageNumbers';
+import { NavBar } from '../NavBar/NavBar';
+import { ResponsiveNavComponent } from '../ResponsiveComponents/ResponsiveNavComponent';
 
 export function Page({ pageNumber, children }:
 	{ pageNumber: number, children: ReactNode }): React.JSX.Element {
 	const { currentPage, setCurrentPage } = useCurrentPage();
 	const { isMobile } = useIsMobile();
-
-	const pageStyle = css({
-		display: 'flex',
-		flexDirection: currentPage !== HOME.pageNumber || isMobile ? 'column' : 'row',
-		justifyContent: 'space-between',
-		height: '100vh',
-		minHeight: currentPage === HOME.pageNumber ? '600px' : '',
-		width: '100vw',
-		position: 'relative',
-	});
 
 	const contentStyle = css({
 		height: currentPage !== HOME.pageNumber || isMobile ? '100%' : 'auto',
@@ -30,11 +22,11 @@ export function Page({ pageNumber, children }:
 	}, [pageNumber, setCurrentPage]);
 
 	return (
-		<div className={pageStyle}>
+		<ResponsiveNavComponent Component='div' allStyles={pageStyles}>
 			<NavBar />
 			<div className={contentStyle} id='main' tabIndex={-1} role='none'>
 				{children}
 			</div>
-		</div>
+		</ResponsiveNavComponent>
 	);
 }

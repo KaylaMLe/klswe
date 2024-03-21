@@ -1,14 +1,14 @@
 import { css, keyframes } from '@emotion/css';
 import React, { useCallback, useState } from 'react';
-import { useIsMobile } from '../../hooks/ViewPortContext';
 import { HOME } from '../../hooks/PageNumbers';
-import { Page } from './Page';
 import chime from '../../assets/audio/chime.wav';
 import flower from '../../assets/images/flower.png';
 import tree from '../../assets/images/tree.png';
 import voloff from '../../assets/images/voloff.png';
 import volon from '../../assets/images/volon.png';
-
+import { homeStyles, treeBoxStyles } from '../styles/Pages/HomeStyles';
+import { Page } from './Page';
+import { ResponsiveComponent } from '../ResponsiveComponents/ResponsiveComponent';
 
 interface FlowerProps {
 	id: number;
@@ -19,24 +19,13 @@ interface FlowerProps {
 
 export default function Home(): React.JSX.Element {
 	const [muted, setMuted] = useState(false);
-	const { isMobile } = useIsMobile();
-
-	const homeStyle = css({
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: isMobile ? 'center' : 'flex-start',
-		justifyContent: 'center',
-		height: '100%',
-		minHeight: isMobile ? '600px' : '200px',
-		width: '100%',
-	});
 
 	return (
 		<Page pageNumber={HOME.pageNumber}>
-			<div className={homeStyle}>
+			<ResponsiveComponent Component='div' allStyles={homeStyles}>
 				<MuteBtn onClick={() => { setMuted(!muted) }} muted={muted} />
 				<Tree muted={muted} />
-			</div>
+			</ ResponsiveComponent>
 		</Page>
 	);
 }
@@ -66,21 +55,8 @@ function MuteBtn({ onClick, muted }: { onClick: () => void, muted: boolean }): R
 }
 
 function Tree({ muted }: { muted: boolean }): React.JSX.Element {
-	const { isMobile } = useIsMobile();
 	const [flowerProps, setFlowerProps] = useState<FlowerProps[]>([]);
 	const [flowerId, setFlowerId] = useState(0);
-
-	const treeBoxStyle = css({
-		position: 'relative',
-		background: `none`,
-		border: 'none',
-		display: 'flex',
-		height: '80%',
-		minHeight: '150px',
-		width: '100%',
-		marginRight: isMobile ? '0' : '5vmin',
-		marginTop: isMobile ? '5vw' : '0',
-	});
 
 	const treeImgStyle = css({
 		height: '100%',
@@ -122,8 +98,9 @@ function Tree({ muted }: { muted: boolean }): React.JSX.Element {
 	};
 
 	return (
-		<button
-			className={treeBoxStyle}
+		<ResponsiveComponent
+			Component='button'
+			allStyles={treeBoxStyles}
 			onClick={addFlower}
 			onKeyDown={handleKeyDown}
 			aria-label='Press space or enter to play a chime and add a flower to the tree.'
@@ -147,7 +124,7 @@ function Tree({ muted }: { muted: boolean }): React.JSX.Element {
 					rotation={props.rotation}
 				/>
 			))}
-		</button>
+		</ ResponsiveComponent>
 	);
 }
 
