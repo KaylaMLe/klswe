@@ -40,7 +40,9 @@ function MuteBtn({ onClick, muted }: { onClick: () => void, muted: boolean }): R
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'space-between',
-		padding: '8px',
+		boxSizing: 'border-box',
+		padding: '0.5rem',
+		justifySelf: 'center',
 	});
 
 	return (

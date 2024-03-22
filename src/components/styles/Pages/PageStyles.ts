@@ -2,15 +2,17 @@ import { ResponsiveNavStyles } from "../../ResponsiveComponents/ResponsiveNavCom
 
 export const pageStyles: ResponsiveNavStyles = {
 	default: {
-		display: 'flex',
-		flexDirection: 'column',
-		justifyContent: 'space-between',
-		height: '100vh',
-		width: '100vw',
+		display: 'grid',
+		gridTemplateRows: 'auto 1fr',
+		height: '100%',
+		width: '100%',
+		boxSizing: 'border-box',
+		gap: '5vmin',
+		padding: '5vmin',
 	},
 	mobile: {},
 	home: {
-		flexDirection: 'row',
-		minHeight: '600px',
+		gridTemplateRows: 'auto',
+		gridTemplateColumns: '3fr 2fr',
 	},
 };

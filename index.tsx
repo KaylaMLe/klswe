@@ -15,7 +15,7 @@ root.render(
 		<IsMobileProvider>
 			<CurrentPageProvider>
 				<Router>
-					<Suspense fallback={<p color='white'>Loading...</p>}>
+					<Suspense fallback={<p style={{ color: 'white' }}>Loading...</p>}>
 						<Routes>
 							{
 								routes.map((route, index) =>

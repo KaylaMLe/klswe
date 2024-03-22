@@ -1,18 +1,18 @@
 import { ResponsiveStyles } from "../../ResponsiveComponents/ResponsiveComponent";
 
-export const textBoxStyles: ResponsiveStyles = {
+export const aboutMeStyles: ResponsiveStyles = {
 	default: {
 		color: '#CCCCFF',
-		display: 'flex',
-		flexDirection: 'column',
+		display: 'grid',
+		gap: '5vmin',
+		gridTemplateColumns: 'auto 1fr',
 		alignItems: 'center',
-		justifyContent: 'center',
-		boxSizing: 'border-box',
-		padding: '1rem',
 		height: '100%',
-		minHeight: '350px',
+		width: '100%',
 	},
 	mobile: {
-		minHeight: '625px',
+		gridTemplateColumns: 'auto',
+		gridTemplateRows: 'auto 1fr',
+		alignItems: 'flex-start',
 	},
 };

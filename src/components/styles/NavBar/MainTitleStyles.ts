@@ -27,6 +27,6 @@ export const linkStyles: ResponsiveNavStyles = {
 	},
 	mobile: {},
 	home: {
-		fontSize: 'clamp(4rem, 6rem, 9rem)',
+		fontSize: 'clamp(4rem, 6rem, 11vmin)',
 	},
 };

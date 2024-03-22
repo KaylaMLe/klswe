@@ -2,6 +2,7 @@ body {
 	background-color: #16161D;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 	height: 100%;
+	width: 100%;
 	font-size: 1.25rem;
 	margin: 0;
 	padding: 0;
@@ -9,4 +10,9 @@ body {
 
 button {
 	cursor: pointer;
+}
+
+.root {
+	height: 100vh;
+	width: 100vw;
 }

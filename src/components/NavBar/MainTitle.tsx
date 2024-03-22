@@ -10,11 +10,18 @@ export function MainTitle(): React.JSX.Element {
 	const { currentPage } = useCurrentPage();
 
 	const nameStyle = css({
+		lineHeight: '1',
 		margin: '0',
+		boxSizing: 'border-box',
+		paddingBottom: '1rem',
 	});
 
 	const headlineStyle = css({
 		fontSize: '3rem',
+		lineHeight: '1',
+		margin: '0',
+		boxSizing: 'border-box',
+		paddingBottom: '1rem',
 	});
 
 	return (
