@@ -10,12 +10,13 @@ export default function FlexboxFun(): React.JSX.Element {
 	const [justification, setJustification] = useState('center');
 
 	const pageStyle = css({
+		color: '#9FE6EA',
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'space-around',
-		height: '90vh',
-		width: '100vw',
+		height: '100%',
+		width: '100%',
 	});
 
 	const boxStyle = css({

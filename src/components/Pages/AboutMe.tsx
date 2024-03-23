@@ -8,6 +8,7 @@ import { Page } from './Page';
 
 export default function AboutMe(): React.JSX.Element {
 	const paragraphStyle = css({
+		color: '#9FE6EA',
 		margin: '0',
 		boxSizing: 'border-box',
 		paddingBottom: '5vmin',
