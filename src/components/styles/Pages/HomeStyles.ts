@@ -1,6 +1,6 @@
-import { ResponsiveStyles } from "../../ResponsiveComponents/ResponsiveComponent";
+import { DynamicStyles } from '../StyleTypes';
 
-export const homeStyles: ResponsiveStyles = {
+export const homeStyles: DynamicStyles = {
 	default: {
 		display: 'grid',
 		gridTemplateRows: 'auto 1fr',
@@ -8,12 +8,12 @@ export const homeStyles: ResponsiveStyles = {
 		height: '100%',
 		width: '100%',
 	},
-	mobile: {
+	alternate: {
 		alignItems: 'center',
 	},
 };
 
-export const treeBoxStyles: ResponsiveStyles = {
+export const treeBoxStyles: DynamicStyles = {
 	default: {
 		position: 'relative',
 		background: 'none',
@@ -23,7 +23,7 @@ export const treeBoxStyles: ResponsiveStyles = {
 		height: '100%',
 		width: '100%',
 	},
-	mobile: {
+	alternate: {
 		marginRight: '0',
 	},
 };

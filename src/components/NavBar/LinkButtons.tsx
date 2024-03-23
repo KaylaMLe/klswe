@@ -6,16 +6,16 @@ import { useCurrentPage } from '../../hooks/PageNumberContext';
 import externalLink from '../../assets/images/external-link.png';
 
 export function ExternalLink({ text, link }: { text: string, link: string }): React.JSX.Element {
-	const externalLinkStyle = css(
-		{
-			color: '#A3A3FF',
-			marginTop: '0.5rem',
-			display: 'flex',
-			justifyContent: 'center',
-			gap: '0.2rem',
-			alignItems: 'center',
-		}
-	);
+	const externalLinkStyle = css({
+		color: 'inherit',
+		display: 'flex',
+		justifyContent: 'center',
+		gap: '0.2rem',
+		boxSizing: 'border-box',
+		padding: '0.25rem',
+		paddingBottom: '0',
+		alignItems: 'center',
+	});
 
 	return (
 		<a

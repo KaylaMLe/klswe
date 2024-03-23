@@ -1,19 +1,15 @@
 import React, { ElementType, ReactNode } from 'react';
 import { css, CSSObject } from '@emotion/css';
+import { DynamicStyles } from '../styles/StyleTypes';
 import { useIsMobile } from '../../hooks/ViewPortContext';
-
-export interface ResponsiveStyles {
-	default: CSSObject,
-	mobile: CSSObject,
-};
 
 export function ResponsiveComponent({ Component, allStyles, children, ...props }
 	: {
-		Component: ElementType, allStyles: ResponsiveStyles, children?: ReactNode, [prop: string]: any
+		Component: ElementType, allStyles: DynamicStyles, children?: ReactNode, [prop: string]: any
 	}): React.JSX.Element {
 	const { isMobile } = useIsMobile();
 
-	const style: CSSObject = isMobile ? { ...allStyles.default, ...allStyles.mobile }
+	const style: CSSObject = isMobile ? { ...allStyles.default, ...allStyles.alternate }
 		: allStyles.default;
 
 	return (

@@ -1,4 +1,4 @@
-import { ResponsiveNavStyles } from "../../ResponsiveComponents/ResponsiveNavComponent";
+import { ResponsiveNavStyles } from '../StyleTypes';
 
 export const pageStyles: ResponsiveNavStyles = {
 	default: {

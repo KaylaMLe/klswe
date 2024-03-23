@@ -1,6 +1,6 @@
-import { ResponsiveStyles } from "../../ResponsiveComponents/ResponsiveComponent";
+import { DynamicStyles } from '../StyleTypes';
 
-export const aboutMeStyles: ResponsiveStyles = {
+export const aboutMeStyles: DynamicStyles = {
 	default: {
 		color: '#CCCCFF',
 		display: 'grid',
@@ -10,7 +10,7 @@ export const aboutMeStyles: ResponsiveStyles = {
 		height: '100%',
 		width: '100%',
 	},
-	mobile: {
+	alternate: {
 		gridTemplateColumns: 'auto',
 		gridTemplateRows: 'auto 1fr',
 		alignItems: 'flex-start',

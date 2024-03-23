@@ -32,16 +32,16 @@ export default function Home(): React.JSX.Element {
 
 function MuteBtn({ onClick, muted }: { onClick: () => void, muted: boolean }): React.JSX.Element {
 	const muteBtnStyle = css({
-		backgroundColor: '#EEA8D9',
-		borderColor: '#602267',
+		backgroundColor: '#0A943F',
+		border: 'none',
 		borderRadius: '2rem',
-		borderStyle: 'solid',
-		fontSize: '0.85em',
+		fontSize: 'inherit',
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'space-between',
+		width: '85%',
 		boxSizing: 'border-box',
-		padding: '0.5rem',
+		padding: '0.75rem',
 		justifySelf: 'center',
 	});
 

@@ -1,14 +1,9 @@
 import React, { ElementType, ReactNode } from 'react';
 import { css, CSSObject } from '@emotion/css';
+import { HOME } from '../../hooks/PageNumbers';
+import { ResponsiveNavStyles } from '../styles/StyleTypes';
 import { useCurrentPage } from '../../hooks/PageNumberContext';
 import { useIsMobile } from '../../hooks/ViewPortContext';
-import { HOME } from '../../hooks/PageNumbers';
-
-export interface ResponsiveNavStyles {
-	default: CSSObject,
-	mobile: CSSObject,
-	home: CSSObject,
-};
 
 // these are components rendered on all pages and have a different home page style
 // e.g., the title, navbar, and overarching page component
