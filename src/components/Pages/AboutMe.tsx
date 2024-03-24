@@ -1,6 +1,7 @@
 import { css } from '@emotion/css';
 import React from 'react';
 import { ABOUT_ME } from '../../hooks/PageNumbers';
+import { ABOUT_ME_TXT, PORTRAIT_IMG_URL } from '../../constants';
 import placeholder from '../../assets/images/portrait-placeholder.png';
 import { aboutMeStyles } from '../styles/Pages/AboutMeStyles';
 import { ResponsiveComponent } from '../ResponsiveComponents/ResponsiveComponent';
@@ -18,7 +19,7 @@ export default function AboutMe(): React.JSX.Element {
 		<Page pageNumber={ABOUT_ME.pageNumber} title='About me'>
 			<ResponsiveComponent Component='div' allStyles={aboutMeStyles}>
 				<Portrait />
-				<p className={paragraphStyle}>{import.meta.env.VITE_ABOUT_ME_TXT || 'Hi!'}</p>
+				<p className={paragraphStyle}>{ABOUT_ME_TXT || 'Hi!'}</p>
 			</ResponsiveComponent>
 		</Page>
 	);
@@ -34,7 +35,7 @@ function Portrait(): React.JSX.Element {
 		justifySelf: 'center',
 	});
 
-	const imgSrc = import.meta.env.VITE_PORTRAIT_IMG_URL || placeholder;
+	const imgSrc = PORTRAIT_IMG_URL || placeholder;
 
 	return (
 		<img
