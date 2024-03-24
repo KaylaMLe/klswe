@@ -42,7 +42,7 @@ export default function FlexboxFun(): React.JSX.Element {
 	};
 
 	return (
-		<Page pageNumber={FLEXBOX_FUN.pageNumber}>
+		<Page pageNumber={FLEXBOX_FUN.pageNumber} title='Flexbox Fun'>
 			<div className={pageStyle}>
 				<SettingsRow>
 					<ColorChanger

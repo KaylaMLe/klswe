@@ -15,7 +15,7 @@ export default function AboutMe(): React.JSX.Element {
 	});
 
 	return (
-		<Page pageNumber={ABOUT_ME.pageNumber}>
+		<Page pageNumber={ABOUT_ME.pageNumber} title='About me'>
 			<ResponsiveComponent Component='div' allStyles={aboutMeStyles}>
 				<Portrait />
 				<p className={paragraphStyle}>{import.meta.env.VITE_ABOUT_ME_TXT || 'Hi!'}</p>
