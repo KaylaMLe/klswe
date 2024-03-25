@@ -44,3 +44,6 @@ jobs:
 
       - name: Move Vite build folder
         run: sudo mv ./dist /var/www/build
+
+      - name: Refresh NGINX
+        run: sudo nginx -s reload
