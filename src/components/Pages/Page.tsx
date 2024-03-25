@@ -26,9 +26,9 @@ export function Page({ pageNumber, title, children }
 	}, [pageNumber, setCurrentPage]);
 
 	return (
-		<ResponsiveNavComponent Component='div' allStyles={pageStyles}>
+		<ResponsiveNavComponent Component='div' allStyles={pageStyles} data-testid='page-container'>
 			<NavBar />
-			<div className={contentStyle} id='main' tabIndex={-1} role='none'>
+			<div className={contentStyle} id='main' data-testid='main-content' tabIndex={-1} role='none'>
 				{children}
 			</div>
 		</ResponsiveNavComponent>

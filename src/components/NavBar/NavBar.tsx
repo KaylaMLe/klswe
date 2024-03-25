@@ -14,7 +14,7 @@ export function NavBar(): React.JSX.Element {
 	const { currentPage } = useCurrentPage();
 
 	return (
-		<ResponsiveNavComponent Component='nav' allStyles={navBarStyles}>
+		<ResponsiveNavComponent Component='nav' allStyles={navBarStyles} data-testid='navbar'>
 			<SkipToMain />
 			<MainTitle />
 			<ResponsiveNavComponent Component='div' allStyles={btnRowStyles}>

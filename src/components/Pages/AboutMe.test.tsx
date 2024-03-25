@@ -9,13 +9,9 @@ jest.mock('../../constants', () => ({
 }));
 
 describe('AboutMe', () => {
-	it('renders without crashing', () => {
-		render(<BrowserRouter><AboutMe /></BrowserRouter>);
-	});
-
 	it('renders the portrait', () => {
 		render(<BrowserRouter><AboutMe /></BrowserRouter>);
-		const imgElement = screen.getByAltText(/Professional head shot of myself/i);
+		const imgElement = screen.getByAltText(/Professional head shot of myself/);
 		expect(imgElement).toBeInTheDocument();
 	});
 });

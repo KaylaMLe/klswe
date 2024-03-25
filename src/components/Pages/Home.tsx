@@ -114,7 +114,7 @@ function Tree({ muted }: { muted: boolean }): React.JSX.Element {
 			<img
 				className={treeImgStyle}
 				src={tree}
-				alt={`Drawing of a bonsai tree${flowerProps.length === 1 ? ' with a light pink flower on it'
+				alt={`Digital drawing of a bonsai tree${flowerProps.length === 1 ? ' with a light pink flower on it'
 					: flowerProps.length > 0 ? ` with ${flowerProps.length} light pink flowers on it` : ''}`}
 			/>
 			{flowerProps.map(props => (
