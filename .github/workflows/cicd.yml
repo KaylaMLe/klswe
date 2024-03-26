@@ -12,15 +12,15 @@ jobs:
     steps:
       - name: Fetch and rebase changes
         run: git fetch origin && git rebase origin/main
-        working-directory: ~/klswe
+        working-directory: /home/ec2-user/klswe
 
       - name: Install dependencies
         run: npm ci
-        working-directory: ~/klswe
+        working-directory: /home/ec2-user/klswe
 
       - name: Run tests
         run: npm test
-        working-directory: ~/klswe
+        working-directory: /home/ec2-user/klswe
 
       - name: Delete old build folder
         run: sudo rm -rf /var/www/build_old
@@ -30,11 +30,11 @@ jobs:
 
       - name: Build project
         run: npm run build
-        working-directory: ~/klswe
+        working-directory: /home/ec2-user/klswe
 
       - name: Move Vite build folder
         run: sudo mv ./dist /var/www/build
-        working-directory: ~/klswe
+        working-directory: /home/ec2-user/klswe
 
       - name: Refresh NGINX
         run: sudo nginx -s reload
