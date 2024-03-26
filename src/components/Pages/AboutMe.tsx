@@ -3,7 +3,7 @@ import React from 'react';
 import { ABOUT_ME } from '../../hooks/PageNumbers';
 import { ABOUT_ME_TXT, PORTRAIT_URL } from '../../constants';
 import placeholder from '../../assets/images/portrait-placeholder.png';
-import { aboutMeStyles } from '../styles/Pages/AboutMeStyles';
+import { aboutMeStyles } from './AboutMeStyles';
 import { ResponsiveComponent } from '../ResponsiveComponents/ResponsiveComponent';
 import { Page } from './Page';
 

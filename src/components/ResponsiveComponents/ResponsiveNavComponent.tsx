@@ -1,7 +1,7 @@
 import React, { ElementType, ReactNode } from 'react';
 import { css, CSSObject } from '@emotion/css';
 import { HOME } from '../../hooks/PageNumbers';
-import { ResponsiveNavStyles } from '../styles/StyleTypes';
+import { ResponsiveNavStyles } from '../../types/StyleTypes';
 import { useCurrentPage } from '../../hooks/PageNumberContext';
 import { useIsMobile } from '../../hooks/ViewPortContext';
 

@@ -1,4 +1,4 @@
-import { DynamicStyles, ResponsiveNavStyles } from '../StyleTypes';
+import { DynamicStyles, ResponsiveNavStyles } from '../../types/StyleTypes';
 
 export const navBarStyles: ResponsiveNavStyles = {
 	default: {

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useCurrentPage } from '../../hooks/PageNumberContext';
 import { HOME } from '../../hooks/PageNumbers';
 import { ResponsiveNavComponent } from '../ResponsiveComponents/ResponsiveNavComponent';
-import { titleStyles, linkStyles } from '../styles/NavBar/MainTitleStyles';
+import { titleStyles, linkStyles } from './MainTitleStyles';
 
 export function MainTitle(): React.JSX.Element {
 	const { currentPage } = useCurrentPage();

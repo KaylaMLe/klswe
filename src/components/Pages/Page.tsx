@@ -1,6 +1,6 @@
 import { css } from '@emotion/css';
 import React, { ReactNode, useEffect } from 'react';
-import { pageStyles } from '../styles/Pages/PageStyles';
+import { pageStyles } from './PageStyles';
 import { useCurrentPage } from '../../hooks/PageNumberContext';
 import { NavBar } from '../NavBar/NavBar';
 import { ResponsiveNavComponent } from '../ResponsiveComponents/ResponsiveNavComponent';

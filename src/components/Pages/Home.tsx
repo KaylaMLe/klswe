@@ -6,7 +6,7 @@ import flower from '../../assets/images/flower.png';
 import tree from '../../assets/images/tree.png';
 import voloff from '../../assets/images/voloff.png';
 import volon from '../../assets/images/volon.png';
-import { homeStyles, treeBoxStyles } from '../styles/Pages/HomeStyles';
+import { homeStyles, muteBtnStyles, treeBoxStyles } from './HomeStyles';
 import { Page } from './Page';
 import { ResponsiveComponent } from '../ResponsiveComponents/ResponsiveComponent';
 
@@ -31,28 +31,15 @@ export default function Home(): React.JSX.Element {
 }
 
 function MuteBtn({ onClick, muted }: { onClick: () => void, muted: boolean }): React.JSX.Element {
-	const muteBtnStyle = css({
-		backgroundColor: '#0A943F',
-		border: 'none',
-		borderRadius: '2rem',
-		fontSize: 'inherit',
-		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'space-between',
-		width: '85%',
-		boxSizing: 'border-box',
-		padding: '0.75rem',
-		justifySelf: 'center',
-	});
-
 	return (
-		<button
-			className={muteBtnStyle}
+		<ResponsiveComponent
+			Component='button'
+			allStyles={muteBtnStyles}
 			onClick={onClick}
 		>
 			<img src={muted ? volon : voloff} alt='' />
 			{muted ? 'Unmute sound effects' : 'Mute sound effects'}
-		</button>
+		</ResponsiveComponent>
 	);
 }
 

@@ -1,4 +1,4 @@
-import { DynamicStyles } from '../StyleTypes';
+import { DynamicStyles } from '../../types/StyleTypes';
 
 export const aboutMeStyles: DynamicStyles = {
 	default: {

@@ -1,6 +1,6 @@
 import React, { ElementType, ReactNode } from 'react';
 import { css, CSSObject } from '@emotion/css';
-import { DynamicStyles } from '../styles/StyleTypes';
+import { DynamicStyles } from '../../types/StyleTypes';
 import { useIsMobile } from '../../hooks/ViewPortContext';
 
 export function ResponsiveComponent({ Component, allStyles, children, ...props }

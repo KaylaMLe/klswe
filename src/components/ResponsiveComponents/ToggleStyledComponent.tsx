@@ -1,6 +1,6 @@
 import React, { ElementType, ReactNode } from 'react';
 import { css, CSSObject } from '@emotion/css';
-import { DynamicStyles } from '../styles/StyleTypes';
+import { DynamicStyles } from '../../types/StyleTypes';
 
 export function ToggleStyledComponent({ Component, label, condition, styles, children, ...props }
 	: { Component: ElementType, label: string, condition: boolean, styles: DynamicStyles, children?: ReactNode, [prop: string]: any }): React.JSX.Element {

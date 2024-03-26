@@ -1,15 +1,11 @@
 import { css, CSSObject } from '@emotion/css';
 import React, { ReactNode, useState } from 'react';
-import ddClosedDark from '../../assets/images/dd-closed-dark.png';
-import ddClosedLight from '../../assets/images/dd-closed-light.png';
-import dropdownOpen from '../../assets/images/dropdown-open.png';
-import { ddBtnStyles, ddContainerStyles } from '../styles/NavBar/DropDownMenuStyles';
+import { ddBtnStyles, ddContainerStyles } from './DropDownMenuStyles';
 import { ResponsiveNavComponent } from '../ResponsiveComponents/ResponsiveNavComponent';
 import { ToggleStyledComponent } from '../ResponsiveComponents/ToggleStyledComponent';
 
 export function DropDownMenu({ label, children }: { label: string, children: ReactNode })
 	: React.JSX.Element {
-	const [hovered, setHovered] = useState(false);
 	const [expanded, setExpanded] = useState(false);
 
 	const ddContent = css({
@@ -25,29 +21,13 @@ export function DropDownMenu({ label, children }: { label: string, children: Rea
 		zIndex: '1',
 	});
 
-	const iconBoxStyle = css({
-		position: 'relative',
-		height: '16px',
-		width: '16px',
-	});
-
 	const iconStyle: CSSObject = {
-		opacity: hovered ? 0 : 1,
+		marginLeft: '4px',
+		transform: expanded ? 'rotate(-90deg)' : 'rotate(0deg)',
 		'@media(prefers-reduced-motion: no-preference)': {
-			transition: 'opacity 0.5s ease',
+			transition: 'transform 0.5s ease',
 		},
 	};
-
-	const iconPositionStyle: CSSObject = {
-		position: 'absolute',
-		top: '0',
-		right: '0',
-
-	};
-
-	// preloading icon to prevent jittering when dropdown is opened for the first time after page load
-	const preloadedIcon = new Image();
-	preloadedIcon.src = dropdownOpen;
 
 	return (
 		<ResponsiveNavComponent Component='nav' allStyles={ddContainerStyles}>
@@ -60,23 +40,10 @@ export function DropDownMenu({ label, children }: { label: string, children: Rea
 				aria-haspopup='listbox'
 				aria-expanded={expanded}
 				aria-controls='dropdown1'
-				onMouseEnter={() => { setHovered(true) }}
-				onMouseLeave={() => { setHovered(false) }}
 			>
-				{expanded ? <img src={preloadedIcon.src} alt={'dropdown'} /> :
-					<div className={iconBoxStyle}>
-						<img
-							className={css(iconPositionStyle)}
-							src={ddClosedDark}
-							role='none'
-						/>
-						<img
-							className={css({ ...iconPositionStyle, ...iconStyle })}
-							src={ddClosedLight}
-							alt={'dropdown'}
-						/>
-					</div>
-				}
+				<div className={css(iconStyle)} role='none'>
+					▼
+				</div>
 			</ToggleStyledComponent>
 			{expanded &&
 				<div className={ddContent} id='dropdown1'>
