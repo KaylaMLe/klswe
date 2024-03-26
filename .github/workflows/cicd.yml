@@ -24,9 +24,6 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Change directory
-        run: cd ~/klswe
-
       - name: Fetch and rebase changes
         run: git fetch origin && git rebase origin/main
 
