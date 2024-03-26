@@ -10,22 +10,17 @@ jobs:
     runs-on: self-hosted
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2
-        with:
-          node-version: "18.19.1"
-
       - name: Fetch and rebase changes
         run: git fetch origin && git rebase origin/main
+        working-directory: ~/klswe
 
       - name: Install dependencies
         run: npm ci
+        working-directory: ~/klswe
 
       - name: Run tests
         run: npm test
+        working-directory: ~/klswe
 
       - name: Delete old build folder
         run: sudo rm -rf /var/www/build_old
@@ -35,9 +30,11 @@ jobs:
 
       - name: Build project
         run: npm run build
+        working-directory: ~/klswe
 
       - name: Move Vite build folder
         run: sudo mv ./dist /var/www/build
+        working-directory: ~/klswe
 
       - name: Refresh NGINX
         run: sudo nginx -s reload
