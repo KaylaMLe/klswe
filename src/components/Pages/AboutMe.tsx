@@ -1,7 +1,7 @@
 import { css } from '@emotion/css';
 import React from 'react';
 import { ABOUT_ME } from '../../hooks/PageNumbers';
-import { ABOUT_ME_TXT, PORTRAIT_IMG_URL } from '../../constants';
+import { ABOUT_ME_TXT, PORTRAIT_URL } from '../../constants';
 import placeholder from '../../assets/images/portrait-placeholder.png';
 import { aboutMeStyles } from '../styles/Pages/AboutMeStyles';
 import { ResponsiveComponent } from '../ResponsiveComponents/ResponsiveComponent';
@@ -35,7 +35,7 @@ function Portrait(): React.JSX.Element {
 		justifySelf: 'center',
 	});
 
-	const imgSrc = PORTRAIT_IMG_URL || placeholder;
+	const imgSrc = PORTRAIT_URL || placeholder;
 
 	return (
 		<img
