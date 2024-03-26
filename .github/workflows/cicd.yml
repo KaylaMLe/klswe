@@ -18,17 +18,14 @@ jobs:
         with:
           node-version: "18.19.1"
 
+      - name: Fetch and rebase changes
+        run: git fetch origin && git rebase origin/main
+
       - name: Install dependencies
         run: npm ci
 
       - name: Run tests
         run: npm test
-
-      - name: Fetch and rebase changes
-        run: git fetch origin && git rebase origin/main
-
-      - name: Install dependencies
-        run: npm install
 
       - name: Delete old build folder
         run: sudo rm -rf /var/www/build_old
