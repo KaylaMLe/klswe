@@ -56,6 +56,7 @@ function SkipToMain(): React.JSX.Element {
 		<a
 			className={skipStyle}
 			href='#main'
+			onClick={() => { document.getElementById('main')?.focus() }}
 		>
 			Skip to main content
 		</a>

@@ -1,0 +1,219 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home renders properly on different display sizes 1`] = `
+<div
+  style="width: 1024px; height: 768px;"
+>
+  <div
+    class="css-ccy2vc"
+    data-testid="page-container"
+  >
+    <nav
+      class="css-zw4cqh"
+      data-testid="navbar"
+    >
+      <a
+        class="css-42nl7f"
+        href="#main"
+      >
+        Skip to main content
+      </a>
+      <div
+        class="css-1iarqv4"
+      >
+        <a
+          class="css-1x0xomp"
+          href="/"
+        >
+          <h1
+            class="css-dj9cgy"
+          >
+            Kayla Le
+          </h1>
+        </a>
+        <h2
+          class="css-1b38hje"
+        >
+          Software Engineer
+        </h2>
+      </div>
+      <div
+        class="css-1p063y5"
+      >
+        <a
+          class="css-23kpuw"
+          href="/about-me"
+        >
+          About me
+        </a>
+        <nav
+          class="css-z6jdx8"
+        >
+          <button
+            aria-controls="dropdown1"
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            class="css-4r3yzx"
+          >
+            Projects
+            <div
+              class="css-144hx5m"
+              role="none"
+            >
+              ▼
+            </div>
+          </button>
+        </nav>
+      </div>
+    </nav>
+    <div
+      class="css-v2kfba"
+      data-testid="main-content"
+      id="main"
+      role="none"
+      tabindex="-1"
+    >
+      <div
+        class="css-1cqxb9x"
+      >
+        <button
+          class="css-1hiwl25"
+        >
+          <img
+            alt=""
+            src="test-file-stub"
+          />
+          Mute sound effects
+        </button>
+        <button
+          aria-label="Press space or enter to play a chime and add a flower to the tree."
+          class="css-17uo12l"
+        >
+          <audio
+            id="clickSound"
+          >
+            <source
+              src="test-file-stub"
+            />
+            Your browser does not support the audio element.
+          </audio>
+          <img
+            alt="Digital drawing of a bonsai tree"
+            class="css-v2kfba"
+            src="test-file-stub"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Home renders properly on different display sizes 2`] = `
+<div
+  style="width: 375px; height: 812px;"
+>
+  <div
+    class="css-ccy2vc"
+    data-testid="page-container"
+  >
+    <nav
+      class="css-zw4cqh"
+      data-testid="navbar"
+    >
+      <a
+        class="css-42nl7f"
+        href="#main"
+      >
+        Skip to main content
+      </a>
+      <div
+        class="css-1iarqv4"
+      >
+        <a
+          class="css-1x0xomp"
+          href="/"
+        >
+          <h1
+            class="css-dj9cgy"
+          >
+            Kayla Le
+          </h1>
+        </a>
+        <h2
+          class="css-1b38hje"
+        >
+          Software Engineer
+        </h2>
+      </div>
+      <div
+        class="css-1p063y5"
+      >
+        <a
+          class="css-23kpuw"
+          href="/about-me"
+        >
+          About me
+        </a>
+        <nav
+          class="css-z6jdx8"
+        >
+          <button
+            aria-controls="dropdown1"
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            class="css-4r3yzx"
+          >
+            Projects
+            <div
+              class="css-144hx5m"
+              role="none"
+            >
+              ▼
+            </div>
+          </button>
+        </nav>
+      </div>
+    </nav>
+    <div
+      class="css-v2kfba"
+      data-testid="main-content"
+      id="main"
+      role="none"
+      tabindex="-1"
+    >
+      <div
+        class="css-1cqxb9x"
+      >
+        <button
+          class="css-1hiwl25"
+        >
+          <img
+            alt=""
+            src="test-file-stub"
+          />
+          Mute sound effects
+        </button>
+        <button
+          aria-label="Press space or enter to play a chime and add a flower to the tree."
+          class="css-17uo12l"
+        >
+          <audio
+            id="clickSound"
+          >
+            <source
+              src="test-file-stub"
+            />
+            Your browser does not support the audio element.
+          </audio>
+          <img
+            alt="Digital drawing of a bonsai tree"
+            class="css-v2kfba"
+            src="test-file-stub"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;

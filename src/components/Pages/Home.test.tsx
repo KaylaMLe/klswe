@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import { pageResponsivenessTest } from '../TestHelpers';
 import Home from './Home';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -13,34 +14,31 @@ describe('Home', () => {
 		window.HTMLMediaElement.prototype.play = jest.fn();
 	});
 
-	it('renders the home page to fit the view port', () => {
-		const pageContainer = screen.getByTestId('page-container');
-		const navBar = screen.getByTestId('navbar');
-		const mainContent = screen.getByTestId('main-content');
-
-		expect(mainContent.offsetWidth).toEqual(pageContainer.offsetWidth);
-		expect(mainContent.offsetHeight + navBar.offsetHeight).toEqual(pageContainer.offsetHeight);
-	});
+	pageResponsivenessTest(<Home />);
 
 	it('adds a flower to the tree after interactions', () => {
 		const tree = screen.getByAltText('Digital drawing of a bonsai tree');
 		expect(tree).toBeInTheDocument();
+		const playSpy = jest.spyOn(window.HTMLMediaElement.prototype, 'play');
 
 		fireEvent.click(tree);
-		// The alt text changes when a flower is added to the tree
+		// The alt text changes and the chime is played when a flower is added to the tree
+		expect(playSpy).toHaveBeenCalledTimes(1);
 		const oneFlower = screen.getByAltText(
 			'Digital drawing of a bonsai tree with a light pink flower on it');
-		expect(oneFlower).toBeInTheDocument();
+		expect(oneFlower).toBeDefined();
 
 		fireEvent.keyDown(tree, { key: 'Enter', code: 'Enter' });
+		expect(playSpy).toHaveBeenCalledTimes(2);
 		const twoFlowers = screen.getByAltText(
 			'Digital drawing of a bonsai tree with 2 light pink flowers on it');
-		expect(twoFlowers).toBeInTheDocument();
+		expect(twoFlowers).toBeDefined();
 
 		fireEvent.keyDown(tree, { key: ' ', code: 'Space' });
+		expect(playSpy).toHaveBeenCalledTimes(3);
 		const threeFlowers = screen.getByAltText(
 			'Digital drawing of a bonsai tree with 3 light pink flowers on it');
-		expect(threeFlowers).toBeInTheDocument();
+		expect(threeFlowers).toBeDefined();
 	});
 
 	it('mutes the sound when the mute button is clicked', () => {
