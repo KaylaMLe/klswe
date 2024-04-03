@@ -6,11 +6,9 @@ exports[`AboutMe renders properly on different display sizes 1`] = `
 >
   <div
     class="css-ccy2vc"
-    data-testid="page-container"
   >
     <nav
       class="css-zw4cqh"
-      data-testid="navbar"
     >
       <a
         class="css-42nl7f"
@@ -68,7 +66,6 @@ exports[`AboutMe renders properly on different display sizes 1`] = `
     </nav>
     <div
       class="css-v2kfba"
-      data-testid="main-content"
       id="main"
       role="none"
       tabindex="-1"
@@ -98,11 +95,9 @@ exports[`AboutMe renders properly on different display sizes 2`] = `
 >
   <div
     class="css-ccy2vc"
-    data-testid="page-container"
   >
     <nav
       class="css-zw4cqh"
-      data-testid="navbar"
     >
       <a
         class="css-42nl7f"
@@ -160,7 +155,6 @@ exports[`AboutMe renders properly on different display sizes 2`] = `
     </nav>
     <div
       class="css-v2kfba"
-      data-testid="main-content"
       id="main"
       role="none"
       tabindex="-1"

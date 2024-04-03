@@ -6,11 +6,9 @@ exports[`NavBar renders properly on a non-home page 1`] = `
 >
   <div
     class="css-ccy2vc"
-    data-testid="page-container"
   >
     <nav
       class="css-zw4cqh"
-      data-testid="navbar"
     >
       <a
         class="css-42nl7f"
@@ -68,7 +66,6 @@ exports[`NavBar renders properly on a non-home page 1`] = `
     </nav>
     <div
       class="css-v2kfba"
-      data-testid="main-content"
       id="main"
       role="none"
       tabindex="-1"
@@ -85,11 +82,9 @@ exports[`NavBar renders properly on a non-home page 2`] = `
 >
   <div
     class="css-ccy2vc"
-    data-testid="page-container"
   >
     <nav
       class="css-zw4cqh"
-      data-testid="navbar"
     >
       <a
         class="css-42nl7f"
@@ -147,7 +142,6 @@ exports[`NavBar renders properly on a non-home page 2`] = `
     </nav>
     <div
       class="css-v2kfba"
-      data-testid="main-content"
       id="main"
       role="none"
       tabindex="-1"
@@ -164,11 +158,9 @@ exports[`NavBar renders properly on the home page 1`] = `
 >
   <div
     class="css-ccy2vc"
-    data-testid="page-container"
   >
     <nav
       class="css-zw4cqh"
-      data-testid="navbar"
     >
       <a
         class="css-42nl7f"
@@ -226,7 +218,6 @@ exports[`NavBar renders properly on the home page 1`] = `
     </nav>
     <div
       class="css-v2kfba"
-      data-testid="main-content"
       id="main"
       role="none"
       tabindex="-1"
@@ -243,11 +234,9 @@ exports[`NavBar renders properly on the home page 2`] = `
 >
   <div
     class="css-ccy2vc"
-    data-testid="page-container"
   >
     <nav
       class="css-zw4cqh"
-      data-testid="navbar"
     >
       <a
         class="css-42nl7f"
@@ -305,7 +294,6 @@ exports[`NavBar renders properly on the home page 2`] = `
     </nav>
     <div
       class="css-v2kfba"
-      data-testid="main-content"
       id="main"
       role="none"
       tabindex="-1"
