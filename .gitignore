@@ -30,3 +30,9 @@ dist-ssr
 # Virtual environment
 .venv/*
 !.venv/requirements.txt
+
+# Python
+__pycache__/
+
+# Database files
+*.sqlite3
