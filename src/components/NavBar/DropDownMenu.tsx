@@ -24,9 +24,7 @@ export function DropDownMenu({ label, children }: { label: string, children: Rea
 	const iconStyle: CSSObject = {
 		marginLeft: '4px',
 		transform: expanded ? 'rotate(0deg)' : 'rotate(-90deg)',
-		'@media(prefers-reduced-motion: no-preference)': {
-			transition: 'transform 0.5s ease',
-		},
+		transition: 'transform 0.5s ease',
 	};
 
 	return (

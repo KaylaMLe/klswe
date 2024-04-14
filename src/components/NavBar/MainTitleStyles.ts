@@ -21,9 +21,7 @@ export const linkStyles: ResponsiveNavStyles = {
 		textDecoration: 'none',
 		color: '#2FC5CC',
 		fontSize: '2rem',
-		'@media(prefers-reduced-motion: no-preference)': {
-			transition: 'font-size 0.5s ease-in-out',
-		},
+		transition: 'font-size 0.5s ease-in-out',
 	},
 	mobile: {},
 	home: {

@@ -15,7 +15,7 @@ export function ToggleStyledComponent({ Component, label, condition, styles, chi
 		let transitions = Object.keys(styles.alternate).map(toKebabCase).join(' 0.5s ease, ');
 		transitions += ' 0.5s ease';
 
-		statefulProps['@media(prefers-reduced-motion: no-preference)'] = { transition: transitions }
+		statefulProps['transition'] = transitions;
 		statefulProps[':hover, :focus-visible'] = styles.alternate;
 	}
 

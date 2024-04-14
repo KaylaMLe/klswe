@@ -133,9 +133,7 @@ function Flower({ id, dX, dY, rotation }
 		left: `${dX}%`,
 		top: `${dY}%`,
 		rotate: `${rotation}deg`,
-		'@media(prefers-reduced-motion: no-preference)': {
-			animation: `${spinAnimation} 0.5s ease-in-out`
-		},
+		animation: `${spinAnimation} 0.5s ease-in-out`
 	});
 
 	return (
