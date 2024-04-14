@@ -22,7 +22,7 @@ export default function Home(): React.JSX.Element {
 
 	return (
 		<Page pageNumber={HOME.pageNumber}>
-			<ResponsiveComponent Component='div' allStyles={homeStyles}>
+			<ResponsiveComponent Component='div' allStyles={homeStyles} data-testid='home'>
 				<MuteBtn onClick={() => { setMuted(!muted) }} muted={muted} />
 				<Tree muted={muted} />
 			</ ResponsiveComponent>

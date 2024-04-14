@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
-import { pageResponsivenessTest } from '../TestHelpers';
-import AboutMe from './AboutMe';
 import { BrowserRouter } from 'react-router-dom';
+import AboutMe from './AboutMe';
 
 jest.mock('../../constants', () => ({
 	__esModule: true,
@@ -17,8 +16,6 @@ describe('AboutMe', () => {
 			</BrowserRouter>
 		);
 	});
-
-	pageResponsivenessTest(<AboutMe />);
 
 	it('renders the portrait', () => {
 		const imgElement = screen.getByAltText(/Professional head shot of myself/);

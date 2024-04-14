@@ -17,7 +17,7 @@ export default function AboutMe(): React.JSX.Element {
 
 	return (
 		<Page pageNumber={ABOUT_ME.pageNumber} title='About me'>
-			<ResponsiveComponent Component='div' allStyles={aboutMeStyles}>
+			<ResponsiveComponent Component='div' allStyles={aboutMeStyles} data-testid='about-me'>
 				<Portrait />
 				<p className={paragraphStyle}>{ABOUT_ME_TXT || 'Hi!'}</p>
 			</ResponsiveComponent>

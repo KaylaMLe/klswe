@@ -1,7 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { pageResponsivenessTest } from '../TestHelpers';
-import Home from './Home';
 import { BrowserRouter } from 'react-router-dom';
+import Home from './Home';
 
 describe('Home', () => {
 	beforeEach(() => {
@@ -13,8 +12,6 @@ describe('Home', () => {
 		// mocks the click sound effect
 		window.HTMLMediaElement.prototype.play = jest.fn();
 	});
-
-	pageResponsivenessTest(<Home />);
 
 	it('adds a flower to the tree after interactions', () => {
 		const tree = screen.getByAltText('Digital drawing of a bonsai tree');
