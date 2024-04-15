@@ -25,6 +25,6 @@ describe('AboutMe', () => {
 	it('has a highlighted navigation button', () => {
 		const navBtn = screen.getByText(/About me/);
 		expect(navBtn).toHaveStyle('background-color: #11D45C');
-		expect(navBtn).toHaveStyle('color: #16161D');
+		expect(navBtn).toHaveStyle('color: #03030D');
 	});
 });

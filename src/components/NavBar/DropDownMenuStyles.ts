@@ -2,7 +2,7 @@ import { DynamicStyles, ResponsiveNavStyles } from '../../types/StyleTypes';
 
 export const ddBtnStyles: DynamicStyles = {
 	default: {
-		backgroundColor: '#16161D',
+		backgroundColor: '#03030D',
 		color: '#009483',
 		border: 'none',
 		borderRadius: '0rem',
@@ -14,7 +14,7 @@ export const ddBtnStyles: DynamicStyles = {
 	},
 	alternate: {
 		backgroundColor: '#009483',
-		color: '#16161D',
+		color: '#03030D',
 		borderRadius: '0.5rem',
 	},
 };

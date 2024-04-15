@@ -40,7 +40,7 @@ export const btnRowStyles: ResponsiveNavStyles = {
 
 export const aboutMeBtnStyles: DynamicStyles = {
 	default: {
-		backgroundColor: '#16161D',
+		backgroundColor: '#03030D',
 		color: '#11D45C',
 		textDecoration: 'none',
 		fontSize: '1.5rem',
@@ -50,7 +50,7 @@ export const aboutMeBtnStyles: DynamicStyles = {
 	},
 	alternate: {
 		backgroundColor: '#11D45C',
-		color: '#16161D',
+		color: '#03030D',
 		borderRadius: '0.75rem'
 	},
 };
@@ -58,7 +58,7 @@ export const aboutMeBtnStyles: DynamicStyles = {
 export const flexboxFunBtnStyles: DynamicStyles = {
 	default: {
 		backgroundColor: '#009483',
-		color: '#16161D',
+		color: '#03030D',
 		textDecoration: 'none',
 		textAlign: 'center',
 		borderRadius: '0.5rem',
@@ -69,6 +69,6 @@ export const flexboxFunBtnStyles: DynamicStyles = {
 	},
 	alternate: {
 		backgroundColor: '#42FFE9',
-		color: '#16161D',
+		color: '#03030D',
 	},
 };

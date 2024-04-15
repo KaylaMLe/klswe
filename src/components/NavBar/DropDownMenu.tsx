@@ -9,7 +9,7 @@ export function DropDownMenu({ label, children }: { label: string, children: Rea
 	const [expanded, setExpanded] = useState(false);
 
 	const ddContent = css({
-		color: '#16161D',
+		color: '#03030D',
 		backgroundColor: '#009483',
 		border: 'none',
 		borderRadius: '0.5rem',
