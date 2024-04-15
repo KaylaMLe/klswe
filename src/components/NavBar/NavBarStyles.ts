@@ -47,6 +47,7 @@ export const aboutMeBtnStyles: DynamicStyles = {
 		borderRadius: '0rem',
 		boxSizing: 'border-box',
 		padding: '0.75rem',
+		marginRight: '0.1rem',
 	},
 	alternate: {
 		backgroundColor: '#11D45C',

@@ -11,11 +11,15 @@ export const HOME: PageType = {
 	pageNumber: 0,
 	link: '/',
 };
-export const ABOUT_ME: PageType = {
+export const LOGIN: PageType = {
 	pageNumber: 1,
+	link: '/login',
+};
+export const ABOUT_ME: PageType = {
+	pageNumber: 2,
 	link: '/about-me',
 };
 export const FLEXBOX_FUN: PageType = {
-	pageNumber: 2,
+	pageNumber: 3,
 	link: '/flexbox-fun',
 };

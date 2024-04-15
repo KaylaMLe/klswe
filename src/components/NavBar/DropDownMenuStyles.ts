@@ -22,7 +22,6 @@ export const ddBtnStyles: DynamicStyles = {
 export const ddContainerStyles: ResponsiveNavStyles = {
 	default: {
 		position: 'relative',
-		marginLeft: '0.1rem',
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'end',

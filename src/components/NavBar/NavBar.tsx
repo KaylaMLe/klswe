@@ -1,7 +1,7 @@
 import { css } from '@emotion/css';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ABOUT_ME, FLEXBOX_FUN } from '../../hooks/PageNumbers';
+import { LOGIN, ABOUT_ME, FLEXBOX_FUN } from '../../hooks/PageNumbers';
 import { useCurrentPage } from '../../hooks/PageNumberContext';
 import { aboutMeBtnStyles, btnRowStyles, flexboxFunBtnStyles, navBarStyles } from './NavBarStyles';
 import { ResponsiveNavComponent } from '../ResponsiveComponents/ResponsiveNavComponent';
@@ -18,6 +18,13 @@ export function NavBar(): React.JSX.Element {
 			<SkipToMain />
 			<MainTitle />
 			<ResponsiveNavComponent Component='div' allStyles={btnRowStyles}>
+				<ToggleStyledComponent
+					Component={Link}
+					label='Log in'
+					condition={currentPage === LOGIN.pageNumber}
+					styles={aboutMeBtnStyles}
+					to={LOGIN.link}
+				/>
 				<ToggleStyledComponent
 					Component={Link}
 					label='About me'
