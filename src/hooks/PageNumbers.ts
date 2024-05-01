@@ -23,3 +23,7 @@ export const FLEXBOX_FUN: PageType = {
 	pageNumber: 3,
 	link: '/flexbox-fun',
 };
+export const TRANSLATE: PageType = {
+	pageNumber: 4,
+	link: '/translate',
+};
