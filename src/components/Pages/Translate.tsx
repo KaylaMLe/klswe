@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import cookie from 'react-cookies';
 import { TRANSLATE } from '../../hooks/PageNumbers';
 import { formStyles, submitBtnStyles, textBoxStyles } from './TranslateStyles';
 import { Page } from './Page';
@@ -12,6 +13,7 @@ export default function Translate(): React.JSX.Element {
 	);
 }
 
+
 function TranslateForm(): React.JSX.Element {
 	const [inputText, setInputText] = useState('');
 	const [outputText, setOutputText] = useState('');
@@ -19,16 +21,18 @@ function TranslateForm(): React.JSX.Element {
 
 	const translate = async () => {
 		setLoading(true);
-		const response = await fetch('https://api.klswe.com/translate/translate', {
+		
+		const response = await fetch('https://api.klswe.com/translate/translate/', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
+				'X-CSRFToken': csrfToken,
 			},
 			body: JSON.stringify({ code: inputText }),
 		});
 
-		const data = await response.json();
-		setOutputText(data.translatedText);
+		const data = await response.text();
+		setOutputText(data);
 		setLoading(false);
 	};
 
@@ -57,3 +61,4 @@ function TranslateForm(): React.JSX.Element {
 		</ResponsiveComponent>
 	);
 }
+
