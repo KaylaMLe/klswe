@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import cookie from 'react-cookies';
 import { TRANSLATE } from '../../hooks/PageNumbers';
 import { formStyles, submitBtnStyles, textBoxStyles } from './TranslateStyles';
 import { Page } from './Page';
@@ -21,9 +20,19 @@ function TranslateForm(): React.JSX.Element {
 
 	const translate = async () => {
 		setLoading(true);
-		const csrfToken = getCookie('csrftoken');
 
-		const response = await fetch('https://api.klswe.com/translate/translate/', {
+		const csrfResponse = await fetch(
+			'https://api.klswe.com/translate/',
+			{ 'credentials': 'include' },
+		);
+
+		const csrfToken = csrfResponse.headers.get('X-CSRFToken');
+
+		if (csrfToken === null) {
+			throw new Error('CSRF token not found');
+		}
+
+		const response = await fetch('https://api.klswe.com/translate/', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -32,7 +41,7 @@ function TranslateForm(): React.JSX.Element {
 			credentials: 'include',
 			body: JSON.stringify({ code: inputText }),
 		});
-		
+
 		const data = await response.text();
 		setOutputText(data);
 		setLoading(false);
@@ -63,19 +72,3 @@ function TranslateForm(): React.JSX.Element {
 		</ResponsiveComponent>
 	);
 }
-
-function getCookie(name: string): string {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            if (cookie.startsWith(name + '=')) {
-                cookieValue = cookie.substring(name.length + 1);
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
-
