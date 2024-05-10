@@ -7,9 +7,9 @@ import { useIsMobile } from '../../hooks/ViewPortContext';
 
 // these are components rendered on all pages and have a different home page style
 // e.g., the title, navbar, and overarching page component
-export function ResponsiveNavComponent({ Component, allStyles, children, ...props }
+export function ResponsiveNavComponent({ Component, styles, children, ...props }
 	: {
-		Component: ElementType, allStyles: ResponsiveNavStyles, children?: ReactNode,
+		Component: ElementType, styles: ResponsiveNavStyles, children?: ReactNode,
 		[prop: string]: any
 	}): React.JSX.Element {
 	const { isMobile } = useIsMobile();
@@ -17,9 +17,9 @@ export function ResponsiveNavComponent({ Component, allStyles, children, ...prop
 
 	// mobileStyle takes precedence over homeStyle
 	// defaultStyle is always applied but may be overridden
-	const style: CSSObject = isMobile ? { ...allStyles.default, ...allStyles.mobile }
-		: currentPage === HOME.pageNumber ? { ...allStyles.default, ...allStyles.home }
-			: allStyles.default;
+	const style: CSSObject = isMobile ? { ...styles.default, ...styles.mobile }
+		: currentPage === HOME.pageNumber ? { ...styles.default, ...styles.home }
+			: styles.default;
 
 	return (
 		<Component className={css(style)} {...props}>

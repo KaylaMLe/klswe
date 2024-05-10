@@ -22,7 +22,7 @@ export default function Home(): React.JSX.Element {
 
 	return (
 		<Page pageNumber={HOME.pageNumber}>
-			<ResponsiveComponent Component='div' allStyles={homeStyles} data-testid='home'>
+			<ResponsiveComponent Component='div' styles={homeStyles} data-testid='home'>
 				<MuteBtn onClick={() => { setMuted(!muted) }} muted={muted} />
 				<Tree muted={muted} />
 			</ ResponsiveComponent>
@@ -34,7 +34,7 @@ function MuteBtn({ onClick, muted }: { onClick: () => void, muted: boolean }): R
 	return (
 		<ResponsiveComponent
 			Component='button'
-			allStyles={muteBtnStyles}
+			styles={muteBtnStyles}
 			onClick={onClick}
 		>
 			<img src={muted ? volon : voloff} alt='' />
@@ -89,7 +89,7 @@ function Tree({ muted }: { muted: boolean }): React.JSX.Element {
 	return (
 		<ResponsiveComponent
 			Component='button'
-			allStyles={treeBoxStyles}
+			styles={treeBoxStyles}
 			onClick={addFlower}
 			onKeyDown={handleKeyDown}
 			aria-label='Press space or enter to play a chime and add a flower to the tree.'

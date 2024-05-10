@@ -14,10 +14,10 @@ export function NavBar(): React.JSX.Element {
 	const { currentPage } = useCurrentPage();
 
 	return (
-		<ResponsiveNavComponent Component='nav' allStyles={navBarStyles} data-testid='nav-bar'>
+		<ResponsiveNavComponent Component='nav' styles={navBarStyles} data-testid='nav-bar'>
 			<SkipToMain />
 			<MainTitle />
-			<ResponsiveNavComponent Component='div' allStyles={btnRowStyles}>
+			<ResponsiveNavComponent Component='div' styles={btnRowStyles}>
 				{/* <ToggleStyledComponent
 					Component={Link}
 					label='Log in'

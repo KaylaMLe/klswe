@@ -1,9 +1,15 @@
-import React, { ElementType, ReactNode } from 'react';
+import React from 'react';
 import { css, CSSObject } from '@emotion/css';
-import { DynamicStyles } from '../../types/StyleTypes';
+import { ToggleProps } from '../../types/ResponsiveComponentTypes';
 
-export function ToggleStyledComponent({ Component, label, condition, styles, children, ...props }
-	: { Component: ElementType, label: string, condition: boolean, styles: DynamicStyles, children?: ReactNode, [prop: string]: any }): React.JSX.Element {
+export function ToggleStyledComponent({
+	Component,
+	label,
+	condition,
+	styles,
+	children,
+	...props
+}: React.PropsWithChildren<ToggleProps>): React.JSX.Element {
 	const statefulProps: CSSObject = { ...styles.default };
 
 	if (condition) {

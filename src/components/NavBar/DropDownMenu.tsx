@@ -28,7 +28,7 @@ export function DropDownMenu({ label, children }: { label: string, children: Rea
 	};
 
 	return (
-		<ResponsiveNavComponent Component='nav' allStyles={ddContainerStyles}>
+		<ResponsiveNavComponent Component='nav' styles={ddContainerStyles}>
 			<ToggleStyledComponent
 				Component='button'
 				label={label}

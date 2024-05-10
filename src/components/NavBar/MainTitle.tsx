@@ -25,8 +25,8 @@ export function MainTitle(): React.JSX.Element {
 	});
 
 	return (
-		<ResponsiveNavComponent Component='div' allStyles={titleStyles}>
-			<ResponsiveNavComponent Component={Link} allStyles={linkStyles} to={HOME.link}>
+		<ResponsiveNavComponent Component='div' styles={titleStyles}>
+			<ResponsiveNavComponent Component={Link} styles={linkStyles} to={HOME.link}>
 				<h1 className={nameStyle}>
 					Kayla Le
 				</h1>
