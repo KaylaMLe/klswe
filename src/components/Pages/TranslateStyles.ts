@@ -8,9 +8,10 @@ export const formStyles: DynamicStyles = {
 		justifyContent: 'space-between',
 		gap: '1rem',
 		height: '100%',
+		width: '100%',
 	},
 	alternate: {
-		width: '80%',
+		flexDirection: 'column',
 		margin: '0 auto',
 	},
 };
@@ -18,9 +19,9 @@ export const formStyles: DynamicStyles = {
 export const textBoxStyles: DynamicStyles = {
 	default: {
 		color: 'black',
-		fontSize: '1.5rem',
-		width: '45%',
+		fontSize: '1.25rem',
 		height: '100%',
+		flexGrow: 1,
 	},
 	alternate: {
 		width: '100%',
@@ -36,6 +37,7 @@ export const submitBtnStyles: DynamicStyles = {
 		backgroundColor: 'transparent',
 		fontSize: '1.5rem',
 		padding: '0.5rem 1rem',
+		width: '10rem',
 	},
 	alternate: {
 		width: '100%',

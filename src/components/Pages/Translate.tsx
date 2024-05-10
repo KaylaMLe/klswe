@@ -24,6 +24,8 @@ function TranslateForm(): React.JSX.Element {
 		const csrfToken = getCookie('csrftoken');
 
 		if (csrfToken === null) {
+			setOutputText('An error ocurred while trying to load the translation.');
+			setLoading(false);
 			throw new Error('CSRF token not found');
 		}
 
@@ -43,24 +45,26 @@ function TranslateForm(): React.JSX.Element {
 	};
 
 	return (
-		<ResponsiveComponent Component='div' allStyles={formStyles}>
+		<ResponsiveComponent Component='div' styles={formStyles}>
 			<ResponsiveComponent
 				Component='textarea'
-				allStyles={textBoxStyles}
-				value={inputText} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setInputText(e.target.value)}
+				styles={textBoxStyles}
+				value={inputText} onChange={
+					(e: React.ChangeEvent<HTMLInputElement>) => setInputText(e.target.value)
+				}
 				placeholder='Enter JavaScript code to translate'
 			/>
 			<ResponsiveComponent
 				Component='button'
-				allStyles={submitBtnStyles}
+				styles={submitBtnStyles}
 				onClick={translate}
 				disabled={loading}
 			>
-				Translate
+				{loading ? 'Loading...' : 'Translate'}
 			</ResponsiveComponent>
 			<ResponsiveComponent
 				Component='textarea'
-				allStyles={textBoxStyles}
+				styles={textBoxStyles}
 				value={outputText}
 				readOnly
 			/>
