@@ -1,3 +1,4 @@
+import { CSSObject } from '@emotion/css';
 import { ResponsiveNavStyles } from '../../types/StyleTypes';
 
 export const pageStyles: ResponsiveNavStyles = {
@@ -15,4 +16,14 @@ export const pageStyles: ResponsiveNavStyles = {
 		gridTemplateRows: 'auto',
 		gridTemplateColumns: '3fr 2fr',
 	},
+};
+
+export const containerStyles: CSSObject = {
+	height: '100vh',
+	width: '100vw',
+};
+
+export const privacyPolicyLinkStyles: CSSObject = {
+	color: '#6B6BDB',
+	padding: '5vmin',
 };
