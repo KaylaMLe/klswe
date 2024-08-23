@@ -27,3 +27,7 @@ export const TRANSLATE: PageType = {
 	pageNumber: 4,
 	link: '/translate',
 };
+export const PDF_TO_FORM: PageType = {
+	pageNumber: 5,
+	link: '/pdf-to-form',
+};
