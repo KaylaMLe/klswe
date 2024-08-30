@@ -15,6 +15,7 @@ export default function PdfToForm(): React.JSX.Element {
 
 function PdfConversionForm(): React.JSX.Element {
 	const [file, setFile] = useState<File | null>(null);
+	const [convertedUrl, setConvertedUrl] = useState<string | null>(null);
 
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		if (event.target.files && event.target.files.length > 0) {
@@ -24,12 +25,14 @@ function PdfConversionForm(): React.JSX.Element {
 
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		const csrfToken = Cookies.get('csrftoken') || '';
-		
+		const csrfToken = Cookies.get('csrftoken');
+
 		if (csrfToken === null) {
-			throw new Error('CSRF token not found. Are the Accept and X-CSRFToken headers both correctly set?');
+			throw new Error(
+				'CSRF token not found. Are the Accept and X-CSRFToken headers both correctly set?'
+			);
 		}
-		
+
 		if (!file) {
 			alert('Please select a PDF file to convert.');
 			return;
@@ -44,7 +47,7 @@ function PdfConversionForm(): React.JSX.Element {
 				headers: {
 					'Accept': 'application/pdf',
 					'X-CSRFToken': csrfToken,
-				},
+				} as HeadersInit,
 				credentials: 'include',
 				body: formData,
 			});
@@ -55,17 +58,21 @@ function PdfConversionForm(): React.JSX.Element {
 
 			const blob = await response.blob();
 			const url = window.URL.createObjectURL(blob);
-			const a = document.createElement('a');
-			a.href = url;
-			a.download = `${file.name.replace('.pdf', '')}_converted.pdf`;
-			document.body.appendChild(a);
-			a.click();
-			a.remove();
-			window.URL.revokeObjectURL(url);
+			setConvertedUrl(url);
 		} catch (error) {
 			console.error('Error during file upload:', error);
 		}
 	};
+
+	const handleDownloadClick = () => {
+		if (convertedUrl) {
+			setTimeout(() => {
+				window.URL.revokeObjectURL(convertedUrl);
+				setConvertedUrl(null);
+			}, 100);
+		}
+	};
+
 	return (
 		<form className={css(formStyles)} onSubmit={handleSubmit}>
 			<label htmlFor='pdf-file'>Choose a PDF file to convert to a form.</label>
@@ -78,6 +85,15 @@ function PdfConversionForm(): React.JSX.Element {
 				onChange={handleFileChange}
 			/>
 			<button type='submit'>Convert</button>
+			{convertedUrl && (
+				<a
+					href={convertedUrl}
+					download={file?.name.replace(/\.pdf$/i, '') + `_converted.pdf`}
+					onClick={handleDownloadClick}
+				>
+					<button>Download Converted File</button>
+				</a>
+			)}
 		</form>
 	);
 }
