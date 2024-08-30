@@ -25,11 +25,23 @@ function PdfConversionForm(): React.JSX.Element {
 
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
+		
+		await fetch('https://api.klswe.com/pdf-to-form/', {
+			method: 'GET',
+			credentials: 'include',
+		});
+		
 		const csrfToken = Cookies.get('csrftoken');
-
+		
 		if (csrfToken === null) {
 			throw new Error(
-				'CSRF token not found. Are the Accept and X-CSRFToken headers both correctly set?'
+				'CSRF token is null. Are the Accept and X-CSRFToken headers both correctly set?'
+			);
+		}
+
+		if (csrfToken === undefined) {
+			throw new Error(
+				'CSRF token is undefined. Was the previous GET request successful, and were credentials included?'
 			);
 		}
 
