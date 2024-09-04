@@ -1,7 +1,7 @@
 import { css } from '@emotion/css';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LOGIN, ABOUT_ME, FLEXBOX_FUN, TRANSLATE } from '../../hooks/PageNumbers';
+import { LOGIN, ABOUT_ME, FLEXBOX_FUN, TRANSLATE, PDF_TO_FORM } from '../../hooks/PageNumbers';
 import { useCurrentPage } from '../../hooks/PageNumberContext';
 import { aboutMeBtnStyles, btnRowStyles, flexboxFunBtnStyles, navBarStyles } from './NavBarStyles';
 import { ResponsiveNavComponent } from '../ResponsiveComponents/ResponsiveNavComponent';
@@ -41,12 +41,20 @@ export function NavBar(): React.JSX.Element {
 						styles={flexboxFunBtnStyles}
 						to={FLEXBOX_FUN.link}
 					/>
+					{/* Hidden until this page is fixed
 					<ToggleStyledComponent
 						Component={Link}
 						label='Translate JS to TS'
 						condition={currentPage === TRANSLATE.pageNumber}
 						styles={flexboxFunBtnStyles}
 						to={TRANSLATE.link}
+					/> */}
+					<ToggleStyledComponent
+						Component={Link}
+						label='PDF to Form'
+						condition={currentPage === PDF_TO_FORM.pageNumber}
+						styles={flexboxFunBtnStyles}
+						to={PDF_TO_FORM.link}
 					/>
 				</DropDownMenu>
 			</ResponsiveNavComponent>
