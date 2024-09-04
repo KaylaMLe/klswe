@@ -10,6 +10,8 @@ export const CsrfCookieContext = createContext<CsrfCookieContextProps>({
 	csrfCookie: null,
 });
 
+export const useCsrfCookie = () => React.useContext(CsrfCookieContext);
+
 export const CsrfCookieProvider: React.FC<ContextProviderProps> = ({ children }) => {
 	const [csrfCookie, setCsrfCookie] = useState<string | null>(null);
 

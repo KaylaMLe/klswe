@@ -1,6 +1,7 @@
 import { css } from '@emotion/css';
 import Cookies from 'js-cookie';
 import { Page } from './Page';
+import { useCsrfCookie } from '../../hooks/CsrfCookieContext';
 import { PDF_TO_FORM } from '../../hooks/PageNumbers';
 import { formStyles } from './PdfToForm.styles';
 import { useState } from 'react';
@@ -14,6 +15,7 @@ export default function PdfToForm(): React.JSX.Element {
 }
 
 function PdfConversionForm(): React.JSX.Element {
+	const { csrfCookie } = useCsrfCookie();
 	const [file, setFile] = useState<File | null>(null);
 	const [convertedUrl, setConvertedUrl] = useState<string | null>(null);
 
@@ -25,24 +27,9 @@ function PdfConversionForm(): React.JSX.Element {
 
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		
-		await fetch('https://api.klswe.com/pdf-to-form/', {
-			method: 'GET',
-			credentials: 'include',
-		});
-		
-		const csrfToken = Cookies.get('csrftoken');
-		
-		if (csrfToken === null) {
-			throw new Error(
-				'CSRF token is null. Are the Accept and X-CSRFToken headers both correctly set?'
-			);
-		}
 
-		if (csrfToken === undefined) {
-			throw new Error(
-				'CSRF token is undefined. Was the previous GET request successful, and were credentials included?'
-			);
+		if (!csrfCookie) {
+			throw new Error('CSRF token is null or undefined.');
 		}
 
 		if (!file) {
@@ -58,7 +45,7 @@ function PdfConversionForm(): React.JSX.Element {
 				method: 'POST',
 				headers: {
 					'Accept': 'application/pdf',
-					'X-CSRFToken': csrfToken,
+					'X-CSRFToken': csrfCookie,
 				} as HeadersInit,
 				credentials: 'include',
 				body: formData,
