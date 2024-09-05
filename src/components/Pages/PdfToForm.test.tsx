@@ -1,8 +1,8 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import '@testing-library/jest-dom';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { MockCsrfCookieProvider } from '../../hooks/MockCsrfCookieContext';
 import PdfToForm from './PdfToForm';
-import Cookies from 'js-cookie';
 
 // mock the global fetch function and URL.createObjectURL
 global.fetch = jest.fn(() =>
@@ -28,16 +28,18 @@ global.fetch = jest.fn(() =>
 global.URL.createObjectURL = jest.fn(() => 'mocked-url');
 
 describe('PdfConversionForm', () => {
-	beforeEach(() => {
-		Cookies.get = jest.fn().mockReturnValue('dummy-csrf-token');
-	});
-
 	afterEach(() => {
 		jest.clearAllMocks();
 	});
 
 	test('creates a download button after form submission', async () => {
-		render(<BrowserRouter><PdfToForm /></BrowserRouter>);
+		render(
+			<BrowserRouter>
+				<MockCsrfCookieProvider>
+					<PdfToForm />
+				</MockCsrfCookieProvider>
+			</BrowserRouter>
+		);
 
 		// simulate upload of dummy pdf
 		const file = new File(['dummy pdf content'], 'test.pdf', { type: 'application/pdf' });
