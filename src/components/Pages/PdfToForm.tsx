@@ -1,5 +1,4 @@
 import { css } from '@emotion/css';
-import Cookies from 'js-cookie';
 import { Page } from './Page';
 import { useCsrfCookie } from '../../hooks/CsrfCookieContext';
 import { PDF_TO_FORM } from '../../hooks/PageNumbers';
@@ -8,7 +7,7 @@ import { useState } from 'react';
 
 export default function PdfToForm(): React.JSX.Element {
 	return (
-		<Page pageNumber={PDF_TO_FORM.pageNumber}>
+		<Page pageNumber={PDF_TO_FORM.pageNumber} title='PDF to Form Converter'>
 			<PdfConversionForm />
 		</Page>
 	);
