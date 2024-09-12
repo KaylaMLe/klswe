@@ -18,21 +18,25 @@ export function Page({ pageNumber, title, children }
 
 	useEffect(() => {
 		if (csrfCookie) {
-			let currentPage = window.location.href.split("klswe.com/")[1];
+			let currentPage = window.location.href.split('klswe.com/')[1];
 
-			if (currentPage.length === 0) {
-				currentPage = 'home';
-			} else if (document.title.startsWith('Not Found')) {
-				currentPage = 'INVALID_' + currentPage;
+			if (currentPage) {
+				if (currentPage.length === 0) {
+					currentPage = 'home';
+				} else if (document.title.startsWith('Not Found')) {
+					currentPage = 'INVALID_' + currentPage;
+				}
+
+				fetch('https://api.klswe.com/traffic-tracker/page/' + currentPage, {
+					method: 'POST',
+					headers: {
+						'X-CSRFToken': csrfCookie,
+					},
+					credentials: 'include',
+				});
+			} else {
+				console.warn('Invalid window.location.href: ' + window.location.href);
 			}
-
-			fetch('https://api.klswe.com/traffic-tracker/page/' + currentPage, {
-				method: 'POST',
-				headers: {
-					'X-CSRFToken': csrfCookie,
-				},
-				credentials: 'include',
-			});
 		} else {
 			console.warn('CSRF token not found. Page view not recorded.');
 		}
