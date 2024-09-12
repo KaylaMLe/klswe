@@ -5,6 +5,7 @@ import { NavBar } from '../NavBar/NavBar';
 import { useCurrentPage } from '../../hooks/PageNumberContext';
 import { containerStyles, pageStyles, privacyPolicyLinkStyles } from './PageStyles';
 import { ResponsiveNavComponent } from '../ResponsiveComponents/ResponsiveNavComponent';
+import { getCurrentPage } from './utils';
 
 export function Page({ pageNumber, title, children }
 	: { pageNumber: number, title?: string, children: ReactNode }): React.JSX.Element {
@@ -24,15 +25,9 @@ export function Page({ pageNumber, title, children }
 
 	useEffect(() => {
 		if (csrfCookie) {
-			let currentPage = window.location.href.split('klswe.com/')[1];
+			const currentPage = getCurrentPage();
 
-			if (currentPage !== undefined && currentPage !== null) {
-				if (currentPage.length === 0) {
-					currentPage = 'home';
-				} else if (document.title.startsWith('Not Found')) {
-					currentPage = 'NOT-FOUND_' + currentPage;
-				}
-
+			if (currentPage) {
 				fetch('https://api.klswe.com/traffic-tracker/page/' + currentPage, {
 					method: 'POST',
 					headers: {
@@ -40,8 +35,6 @@ export function Page({ pageNumber, title, children }
 					},
 					credentials: 'include',
 				});
-			} else {
-				console.warn('Invalid window.location.href: ' + window.location.href);
 			}
 		} else {
 			console.warn('CSRF token not found. Page view not recorded.');
