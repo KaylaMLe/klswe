@@ -16,15 +16,21 @@ export function Page({ pageNumber, title, children }
 		width: '100%',
 	});
 
+	if (title !== undefined) {
+		document.title = title + ' | KL\'s Website';
+	} else {
+		document.title = 'KL\'s Website';
+	}
+
 	useEffect(() => {
 		if (csrfCookie) {
 			let currentPage = window.location.href.split('klswe.com/')[1];
 
-			if (currentPage) {
+			if (currentPage !== undefined && currentPage !== null) {
 				if (currentPage.length === 0) {
 					currentPage = 'home';
 				} else if (document.title.startsWith('Not Found')) {
-					currentPage = 'INVALID_' + currentPage;
+					currentPage = 'NOT-FOUND_' + currentPage;
 				}
 
 				fetch('https://api.klswe.com/traffic-tracker/page/' + currentPage, {
@@ -42,13 +48,6 @@ export function Page({ pageNumber, title, children }
 		}
 
 		setCurrentPage(pageNumber);
-
-		if (title !== undefined) {
-			document.title = title + ' | KL\'s Website';
-		} else {
-			document.title = 'KL\'s Website';
-		}
-
 	}, [pageNumber, setCurrentPage]);
 
 	return (
