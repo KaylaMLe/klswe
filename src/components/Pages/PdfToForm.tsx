@@ -1,14 +1,14 @@
 import { css } from '@emotion/css';
-import Cookies from 'js-cookie';
-import { Page } from './Page';
+import { useState } from 'react';
 import { useCsrfCookie } from '../../hooks/CsrfCookieContext';
 import { PDF_TO_FORM } from '../../hooks/PageNumbers';
+import { Page } from './Page';
 import { formStyles } from './PdfToForm.styles';
-import { useState } from 'react';
+import { getCurrentPage } from './utils';
 
 export default function PdfToForm(): React.JSX.Element {
 	return (
-		<Page pageNumber={PDF_TO_FORM.pageNumber}>
+		<Page pageNumber={PDF_TO_FORM.pageNumber} title='PDF to Form Converter'>
 			<PdfConversionForm />
 		</Page>
 	);
@@ -58,6 +58,23 @@ function PdfConversionForm(): React.JSX.Element {
 			const blob = await response.blob();
 			const url = window.URL.createObjectURL(blob);
 			setConvertedUrl(url);
+
+			const currentPage = getCurrentPage();
+
+			if (currentPage) {
+				const trackerResponse = await fetch(
+					'https://api.klswe.com/traffic-tracker/form/' + currentPage + '/pdf-to-form-converter',
+					{
+						method: 'POST',
+						headers: { 'X-CSRFToken': csrfCookie },
+						credentials: 'include',
+					}
+				);
+
+				if (!trackerResponse.ok) {
+					console.warn('Failed to track form submission.\n' + trackerResponse.statusText);
+				}
+			}
 		} catch (error) {
 			console.error('Error during file upload:', error);
 		}

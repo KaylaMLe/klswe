@@ -1,12 +1,15 @@
 import { css } from '@emotion/css';
 import React, { ReactNode, useEffect } from 'react';
-import { containerStyles, pageStyles, privacyPolicyLinkStyles } from './PageStyles';
-import { useCurrentPage } from '../../hooks/PageNumberContext';
+import { useCsrfCookie } from '../../hooks/CsrfCookieContext';
 import { NavBar } from '../NavBar/NavBar';
+import { useCurrentPage } from '../../hooks/PageNumberContext';
+import { containerStyles, pageStyles, privacyPolicyLinkStyles } from './PageStyles';
 import { ResponsiveNavComponent } from '../ResponsiveComponents/ResponsiveNavComponent';
+import { getCurrentPage } from './utils';
 
 export function Page({ pageNumber, title, children }
 	: { pageNumber: number, title?: string, children: ReactNode }): React.JSX.Element {
+	const { csrfCookie } = useCsrfCookie();
 	const { setCurrentPage } = useCurrentPage();
 
 	const contentStyle = css({
@@ -14,15 +17,30 @@ export function Page({ pageNumber, title, children }
 		width: '100%',
 	});
 
-	useEffect(() => {
-		setCurrentPage(pageNumber);
+	if (title !== undefined) {
+		document.title = title + ' | KL\'s Website';
+	} else {
+		document.title = 'KL\'s Website';
+	}
 
-		if (title !== undefined) {
-			document.title = title + ' | KL\'s Website';
+	useEffect(() => {
+		if (csrfCookie) {
+			const currentPage = getCurrentPage();
+
+			if (currentPage) {
+				fetch('https://api.klswe.com/traffic-tracker/page/' + currentPage, {
+					method: 'POST',
+					headers: {
+						'X-CSRFToken': csrfCookie,
+					},
+					credentials: 'include',
+				});
+			}
 		} else {
-			document.title = 'KL\'s Website';
+			console.warn('CSRF token not found. Page view not recorded.');
 		}
 
+		setCurrentPage(pageNumber);
 	}, [pageNumber, setCurrentPage]);
 
 	return (

@@ -33,6 +33,13 @@ describe('PdfConversionForm', () => {
 	});
 
 	test('creates a download button after form submission', async () => {
+		Object.defineProperty(window, 'location', {
+			value: {
+				href: 'https://klswe.com/foobar',
+			},
+			writable: true,
+		});
+
 		render(
 			<BrowserRouter>
 				<MockCsrfCookieProvider>
@@ -59,5 +66,19 @@ describe('PdfConversionForm', () => {
 		const downloadLink = screen.getByText('Download Converted File').closest('a');
 		expect(downloadLink).toHaveAttribute('href');
 		expect(downloadLink).toHaveAttribute('download', 'test_converted.pdf');
+
+		// check if the tracking request was made
+		expect(global.fetch).toHaveBeenCalledWith(
+			expect.stringContaining(
+				'https://api.klswe.com/traffic-tracker/form/foobar/pdf-to-form-converter'
+			),
+			expect.objectContaining({
+				method: 'POST',
+				headers: expect.objectContaining({
+					'X-CSRFToken': 'mockCsrfToken',
+				}),
+				credentials: 'include',
+			})
+		);
 	});
 });
