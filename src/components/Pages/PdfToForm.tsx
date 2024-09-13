@@ -4,6 +4,7 @@ import { useCsrfCookie } from '../../hooks/CsrfCookieContext';
 import { PDF_TO_FORM } from '../../hooks/PageNumbers';
 import { Page } from './Page';
 import { formStyles } from './PdfToForm.styles';
+import { DEFAULT_TARGET_CHARS, TargetChar } from './TargetChars';
 import { getCurrentPage } from './utils';
 
 export default function PdfToForm(): React.JSX.Element {
@@ -18,6 +19,7 @@ function PdfConversionForm(): React.JSX.Element {
 	const { csrfCookie } = useCsrfCookie();
 	const [file, setFile] = useState<File | null>(null);
 	const [convertedUrl, setConvertedUrl] = useState<string | null>(null);
+	const [targetChars, setTargetChars] = useState<TargetChar[]>(DEFAULT_TARGET_CHARS);
 
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		if (event.target.files && event.target.files.length > 0) {
@@ -39,6 +41,12 @@ function PdfConversionForm(): React.JSX.Element {
 
 		const formData = new FormData();
 		formData.append('pdf', file);
+
+		targetChars.forEach((char) => {
+			if (char.isEnabled) {
+				formData.append(char.name, char.char);
+			}
+		});
 
 		try {
 			const response = await fetch('https://api.klswe.com/pdf-to-form/', {
@@ -89,10 +97,24 @@ function PdfConversionForm(): React.JSX.Element {
 		}
 	};
 
+	const handleCharUpdate = (index: number, updatedChar: TargetChar) => {
+		const updatedChars = [...targetChars];
+		updatedChars[index] = updatedChar;
+		setTargetChars(updatedChars);
+	};
+
 	return (
 		<div className={css(formStyles)}>
 			<form className={css(formStyles)} onSubmit={handleSubmit}>
-				<label htmlFor='pdf-file'>Choose a PDF file to convert to a form.</label>
+				<label>Select characters to convert to interactive widgets.</label>
+				{targetChars.map((char, index) => (
+					<CharSelector
+						key={index}
+						targetChar={char}
+						onChange={(updatedChar) => handleCharUpdate(index, updatedChar)}
+					/>
+				))}
+				<label htmlFor='pdf-file'>Choose a PDF.</label>
 				<input
 					aria-label='PDF file input'
 					type='file'
@@ -112,6 +134,25 @@ function PdfConversionForm(): React.JSX.Element {
 					<button>Download Converted File</button>
 				</a>
 			)}
+		</div>
+	);
+}
+
+function CharSelector({ targetChar, onChange }
+	: { targetChar: TargetChar, onChange: (updatedChar: TargetChar) => void }): React.JSX.Element {
+	return (
+		<div>
+			<input
+				type='checkbox'
+				checked={targetChar.isEnabled}
+				onChange={(e) => onChange({ ...targetChar, isEnabled: e.target.checked })}
+			/>
+			<span>{targetChar.name}</span>
+			<input
+				type='text'
+				value={targetChar.char}
+				onChange={(e) => onChange({ ...targetChar, char: e.target.value })}
+			/>
 		</div>
 	);
 }
