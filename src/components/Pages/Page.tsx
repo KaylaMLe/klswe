@@ -24,23 +24,28 @@ export function Page({ pageNumber, title, children }
 	}
 
 	useEffect(() => {
-		if (csrfCookie) {
-			const currentPage = getCurrentPage();
-
-			if (currentPage) {
-				fetch('https://api.klswe.com/traffic-tracker/page/' + currentPage, {
-					method: 'POST',
-					headers: {
-						'X-CSRFToken': csrfCookie,
-					},
-					credentials: 'include',
-				});
-			}
-		} else {
-			console.warn('CSRF token not found. Page view not recorded.');
-		}
-
 		setCurrentPage(pageNumber);
+
+		const logPageView = async () => {
+			if (csrfCookie) {
+				const currentPage = getCurrentPage();
+
+				if (currentPage) {
+					fetch('https://api.klswe.com/traffic-tracker/page/' + currentPage, {
+						method: 'POST',
+						headers: {
+							'X-CSRFToken': csrfCookie,
+						},
+						credentials: 'include',
+					});
+				}
+			} else {
+				console.warn('CSRF token not found. Page view not recorded.');
+			}
+		};
+
+		logPageView();
+
 	}, [pageNumber, setCurrentPage]);
 
 	return (
