@@ -90,17 +90,19 @@ function PdfConversionForm(): React.JSX.Element {
 	};
 
 	return (
-		<form className={css(formStyles)} onSubmit={handleSubmit}>
-			<label htmlFor='pdf-file'>Choose a PDF file to convert to a form.</label>
-			<input
-				aria-label='PDF file input'
-				type='file'
-				id='pdf-file'
-				name='pdf-file'
-				accept='application/pdf'
-				onChange={handleFileChange}
-			/>
-			<button type='submit'>Convert</button>
+		<div className={css(formStyles)}>
+			<form className={css(formStyles)} onSubmit={handleSubmit}>
+				<label htmlFor='pdf-file'>Choose a PDF file to convert to a form.</label>
+				<input
+					aria-label='PDF file input'
+					type='file'
+					id='pdf-file'
+					name='pdf-file'
+					accept='application/pdf'
+					onChange={handleFileChange}
+				/>
+				<button type='submit'>Convert</button>
+			</form>
 			{convertedUrl && (
 				<a
 					href={convertedUrl}
@@ -110,6 +112,6 @@ function PdfConversionForm(): React.JSX.Element {
 					<button>Download Converted File</button>
 				</a>
 			)}
-		</form>
+		</div>
 	);
 }
