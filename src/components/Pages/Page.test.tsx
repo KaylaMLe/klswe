@@ -39,7 +39,7 @@ describe('Page view tracking requests', () => {
 		);
 
 		expect(global.fetch).toHaveBeenCalledWith(
-			'https://api.klswe.com/traffic-tracker/page/foobar',
+			'https://api.klswe.com/traffic-tracker/page/foobar/',
 			expect.objectContaining({
 				method: 'POST',
 				headers: {
@@ -67,7 +67,7 @@ describe('Page view tracking requests', () => {
 		);
 
 		expect(global.fetch).toHaveBeenCalledWith(
-			'https://api.klswe.com/traffic-tracker/page/home',
+			'https://api.klswe.com/traffic-tracker/page/home/',
 			expect.objectContaining({
 				method: 'POST',
 				headers: {
@@ -96,7 +96,7 @@ describe('Page view tracking requests', () => {
 			);
 
 			expect(global.fetch).toHaveBeenCalledWith(
-				'https://api.klswe.com/traffic-tracker/page/NOT-FOUND_foobar',
+				'https://api.klswe.com/traffic-tracker/page/NOT-FOUND_foobar/',
 				expect.objectContaining({
 					method: 'POST',
 					headers: {

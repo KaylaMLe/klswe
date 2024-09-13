@@ -11,9 +11,13 @@ export function getCurrentPage(): string | undefined | null {
 
 	if (currentPage !== undefined && currentPage !== null) {
 		if (currentPage.length === 0) {
-			currentPage = 'home';
+			currentPage = 'home/';
 		} else if (document.title.startsWith('Not Found')) {
 			currentPage = 'NOT-FOUND_' + currentPage;
+		}
+
+		if (!currentPage.endsWith('/')) {
+			currentPage += '/';
 		}
 	} else {
 		console.warn('Invalid window.location.href: ' + window.location.href);

@@ -63,7 +63,7 @@ function PdfConversionForm(): React.JSX.Element {
 
 			if (currentPage) {
 				const trackerResponse = await fetch(
-					'https://api.klswe.com/traffic-tracker/form/' + currentPage + '/pdf-to-form-converter/',
+					'https://api.klswe.com/traffic-tracker/form/' + currentPage + 'pdf-to-form-converter/',
 					{
 						method: 'POST',
 						headers: { 'X-CSRFToken': csrfCookie },
