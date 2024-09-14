@@ -7,3 +7,12 @@ export const formStyles: CSSObject = {
 	alignItems: 'center',
 	gap: '4vmin',
 };
+
+export const charSelectorStyle: CSSObject = {
+	display: 'flex',
+	flexDirection: 'row',
+	gap: '1vmin',
+	padding: '1vmin',
+	border: '1px solid white',
+	borderRadius: '3px',
+};
