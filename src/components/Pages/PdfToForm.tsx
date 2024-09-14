@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useCsrfCookie } from '../../hooks/CsrfCookieContext';
 import { PDF_TO_FORM } from '../../hooks/PageNumbers';
 import { Page } from './Page';
-import { formStyles } from './PdfToForm.styles';
+import { charSelectorStyle, formStyles } from './PdfToForm.styles';
 import { DEFAULT_TARGET_CHARS, EnabledWidget, TargetChar } from './TargetChars';
 import { getCurrentPage } from './utils';
 
@@ -147,7 +147,7 @@ function PdfConversionForm(): React.JSX.Element {
 function CharSelector({ targetChar, onChange }
 	: { targetChar: TargetChar, onChange: (updatedChar: TargetChar) => void }): React.JSX.Element {
 	return (
-		<div>
+		<div className={css(charSelectorStyle)}>
 			<input
 				type='checkbox'
 				checked={targetChar.isEnabled}
