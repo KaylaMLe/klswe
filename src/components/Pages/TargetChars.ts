@@ -7,3 +7,8 @@ export interface TargetChar {
 export const DEFAULT_TARGET_CHARS: TargetChar[] = [
 	{ name: "checkbox", isEnabled: true, char: "◻" },
 ]
+
+export interface EnabledWidget {
+	"name": string;
+	"char": string;
+}

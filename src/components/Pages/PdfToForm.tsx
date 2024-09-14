@@ -4,7 +4,7 @@ import { useCsrfCookie } from '../../hooks/CsrfCookieContext';
 import { PDF_TO_FORM } from '../../hooks/PageNumbers';
 import { Page } from './Page';
 import { formStyles } from './PdfToForm.styles';
-import { DEFAULT_TARGET_CHARS, TargetChar } from './TargetChars';
+import { DEFAULT_TARGET_CHARS, EnabledWidget, TargetChar } from './TargetChars';
 import { getCurrentPage } from './utils';
 
 export default function PdfToForm(): React.JSX.Element {
@@ -41,12 +41,15 @@ function PdfConversionForm(): React.JSX.Element {
 
 		const formData = new FormData();
 		formData.append('pdf', file);
+		const enabledWidgets: EnabledWidget[] = [];
 
 		targetChars.forEach((char) => {
 			if (char.isEnabled) {
-				formData.append(char.name, char.char);
+				enabledWidgets.push({ 'name': char.name, 'char': char.char });
 			}
 		});
+
+		formData.append('targetChars', JSON.stringify(enabledWidgets));
 
 		try {
 			const response = await fetch('https://api.klswe.com/pdf-to-form/', {
