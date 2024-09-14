@@ -4,7 +4,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MockCsrfCookieProvider } from '../../hooks/MockCsrfCookieContext';
 import PdfToForm from './PdfToForm';
 
-// mock the global fetch function and URL.createObjectURL
+// mock fetch with an appropriate successful response
 global.fetch = jest.fn(() =>
 	Promise.resolve({
 		ok: true,
@@ -25,13 +25,16 @@ global.fetch = jest.fn(() =>
 	})
 );
 
+// mock global URL functions used after conversion
 global.URL.createObjectURL = jest.fn(() => 'mocked-url');
+global.URL.revokeObjectURL = jest.fn();
 
 describe('PdfConversionForm', () => {
 	afterEach(() => {
 		jest.clearAllMocks();
 	});
 
+	// the download button should only be visible when there is an actual output file
 	test('creates a download button after form submission', async () => {
 		Object.defineProperty(window, 'location', {
 			value: {
