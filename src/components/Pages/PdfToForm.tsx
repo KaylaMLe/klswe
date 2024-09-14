@@ -1,5 +1,5 @@
 import { css } from '@emotion/css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useCsrfCookie } from '../../hooks/CsrfCookieContext';
 import { PDF_TO_FORM } from '../../hooks/PageNumbers';
 import { Page } from './Page';
@@ -68,6 +68,11 @@ function PdfConversionForm(): React.JSX.Element {
 
 			const blob = await response.blob();
 			const url = window.URL.createObjectURL(blob);
+
+			if (convertedUrl) {
+				window.URL.revokeObjectURL(convertedUrl);
+			}
+
 			setConvertedUrl(url);
 
 			const currentPage = getCurrentPage();
@@ -91,20 +96,19 @@ function PdfConversionForm(): React.JSX.Element {
 		}
 	};
 
-	const handleDownloadClick = () => {
-		if (convertedUrl) {
-			setTimeout(() => {
-				window.URL.revokeObjectURL(convertedUrl);
-				setConvertedUrl(null);
-			}, 100);
-		}
-	};
-
 	const handleCharUpdate = (index: number, updatedChar: TargetChar) => {
 		const updatedChars = [...targetChars];
 		updatedChars[index] = updatedChar;
 		setTargetChars(updatedChars);
 	};
+
+	useEffect(() => {
+		return () => {
+			if (convertedUrl) {
+				window.URL.revokeObjectURL(convertedUrl);
+			}
+		};
+	}, [convertedUrl]);
 
 	return (
 		<div className={css(formStyles)}>
@@ -132,7 +136,6 @@ function PdfConversionForm(): React.JSX.Element {
 				<a
 					href={convertedUrl}
 					download={file?.name.replace(/\.pdf$/i, '') + `_converted.pdf`}
-					onClick={handleDownloadClick}
 				>
 					<button>Download Converted File</button>
 				</a>
