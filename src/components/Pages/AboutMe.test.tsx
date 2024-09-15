@@ -17,11 +17,7 @@ describe('AboutMe', () => {
 		);
 	});
 
-	it('renders the portrait', () => {
-		const imgElement = screen.getByAltText(/Professional head shot of myself/);
-		expect(imgElement).toBeInTheDocument();
-	});
-
+	// TODO: move the test for this behavior to NavBar.test.tsx or Page.test.tsx
 	it('has a highlighted navigation button', () => {
 		const navBtn = screen.getByText(/About me/);
 		expect(navBtn).toHaveStyle('background-color: #11D45C');
