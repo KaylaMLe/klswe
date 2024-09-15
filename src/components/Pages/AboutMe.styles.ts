@@ -1,3 +1,4 @@
+import { CSSObject } from '@emotion/css';
 import { DynamicStyles } from '../../types/StyleTypes';
 
 export const aboutMeStyles: DynamicStyles = {
@@ -15,4 +16,17 @@ export const aboutMeStyles: DynamicStyles = {
 		gridTemplateRows: 'auto 1fr',
 		alignItems: 'flex-start',
 	},
+};
+
+export const paragraphBoxStyle: CSSObject = {
+	display: 'flex',
+	flexDirection: 'column',
+	color: '#9FE6EA',
+	boxSizing: 'border-box',
+	gap: '5vmin',
+	paddingBottom: '5vmin',
+};
+
+export const paragraphStyle: CSSObject = {
+	margin: 0,
 };
