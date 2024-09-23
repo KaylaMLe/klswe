@@ -1,16 +1,12 @@
 import { BrowserRouter } from 'react-router-dom';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { MockCsrfCookieProvider } from '../../hooks/MockCsrfCookieContext';
-import { NOT_FOUND_ERROR } from '../../hooks/PageNumbers';
+import { CurrentPageProvider, useCurrentPage } from '../../hooks/PageNumberContext';
+import { HOME, NOT_FOUND_ERROR } from '../../hooks/PageNumbers';
 import { Page } from './Page';
 
-jest.mock('../../hooks/PageNumberContext.tsx', () => ({
-	useCurrentPage: () => ({ setCurrentPage: jest.fn() }),
-}));
-
 describe('Page view tracking requests', () => {
-	beforeEach(() => {
-
+	beforeAll(() => {
 		global.fetch = jest.fn(() =>
 			Promise.resolve({
 				json: () => Promise.resolve({}),
@@ -18,7 +14,7 @@ describe('Page view tracking requests', () => {
 		) as jest.Mock;
 	});
 
-	afterEach(() => {
+	afterAll(() => {
 		jest.clearAllMocks();
 	});
 
@@ -107,4 +103,33 @@ describe('Page view tracking requests', () => {
 			);
 		}
 	);
+});
+
+function ShowContext(): React.JSX.Element {
+	const { currentPage } = useCurrentPage();
+
+	return (
+		<div>
+			<p>Current Page: {currentPage}</p>
+		</div>
+	);
+}
+
+describe('CurrentPageContext behavior', () => {
+	beforeEach(() => {
+		render(
+			<BrowserRouter>
+				<CurrentPageProvider>
+					<Page pageNumber={HOME.pageNumber}>
+						<ShowContext />
+					</Page>
+				</CurrentPageProvider>
+			</BrowserRouter>
+		);
+	});
+
+	it('should set current page number depending on the page number passed in', () => {
+		const originalPageNumber = screen.getByText(`Current Page: ${HOME.pageNumber}`);
+		expect(originalPageNumber).toBeInTheDocument();
+	});
 });
