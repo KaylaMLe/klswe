@@ -14,8 +14,8 @@ describe('ToggleStyledComponent', () => {
 		},
 	};
 
-	it('renders with default style when condition is false', async () => {
-		render(
+	it('changes style when the condition changes', async () => {
+		const { rerender } = render(
 			<ToggleStyledComponent
 				Component={'div'}
 				condition={false}
@@ -31,10 +31,8 @@ describe('ToggleStyledComponent', () => {
 			transition: 'background-color 0.5s ease',
 			':hover, :focus-visible': dynamicStyles.alternate,
 		}));
-	});
 
-	it('renders with alternate style when condition is true', () => {
-		render(
+		rerender(
 			<ToggleStyledComponent
 				Component={'div'}
 				condition={true}
@@ -44,7 +42,7 @@ describe('ToggleStyledComponent', () => {
 			</ToggleStyledComponent>
 		);
 
-		const element = screen.getByText('Test Children');
-		expect(element).toHaveClass(css(dynamicStyles.alternate));
+		const elementAfter = screen.getByText('Test Children');
+		expect(elementAfter).toHaveClass(css(dynamicStyles.alternate));
 	});
 });
