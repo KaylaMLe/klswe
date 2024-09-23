@@ -9,7 +9,7 @@ export const navBarStyles: ResponsiveNavStyles = {
 		justifyContent: 'space-between',
 		width: '100%',
 	},
-	mobile: {
+	alternate: {
 		flexDirection: 'column',
 		justifyContent: 'center',
 	},
@@ -28,7 +28,7 @@ export const btnRowStyles: ResponsiveNavStyles = {
 		justifyContent: 'flex-end',
 		width: '50%',
 	},
-	mobile: {
+	alternate: {
 		justifyContent: 'center',
 		width: '100%',
 	},

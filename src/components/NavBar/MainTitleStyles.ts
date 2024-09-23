@@ -6,7 +6,7 @@ export const titleStyles: ResponsiveNavStyles = {
 		fontFamily: 'Courier New',
 		textAlign: 'left',
 	},
-	mobile: {
+	alternate: {
 		textAlign: 'center',
 	},
 	home: {
@@ -23,7 +23,7 @@ export const linkStyles: ResponsiveNavStyles = {
 		fontSize: '2rem',
 		transition: 'font-size 0.5s ease-in-out',
 	},
-	mobile: {},
+	alternate: {},
 	home: {
 		fontSize: 'clamp(4rem, 6rem, 11vmin)',
 	},

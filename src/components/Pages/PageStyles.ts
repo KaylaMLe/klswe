@@ -11,7 +11,7 @@ export const pageStyles: ResponsiveNavStyles = {
 		gap: '5vmin',
 		padding: '5vmin',
 	},
-	mobile: {},
+	alternate: {},
 	home: {
 		gridTemplateRows: 'auto',
 		gridTemplateColumns: '3fr 2fr',

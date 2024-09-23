@@ -26,9 +26,8 @@ export const ddContainerStyles: ResponsiveNavStyles = {
 		flexDirection: 'column',
 		alignItems: 'end',
 	},
-	mobile: {},
+	alternate: {},
 	home: {
 		alignItems: 'start',
 	},
 };
-

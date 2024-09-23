@@ -5,9 +5,6 @@ export interface DynamicStyles {
 	alternate: CSSObject,
 };
 
-export interface ResponsiveNavStyles {
-	default: CSSObject,
-	mobile: CSSObject,
+export interface ResponsiveNavStyles extends DynamicStyles {
 	home: CSSObject,
 };
-
