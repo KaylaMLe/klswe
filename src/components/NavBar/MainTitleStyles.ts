@@ -1,6 +1,6 @@
-import { ResponsiveNavStyles } from '../../types/StyleTypes';
+import { DynamicStyles } from "../../types/StyleTypes";
 
-export const titleStyles: ResponsiveNavStyles = {
+export const titleStyles: DynamicStyles = {
 	default: {
 		color: '#2FC5CC',
 		fontFamily: 'Courier New',
@@ -16,7 +16,7 @@ export const titleStyles: ResponsiveNavStyles = {
 	},
 };
 
-export const linkStyles: ResponsiveNavStyles = {
+export const linkStyles: DynamicStyles = {
 	default: {
 		textDecoration: 'none',
 		color: '#2FC5CC',

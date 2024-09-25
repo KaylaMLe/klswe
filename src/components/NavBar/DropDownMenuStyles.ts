@@ -1,4 +1,4 @@
-import { DynamicStyles, ResponsiveNavStyles } from '../../types/StyleTypes';
+import { DynamicStyles } from '../../types/StyleTypes';
 
 export const ddBtnStyles: DynamicStyles = {
 	default: {
@@ -19,7 +19,7 @@ export const ddBtnStyles: DynamicStyles = {
 	},
 };
 
-export const ddContainerStyles: ResponsiveNavStyles = {
+export const ddContainerStyles: DynamicStyles = {
 	default: {
 		position: 'relative',
 		display: 'flex',

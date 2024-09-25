@@ -4,7 +4,7 @@ import { useCsrfCookie } from '../../hooks/CsrfCookieContext';
 import { NavBar } from '../NavBar/NavBar';
 import { useCurrentPage } from '../../hooks/PageNumberContext';
 import { containerStyles, pageStyles, privacyPolicyLinkStyles } from './PageStyles';
-import { ResponsiveNavComponent } from '../ResponsiveComponents/ResponsiveNavComponent';
+import { Responsive } from '../ResponsiveComponents/ResponsiveComponent';
 import { getCurrentPage } from './utils';
 
 export function Page({ pageNumber, title, children }
@@ -50,12 +50,12 @@ export function Page({ pageNumber, title, children }
 
 	return (
 		<div className={css(containerStyles)}>
-			<ResponsiveNavComponent Component='div' styles={pageStyles}>
+			<Responsive Component='div' styles={pageStyles}>
 				<NavBar />
 				<div className={contentStyle} id='main' tabIndex={-1} role='none'>
 					{children}
 				</div>
-			</ResponsiveNavComponent>
+			</Responsive>
 			<a className={css(privacyPolicyLinkStyles)} href='/privacy-policy'>Privacy Policy</a>
 		</div>
 	);

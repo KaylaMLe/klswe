@@ -8,7 +8,7 @@ import voloff from '../../assets/images/voloff.png';
 import volon from '../../assets/images/volon.png';
 import { homeStyles, muteBtnStyles, treeBoxStyles } from './HomeStyles';
 import { Page } from './Page';
-import { ResponsiveComponent } from '../ResponsiveComponents/ResponsiveComponent';
+import { Responsive } from '../ResponsiveComponents/ResponsiveComponent';
 
 interface FlowerProps {
 	id: number;
@@ -22,24 +22,24 @@ export default function Home(): React.JSX.Element {
 
 	return (
 		<Page pageNumber={HOME.pageNumber}>
-			<ResponsiveComponent Component='div' styles={homeStyles} data-testid='home'>
+			<Responsive Component='div' styles={homeStyles} data-testid='home'>
 				<MuteBtn onClick={() => { setMuted(!muted) }} muted={muted} />
 				<Tree muted={muted} />
-			</ ResponsiveComponent>
+			</ Responsive>
 		</Page>
 	);
 }
 
 function MuteBtn({ onClick, muted }: { onClick: () => void, muted: boolean }): React.JSX.Element {
 	return (
-		<ResponsiveComponent
+		<Responsive
 			Component='button'
 			styles={muteBtnStyles}
 			onClick={onClick}
 		>
 			<img src={muted ? volon : voloff} alt='' />
 			{muted ? 'Unmute sound effects' : 'Mute sound effects'}
-		</ResponsiveComponent>
+		</Responsive>
 	);
 }
 
@@ -87,7 +87,7 @@ function Tree({ muted }: { muted: boolean }): React.JSX.Element {
 	};
 
 	return (
-		<ResponsiveComponent
+		<Responsive
 			Component='button'
 			styles={treeBoxStyles}
 			onClick={addFlower}
@@ -113,7 +113,7 @@ function Tree({ muted }: { muted: boolean }): React.JSX.Element {
 					rotation={props.rotation}
 				/>
 			))}
-		</ ResponsiveComponent>
+		</ Responsive>
 	);
 }
 

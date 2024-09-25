@@ -1,7 +1,7 @@
 import { css, CSSObject } from '@emotion/css';
 import React, { ReactNode, useState } from 'react';
 import { ddBtnStyles, ddContainerStyles } from './DropDownMenuStyles';
-import { ResponsiveNavComponent } from '../ResponsiveComponents/ResponsiveNavComponent';
+import { Responsive } from '../ResponsiveComponents/ResponsiveComponent';
 import { ToggleStyledComponent } from '../ResponsiveComponents/ToggleStyledComponent';
 
 export function DropDownMenu({ label, children }: { label: string, children: ReactNode })
@@ -28,7 +28,7 @@ export function DropDownMenu({ label, children }: { label: string, children: Rea
 	};
 
 	return (
-		<ResponsiveNavComponent Component='nav' styles={ddContainerStyles}>
+		<Responsive Component='nav' styles={ddContainerStyles}>
 			<ToggleStyledComponent
 				Component='button'
 				label={label}
@@ -48,6 +48,6 @@ export function DropDownMenu({ label, children }: { label: string, children: Rea
 					{children}
 				</div>
 			}
-		</ResponsiveNavComponent>
+		</Responsive>
 	);
 }

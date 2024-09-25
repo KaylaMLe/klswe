@@ -1,7 +1,7 @@
 import { CSSObject } from '@emotion/css';
-import { ResponsiveNavStyles } from '../../types/StyleTypes';
+import { DynamicStyles } from '../../types/StyleTypes';
 
-export const pageStyles: ResponsiveNavStyles = {
+export const pageStyles: DynamicStyles = {
 	default: {
 		display: 'grid',
 		gridTemplateRows: 'auto 1fr',

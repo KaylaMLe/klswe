@@ -5,7 +5,3 @@ export interface DynamicStyles {
 	alternate: CSSObject,
 	home?: CSSObject,
 };
-
-export interface ResponsiveNavStyles extends DynamicStyles {
-	home: CSSObject,
-};

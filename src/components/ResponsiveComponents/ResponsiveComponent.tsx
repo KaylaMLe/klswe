@@ -5,7 +5,7 @@ import { useCurrentPage } from '../../hooks/PageNumberContext';
 import { HOME } from '../../hooks/PageNumbers';
 import { useIsMobile } from '../../hooks/ViewPortContext';
 
-export function ResponsiveComponent({ Component, styles, children, ...props }
+export function Responsive({ Component, styles, children, ...props }
 	: React.PropsWithChildren<ResponsiveProps>): React.JSX.Element {
 	const { isMobile } = useIsMobile();
 	const { currentPage } = useCurrentPage();

@@ -1,6 +1,6 @@
-import { DynamicStyles, ResponsiveNavStyles } from '../../types/StyleTypes';
+import { DynamicStyles } from '../../types/StyleTypes';
 
-export const navBarStyles: ResponsiveNavStyles = {
+export const navBarStyles: DynamicStyles = {
 	default: {
 		color: '#1A2131',
 		display: 'flex',
@@ -21,7 +21,7 @@ export const navBarStyles: ResponsiveNavStyles = {
 	},
 };
 
-export const btnRowStyles: ResponsiveNavStyles = {
+export const btnRowStyles: DynamicStyles = {
 	default: {
 		display: 'flex',
 		alignItems: 'flex-start',

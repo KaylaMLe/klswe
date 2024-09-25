@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { TRANSLATE } from '../../hooks/PageNumbers';
 import { formStyles, submitBtnStyles, textBoxStyles } from './TranslateStyles';
 import { Page } from './Page';
-import { ResponsiveComponent } from '../ResponsiveComponents/ResponsiveComponent';
+import { Responsive } from '../ResponsiveComponents/ResponsiveComponent';
 
 export default function Translate(): React.JSX.Element {
 	return (
@@ -45,8 +45,8 @@ function TranslateForm(): React.JSX.Element {
 	};
 
 	return (
-		<ResponsiveComponent Component='div' styles={formStyles}>
-			<ResponsiveComponent
+		<Responsive Component='div' styles={formStyles}>
+			<Responsive
 				Component='textarea'
 				styles={textBoxStyles}
 				value={inputText} onChange={
@@ -54,21 +54,21 @@ function TranslateForm(): React.JSX.Element {
 				}
 				placeholder='Enter JavaScript code to translate'
 			/>
-			<ResponsiveComponent
+			<Responsive
 				Component='button'
 				styles={submitBtnStyles}
 				onClick={translate}
 				disabled={loading}
 			>
 				{loading ? 'Loading...' : 'Translate'}
-			</ResponsiveComponent>
-			<ResponsiveComponent
+			</Responsive>
+			<Responsive
 				Component='textarea'
 				styles={textBoxStyles}
 				value={outputText}
 				readOnly
 			/>
-		</ResponsiveComponent>
+		</Responsive>
 	);
 }
 

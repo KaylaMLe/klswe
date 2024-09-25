@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { LOGIN, ABOUT_ME, FLEXBOX_FUN, TRANSLATE, PDF_TO_FORM } from '../../hooks/PageNumbers';
 import { useCurrentPage } from '../../hooks/PageNumberContext';
 import { aboutMeBtnStyles, btnRowStyles, flexboxFunBtnStyles, navBarStyles } from './NavBarStyles';
-import { ResponsiveNavComponent } from '../ResponsiveComponents/ResponsiveNavComponent';
+import { Responsive } from '../ResponsiveComponents/ResponsiveComponent';
 import { DropDownMenu } from './DropDownMenu';
 import { ExternalLink } from './LinkButtons';
 import { MainTitle } from './MainTitle';
@@ -14,10 +14,10 @@ export function NavBar(): React.JSX.Element {
 	const { currentPage } = useCurrentPage();
 
 	return (
-		<ResponsiveNavComponent Component='nav' styles={navBarStyles} data-testid='nav-bar'>
+		<Responsive Component='nav' styles={navBarStyles} data-testid='nav-bar'>
 			<SkipToMain />
 			<MainTitle />
-			<ResponsiveNavComponent Component='div' styles={btnRowStyles}>
+			<Responsive Component='div' styles={btnRowStyles}>
 				{/* <ToggleStyledComponent
 					Component={Link}
 					label='Log in'
@@ -57,8 +57,8 @@ export function NavBar(): React.JSX.Element {
 						to={PDF_TO_FORM.link}
 					/>
 				</DropDownMenu>
-			</ResponsiveNavComponent>
-		</ResponsiveNavComponent>
+			</Responsive>
+		</Responsive>
 	);
 }
 
