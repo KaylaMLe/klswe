@@ -1,3 +1,4 @@
+import { CSSObject } from '@emotion/css';
 import { DynamicStyles } from '../../types/StyleTypes';
 
 export const ddBtnStyles: DynamicStyles = {
@@ -29,5 +30,29 @@ export const ddContainerStyles: DynamicStyles = {
 	alternate: {},
 	home: {
 		alignItems: 'start',
+	},
+};
+
+export const ddContentStyles: CSSObject = {
+	color: '#03030D',
+	backgroundColor: '#009483',
+	border: 'none',
+	borderRadius: '0.5rem',
+	width: '275%',
+	minWidth: '111px',
+	alignItems: 'center',
+	position: 'absolute',
+	top: '79%',// overlays content on top of drop down button
+	zIndex: '1',
+};
+
+export const iconStyles: DynamicStyles = {
+	default: {
+		marginLeft: '4px',
+		transform: 'rotate(-90deg)',
+		transition: 'transform 0.5s ease',
+	},
+	alternate: {
+		transform: 'rotate(0deg)',
 	},
 };

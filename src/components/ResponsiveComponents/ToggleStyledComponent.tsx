@@ -10,12 +10,10 @@ export function ToggleStyledComponent({
 	children,
 	...props
 }: React.PropsWithChildren<ToggleProps>): React.JSX.Element {
-	const statefulProps: CSSObject = { ...styles.default };
+	let statefulProps: CSSObject = { ...styles.default };
 
 	if (condition) {
-		for (const prop of Object.keys(styles.alternate)) {
-			statefulProps[prop] = styles.alternate[prop];
-		}
+		statefulProps = { ...statefulProps, ...styles.alternate };
 	} else {
 		// the transitions use CSS prop names (i.e. kebab-case) but CSSObject uses camelCase
 		let transitions = Object.keys(styles.alternate).map(toKebabCase).join(' 0.5s ease, ');
