@@ -1,14 +1,20 @@
 import { css } from '@emotion/css';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { LOGIN, ABOUT_ME, FLEXBOX_FUN, TRANSLATE, PDF_TO_FORM } from '../../hooks/PageNumbers';
 import { useCurrentPage } from '../../hooks/PageNumberContext';
-import { aboutMeBtnStyles, btnRowStyles, flexboxFunBtnStyles, navBarStyles } from './NavBar.styles';
+import { LOGIN, ABOUT_ME, FLEXBOX_FUN, TRANSLATE, PDF_TO_FORM } from '../../hooks/PageNumbers';
 import { Responsive } from '../ResponsiveComponents/ResponsiveComponent';
+import { Toggle } from '../ResponsiveComponents/ToggleStyledComponent';
 import { DropDownMenu } from './DropDownMenu';
 import { ExternalLink } from './LinkButtons';
 import { MainTitle } from './MainTitle';
-import { Toggle } from '../ResponsiveComponents/ToggleStyledComponent';
+import {
+	aboutMeBtnStyles,
+	btnRowStyles,
+	flexboxFunBtnStyles,
+	navBarStyles,
+	skipStyle
+} from './NavBar.styles';
 
 export function NavBar(): React.JSX.Element {
 	const { currentPage } = useCurrentPage();
@@ -63,20 +69,9 @@ export function NavBar(): React.JSX.Element {
 }
 
 function SkipToMain(): React.JSX.Element {
-	const skipStyle = css({
-		color: 'white',
-		backgroundColor: 'black',
-		position: 'absolute',
-		left: '-100%',
-		top: '55px',
-		':focus': {
-			left: 'auto',
-		},
-	});
-
 	return (
 		<a
-			className={skipStyle}
+			className={css(skipStyle)}
 			href='#main'
 			onClick={() => { document.getElementById('main')?.focus() }}
 		>
