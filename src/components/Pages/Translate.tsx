@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import { useState } from 'react';
 import { TRANSLATE } from '../../hooks/PageNumbers';
 import { formStyles, submitBtnStyles, textBoxStyles } from './Translate.styles';
@@ -21,7 +22,7 @@ function TranslateForm(): React.JSX.Element {
 	const translate = async () => {
 		setLoading(true);
 
-		const csrfToken = getCookie('csrftoken');
+		const csrfToken = Cookies.get('csrftoken') || localStorage.getItem('csrftoken');
 
 		if (csrfToken === null) {
 			setOutputText('An error ocurred while trying to load the translation.');
@@ -70,20 +71,4 @@ function TranslateForm(): React.JSX.Element {
 			/>
 		</Responsive>
 	);
-}
-
-function getCookie(name: string) {
-	let cookieValue = null;
-	if (document.cookie && document.cookie !== '') {
-		const cookies = document.cookie.split(';');
-		for (let i = 0; i < cookies.length; i++) {
-			const cookie = cookies[i].trim();
-			// Does this cookie string begin with the name we want?
-			if (cookie.substring(0, name.length + 1) === (name + '=')) {
-				cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-				break;
-			}
-		}
-	}
-	return cookieValue;
 }
