@@ -7,7 +7,7 @@ interface CurrentPageContextType {
 }
 
 const defaultContextValue: CurrentPageContextType = {
-	currentPage: 0,
+	currentPage: -1,
 	setCurrentPage: () => { },
 };
 
@@ -16,7 +16,7 @@ const CurrentPageContext = createContext<CurrentPageContextType>(defaultContextV
 export const useCurrentPage = () => useContext(CurrentPageContext);
 
 export const CurrentPageProvider: React.FC<ContextProviderProps> = ({ children }) => {
-	const [currentPage, setCurrentPage] = useState(0);
+	const [currentPage, setCurrentPage] = useState(-1);
 
 	return (
 		<CurrentPageContext.Provider value={{ currentPage, setCurrentPage }}>
