@@ -3,7 +3,7 @@ import React, { ReactNode, useEffect } from 'react';
 import { useCsrfCookie } from '../../hooks/CsrfCookieContext';
 import { NavBar } from '../NavBar/NavBar';
 import { useCurrentPage } from '../../hooks/PageNumberContext';
-import { containerStyles, pageStyles, privacyPolicyLinkStyles } from './PageStyles';
+import { containerStyles, pageStyles, privacyPolicyLinkStyles } from './Page.styles';
 import { Responsive } from '../ResponsiveComponents/ResponsiveComponent';
 import { getCurrentPage } from './utils';
 

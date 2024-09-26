@@ -1,6 +1,6 @@
 import { css, CSSObject } from '@emotion/css';
 import React, { ReactNode, useState } from 'react';
-import { ddBtnStyles, ddContainerStyles } from './DropDownMenuStyles';
+import { ddBtnStyles, ddContainerStyles } from './DropDownMenu.styles';
 import { Responsive } from '../ResponsiveComponents/ResponsiveComponent';
 import { ToggleStyledComponent } from '../ResponsiveComponents/ToggleStyledComponent';
 

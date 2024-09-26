@@ -6,7 +6,7 @@ import flower from '../../assets/images/flower.png';
 import tree from '../../assets/images/tree.png';
 import voloff from '../../assets/images/voloff.png';
 import volon from '../../assets/images/volon.png';
-import { homeStyles, muteBtnStyles, treeBoxStyles } from './HomeStyles';
+import { homeStyles, muteBtnStyles, treeBoxStyles } from './Home.styles';
 import { Page } from './Page';
 import { Responsive } from '../ResponsiveComponents/ResponsiveComponent';
 

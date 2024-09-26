@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { TRANSLATE } from '../../hooks/PageNumbers';
-import { formStyles, submitBtnStyles, textBoxStyles } from './TranslateStyles';
+import { formStyles, submitBtnStyles, textBoxStyles } from './Translate.styles';
 import { Page } from './Page';
 import { Responsive } from '../ResponsiveComponents/ResponsiveComponent';
 

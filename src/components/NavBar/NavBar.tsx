@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { LOGIN, ABOUT_ME, FLEXBOX_FUN, TRANSLATE, PDF_TO_FORM } from '../../hooks/PageNumbers';
 import { useCurrentPage } from '../../hooks/PageNumberContext';
-import { aboutMeBtnStyles, btnRowStyles, flexboxFunBtnStyles, navBarStyles } from './NavBarStyles';
+import { aboutMeBtnStyles, btnRowStyles, flexboxFunBtnStyles, navBarStyles } from './NavBar.styles';
 import { Responsive } from '../ResponsiveComponents/ResponsiveComponent';
 import { DropDownMenu } from './DropDownMenu';
 import { ExternalLink } from './LinkButtons';
