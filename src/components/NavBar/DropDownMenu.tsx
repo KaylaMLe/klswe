@@ -2,7 +2,7 @@ import { css } from '@emotion/css';
 import React, { ReactNode, useState } from 'react';
 import { ddBtnStyles, ddContainerStyles, ddContentStyles, iconStyles } from './DropDownMenu.styles';
 import { Responsive } from '../ResponsiveComponents/ResponsiveComponent';
-import { ToggleStyledComponent } from '../ResponsiveComponents/ToggleStyledComponent';
+import { Toggle } from '../ResponsiveComponents/ToggleStyledComponent';
 
 export function DropDownMenu({ label, children }: { label: string, children: ReactNode })
 	: React.JSX.Element {
@@ -10,7 +10,7 @@ export function DropDownMenu({ label, children }: { label: string, children: Rea
 
 	return (
 		<Responsive Component='nav' styles={ddContainerStyles}>
-			<ToggleStyledComponent
+			<Toggle
 				Component='button'
 				label={label}
 				condition={expanded}
@@ -20,8 +20,8 @@ export function DropDownMenu({ label, children }: { label: string, children: Rea
 				aria-expanded={expanded}
 				aria-controls='dropdown1'
 			>
-				<ToggleStyledComponent Component='div' label='▼' condition={expanded} styles={iconStyles} />
-			</ToggleStyledComponent>
+				<Toggle Component='div' label='▼' condition={expanded} styles={iconStyles} />
+			</Toggle>
 			{expanded &&
 				<div className={css(ddContentStyles)} id='dropdown1'>
 					{children}

@@ -8,7 +8,7 @@ import { Responsive } from '../ResponsiveComponents/ResponsiveComponent';
 import { DropDownMenu } from './DropDownMenu';
 import { ExternalLink } from './LinkButtons';
 import { MainTitle } from './MainTitle';
-import { ToggleStyledComponent } from '../ResponsiveComponents/ToggleStyledComponent';
+import { Toggle } from '../ResponsiveComponents/ToggleStyledComponent';
 
 export function NavBar(): React.JSX.Element {
 	const { currentPage } = useCurrentPage();
@@ -18,14 +18,14 @@ export function NavBar(): React.JSX.Element {
 			<SkipToMain />
 			<MainTitle />
 			<Responsive Component='div' styles={btnRowStyles}>
-				{/* <ToggleStyledComponent
+				{/* <Toggle
 					Component={Link}
 					label='Log in'
 					condition={currentPage === LOGIN.pageNumber}
 					styles={aboutMeBtnStyles}
 					to={LOGIN.link}
 				/> */}
-				<ToggleStyledComponent
+				<Toggle
 					Component={Link}
 					label='About me'
 					condition={currentPage === ABOUT_ME.pageNumber}
@@ -34,7 +34,7 @@ export function NavBar(): React.JSX.Element {
 				/>
 				<DropDownMenu label='Projects'>
 					<ExternalLink text='Check out my GitHub profile' link='https://github.com/KaylaMLe' />
-					<ToggleStyledComponent
+					<Toggle
 						Component={Link}
 						label='Flexbox Fun'
 						condition={currentPage === FLEXBOX_FUN.pageNumber}
@@ -42,14 +42,14 @@ export function NavBar(): React.JSX.Element {
 						to={FLEXBOX_FUN.link}
 					/>
 					{/* Hidden until this page is fixed
-					<ToggleStyledComponent
+					<Toggle
 						Component={Link}
 						label='Translate JS to TS'
 						condition={currentPage === TRANSLATE.pageNumber}
 						styles={flexboxFunBtnStyles}
 						to={TRANSLATE.link}
 					/> */}
-					<ToggleStyledComponent
+					<Toggle
 						Component={Link}
 						label='PDF to Form'
 						condition={currentPage === PDF_TO_FORM.pageNumber}

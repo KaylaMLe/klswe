@@ -2,7 +2,7 @@ import React from 'react';
 import { css, CSSObject } from '@emotion/css';
 import { ToggleProps } from '../../types/ResponsiveComponentTypes';
 
-export function ToggleStyledComponent({
+export function Toggle({
 	Component,
 	label,
 	condition,

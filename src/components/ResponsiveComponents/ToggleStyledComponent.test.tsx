@@ -1,7 +1,7 @@
 import { css } from '@emotion/css';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import { ToggleStyledComponent } from './ToggleStyledComponent';
+import { Toggle } from './ToggleStyledComponent';
 import { DynamicStyles } from '../../types/StyleTypes';
 
 describe('ToggleStyledComponent', () => {
@@ -16,13 +16,13 @@ describe('ToggleStyledComponent', () => {
 
 	it('changes style when the condition changes', async () => {
 		const { rerender } = render(
-			<ToggleStyledComponent
+			<Toggle
 				Component={'div'}
 				condition={false}
 				styles={dynamicStyles}
 			>
 				Test Children
-			</ToggleStyledComponent>
+			</Toggle>
 		);
 
 		const element = screen.getByText('Test Children');
@@ -33,13 +33,13 @@ describe('ToggleStyledComponent', () => {
 		}));
 
 		rerender(
-			<ToggleStyledComponent
+			<Toggle
 				Component={'div'}
 				condition={true}
 				styles={dynamicStyles}
 			>
 				Test Children
-			</ToggleStyledComponent>
+			</Toggle>
 		);
 
 		const elementAfter = screen.getByText('Test Children');
