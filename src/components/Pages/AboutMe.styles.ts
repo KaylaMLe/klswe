@@ -30,3 +30,12 @@ export const paragraphBoxStyle: CSSObject = {
 export const paragraphStyle: CSSObject = {
 	margin: 0,
 };
+
+export const portraitStyle: CSSObject = {
+	borderRadius: '50%',
+	height: '50vmin',
+	maxHeight: '300px',
+	width: '50vmin',
+	maxWidth: '300px',
+	justifySelf: 'center',
+};

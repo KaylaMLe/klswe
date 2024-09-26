@@ -1,3 +1,4 @@
+import { CSSObject } from '@emotion/css';
 import { DynamicStyles } from '../../types/StyleTypes';
 
 export const homeStyles: DynamicStyles = {
@@ -45,4 +46,9 @@ export const treeBoxStyles: DynamicStyles = {
 	alternate: {
 		marginRight: '0',
 	},
+};
+
+export const treeImgStyle: CSSObject = {
+	height: '100%',
+	width: '100%',
 };

@@ -1,14 +1,14 @@
 import { css, keyframes } from '@emotion/css';
 import React, { useCallback, useState } from 'react';
-import { HOME } from '../../hooks/PageNumbers';
 import chime from '../../assets/audio/chime.wav';
 import flower from '../../assets/images/flower.png';
 import tree from '../../assets/images/tree.png';
 import voloff from '../../assets/images/voloff.png';
 import volon from '../../assets/images/volon.png';
-import { homeStyles, muteBtnStyles, treeBoxStyles } from './Home.styles';
-import { Page } from './Page';
+import { HOME } from '../../hooks/PageNumbers';
 import { Responsive } from '../ResponsiveComponents/ResponsiveComponent';
+import { homeStyles, muteBtnStyles, treeBoxStyles, treeImgStyle } from './Home.styles';
+import { Page } from './Page';
 
 interface FlowerProps {
 	id: number;
@@ -46,11 +46,6 @@ function MuteBtn({ onClick, muted }: { onClick: () => void, muted: boolean }): R
 function Tree({ muted }: { muted: boolean }): React.JSX.Element {
 	const [flowerProps, setFlowerProps] = useState<FlowerProps[]>([]);
 	const [flowerId, setFlowerId] = useState(0);
-
-	const treeImgStyle = css({
-		height: '100%',
-		width: '100%',
-	});
 
 	const FLOWER_LIMIT = 256;
 	// slice removes oldest flower props in list
@@ -99,7 +94,7 @@ function Tree({ muted }: { muted: boolean }): React.JSX.Element {
 				Your browser does not support the audio element.
 			</audio>
 			<img
-				className={treeImgStyle}
+				className={css(treeImgStyle)}
 				src={tree}
 				alt={`Digital drawing of a bonsai tree${flowerProps.length === 1 ? ' with a light pink flower on it'
 					: flowerProps.length > 0 ? ` with ${flowerProps.length} light pink flowers on it` : ''}`}

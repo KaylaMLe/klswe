@@ -1,21 +1,16 @@
 import { css } from '@emotion/css';
 import React, { ReactNode, useEffect } from 'react';
 import { useCsrfCookie } from '../../hooks/CsrfCookieContext';
-import { NavBar } from '../NavBar/NavBar';
 import { useCurrentPage } from '../../hooks/PageNumberContext';
-import { containerStyles, pageStyles, privacyPolicyLinkStyles } from './Page.styles';
+import { NavBar } from '../NavBar/NavBar';
 import { Responsive } from '../ResponsiveComponents/ResponsiveComponent';
+import { containerStyles, contentStyle, pageStyles, privacyPolicyLinkStyles } from './Page.styles';
 import { getCurrentPage } from './utils';
 
 export function Page({ pageNumber, title, children }
 	: { pageNumber: number, title?: string, children: ReactNode }): React.JSX.Element {
 	const { csrfCookie } = useCsrfCookie();
 	const { setCurrentPage } = useCurrentPage();
-
-	const contentStyle = css({
-		height: '100%',
-		width: '100%',
-	});
 
 	if (title !== undefined) {
 		document.title = title + ' | KL\'s Website';
@@ -52,7 +47,7 @@ export function Page({ pageNumber, title, children }
 		<div className={css(containerStyles)}>
 			<Responsive Component='div' styles={pageStyles}>
 				<NavBar />
-				<div className={contentStyle} id='main' tabIndex={-1} role='none'>
+				<div className={css(contentStyle)} id='main' tabIndex={-1} role='none'>
 					{children}
 				</div>
 			</Responsive>

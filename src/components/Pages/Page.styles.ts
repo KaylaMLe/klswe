@@ -1,6 +1,11 @@
 import { CSSObject } from '@emotion/css';
 import { DynamicStyles } from '../../types/StyleTypes';
 
+export const contentStyle: CSSObject = {
+	height: '100%',
+	width: '100%',
+};
+
 export const pageStyles: DynamicStyles = {
 	default: {
 		display: 'grid',
