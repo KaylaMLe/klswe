@@ -6,6 +6,7 @@ import {
 	FLEXBOX_FUN,
 	TRANSLATE,
 	PDF_TO_FORM,
+	GAME,
 	NOT_FOUND_ERROR
 } from './hooks/PageNumbers';
 
@@ -15,6 +16,7 @@ const AboutMe = lazy(() => import('./components/Pages/AboutMe'));
 const FlexboxFun = lazy(() => import('./components/Pages/FlexboxFun'));
 const Translate = lazy(() => import('./components/Pages/Translate'));
 const PdfToForm = lazy(() => import('./components/Pages/PdfToForm'));
+const Game = lazy(() => import('./components/Pages/Game'));
 const NotFoundError = lazy(() => import('./components/Pages/NotFoundError'));
 
 const routes = [
@@ -24,6 +26,7 @@ const routes = [
 	{ path: FLEXBOX_FUN.link, component: FlexboxFun },
 	{ path: TRANSLATE.link, component: Translate },
 	{ path: PDF_TO_FORM.link, component: PdfToForm },
+	{ path: GAME.link, component: Game },
 	{ path: NOT_FOUND_ERROR.link, component: NotFoundError },
 ];
 

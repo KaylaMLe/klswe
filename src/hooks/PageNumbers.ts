@@ -31,3 +31,7 @@ export const PDF_TO_FORM: PageType = {
 	pageNumber: 5,
 	link: '/pdf-to-form',
 };
+export const GAME: PageType = {
+	pageNumber: 6,
+	link: '/game',
+};
