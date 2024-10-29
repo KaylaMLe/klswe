@@ -47,14 +47,13 @@ export function NavBar(): React.JSX.Element {
 						styles={flexboxFunBtnStyles}
 						to={FLEXBOX_FUN.link}
 					/>
-					{/* Hidden until this page is fixed
 					<Toggle
 						Component={Link}
 						label='Translate JS to TS'
 						condition={currentPage === TRANSLATE.pageNumber}
 						styles={flexboxFunBtnStyles}
 						to={TRANSLATE.link}
-					/> */}
+					/>
 					<Toggle
 						Component={Link}
 						label='PDF to Form'
