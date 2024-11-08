@@ -10,6 +10,12 @@ My personal website is a centralized platform to display my professional portfol
       - [Running the project](#running-the-project)
       - [Testing](#testing)
 3. [Project design](#project-design)
+      - [Architecture](#architecture)
+      - [Component design](#component-design)
+        - [Contexts](#contexts)
+        - [Higher-order components](#higher-order-components)
+        - [Layout components](#layout-components)
+        - [Page-specific interactive components](#page-specific-interactive-components)
       - [Production dependencies](#production-dependencies)
       - [Development dependencies](#development-dependencies)
         - [Build and development tools](#build-and-development-tools)
@@ -76,6 +82,29 @@ npm run test-coverage
 To run a specific test file, include the `-- path/to/testfile.test.tsx` flag after either of the previous commands. The path can either be absolute or relative to the root folder, `klswe`.
 
 ## Project design
+
+### Architecture
+This frontend application communicates with a backend API to handle user-driven requests, sending inputs to the backend and receiving processed data in response. Individual components make API calls directly as needed, allowing the backend to manage complex data processing while the frontend focuses on displaying and interacting with the results.
+
+### Component design
+This project is structured with a modular component design, ensuring reusability and responsiveness across different pages. Key components are built to handle specific tasks, such as responsive layout adjustments, page metadata, and navigation, while smaller, focused components manage interactive elements like buttons and animations.
+
+#### Contexts
+Custom hooks and context providers manage shared state and encapsulate complex logic, enabling a consistent and responsive experience across components. Contexts are named following the `<Purpose/Content>Context` convention. Corresponding hooks are name `use<Purpose/Content>`, and providers are named `<Purpose/Content>Provider`.
+- `CsrfCookieContext`: Manages the CSRF token for requests to the backend API. The `CsrfCookieProvider` checks for an existing CSRF token in cookies or local storage; if none is found, it fetches a new token from the backend and updates the context.
+- `PageNumberContext`: Tracks the current page number, making it easy for components to identify and update the active page. The `CurrentPageProvider` exposes `currentPage` and `setCurrentPage` to child components, enabling them to highlight active pages and apply page-specific styles.
+- `ViewPortContext`: Manages a boolean `isMobile` state, which adjusts based on the viewport width ("mobile" defined as <= 600px). The `IsMobileProvider` listens for window resizing events and updates `isMobile` accordingly, allowing components to conditionally render or style content based on the device type.
+
+#### Higher-order components
+- `Responsive`: A versatile wrapper component used to apply conditional styling based on screen size, enabling seamless transitions between mobile and desktop layouts.
+- `Toggle`: This component is designed to conditionally style elements. Toggle accepts a Component prop (allowing any component to be wrapped) and applies a default style by default, switching to an alternate style when the condition passed in is true. CSS transitions are used to create a smooth effect when the style changes. If the condition is false, the component applies the alternate style on hover and focus for added interactivity.
+
+#### Layout components
+- `Page`: This component acts as a wrapper for each main page's content, setting up a consistent layout across the application. It includes page-level setup such as setting the document title and logging page views via API requests to track user engagement.
+- `NavBar`: This component provides the main navigation for the application, with links to key pages and various projects. It includes a dropdown menu for organizing project links and uses the `Toggle` component to highlight the currently active page.
+
+#### Page-specific interactive components
+Lower-level components are designed as containers for primary content and specific user interactions, focusing on delivering unique, immersive experiences. These components are primarily visual and are tailored to the specific needs of each page, not general reusability.
 
 ### Production dependencies
 The following dependencies are necessary to run the project.
