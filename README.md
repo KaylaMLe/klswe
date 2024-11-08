@@ -96,10 +96,12 @@ Custom hooks and context providers manage shared state and encapsulate complex l
 - `ViewPortContext`: Manages a boolean `isMobile` state, which adjusts based on the viewport width ("mobile" defined as <= 600px). The `IsMobileProvider` listens for window resizing events and updates `isMobile` accordingly, allowing components to conditionally render or style content based on the device type.
 
 #### Higher-order components
+Higher-order components are designed to wrap other components to add functionality or conditional styling. These components provide a foundation for responsive design and state-based style changes, making it easy to adapt UI elements to window and interaction states.
 - `Responsive`: A versatile wrapper component used to apply conditional styling based on screen size, enabling seamless transitions between mobile and desktop layouts.
 - `Toggle`: This component is designed to conditionally style elements. Toggle accepts a Component prop (allowing any component to be wrapped) and applies a default style by default, switching to an alternate style when the condition passed in is true. CSS transitions are used to create a smooth effect when the style changes. If the condition is false, the component applies the alternate style on hover and focus for added interactivity.
 
 #### Layout components
+Layout components establish the core structure of each page and serve as containers for page content, handling key tasks such as navigation, page metadata, and overall layout consistency.
 - `Page`: This component acts as a wrapper for each main page's content, setting up a consistent layout across the application. It includes page-level setup such as setting the document title and logging page views via API requests to track user engagement.
 - `NavBar`: This component provides the main navigation for the application, with links to key pages and various projects. It includes a dropdown menu for organizing project links and uses the `Toggle` component to highlight the currently active page.
 
