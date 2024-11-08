@@ -1,4 +1,4 @@
-# Front end for [klswe](https://www.klswe.com)
+# Front end for [klswe.com](https://www.klswe.com)
 My personal website is a centralized platform to display my professional portfolio, projects, and expertise, offering a comprehensive view of my skills and interests. With a strong emphasis on user experience, scalability, and maintainability, it provides an engaging way to explore my work and connect with me. I hope you have as much fun exploring the code as I have building it!
 
 ## Table of contents
