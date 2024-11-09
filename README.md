@@ -147,5 +147,29 @@ The following dependencies are used in the development, testing, and deployment 
     - `eslint-plugin-react-refresh` (version ^0.4.5)
 
 ### File system
+This is a summary of the file structure of the project. It prioritizes clarity by detailing essential components and React configuration files while omitting other configuration, test, style, and auto-generated files.
+```
+📁klswe/ - configuration files for development, testing, and production build tools
+├─📁.github/
+│ └─📁workflows/
+│   └─📜cicd.yml - GitHub Actions script for automated testing and deployment
+├─📁public/ - static favicon, logo, and manifest files
+└─📁src/
+  ├─📁assets/ - static audio and image files
+  ├─📁components/
+  │ ├─📁NavBar/ - components used in the navigation bar in every page
+  │ ├─📁Pages/
+  │ │ ├─📜Page.tsx - core layout component that consistently formats page content and renders navigaiton components
+  │ │ ├─📜utils.ts - shared utility functions
+  │ │ └─📜various page components - define and render unique content for each page
+  │ └─📁ResponsiveComponents/
+  │   ├─📜ResonsiveComponent.tsx - Applies styles conditionally based on the screen size
+  │   └─📜ToggleStyledComponent.tsx - Applies different styles based on a given condition
+  ├─📁hooks/ - custom hooks for providing access to the values of different contexts
+  ├─📁types/ - stores type definitions and interfaces for consistent data structures and improved type safety
+  ├─📜constants.ts - exports environment variables as constants for easy access
+  ├─📜index.css - CSS file containing global styles
+  └─📜routes.ts - sets up routing for the main page content components
+```
 
 ## License
