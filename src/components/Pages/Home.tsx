@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { CSSObject } from '@emotion/react';
 import React, { useState, useEffect, useRef } from 'react';
+import { starStyle, starBoxStyle } from './Home.styles';
 
 interface Star {
   id: number;
@@ -9,31 +9,15 @@ interface Star {
   opacity: number;
 }
 
-const starStyle: CSSObject = {
-  position: 'absolute',
-  width: '1px',
-  height: '1px',
-  backgroundColor: 'white',
-  borderRadius: '50%',
-  opacity: 0,
-  transition: 'opacity 1s ease-in-out',
-};
-
-const containerStyle: CSSObject = {
-  position: 'relative',
-  width: '100vw',
-  height: '100vh',
-  backgroundColor: '#000',
-  overflow: 'hidden',
-};
-
 export default function Home(): React.JSX.Element {
-  const [stars, setStars] = useState<Star[]>([]);
+  const [stars, setStars] = useState<Record<number, Star>>({});
+  const [starCount, setStarCount] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const nextId = useRef(0);
 
   const createStar = () => {
     if (!containerRef.current) return;
+    console.log('Creating star');
     
     const container = containerRef.current;
     const x = Math.random() * container.offsetWidth;
@@ -46,35 +30,65 @@ export default function Home(): React.JSX.Element {
       opacity: 0,
     };
     
-    setStars(prev => [...prev, newStar]);
+    setStars(prev => ({ ...prev, [newStar.id]: newStar }));
+    setStarCount(prev => prev + 1);
     
-    // Use requestAnimationFrame for more efficient fade-in trigger
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        setStars(prev => {
-          const starIndex = prev.findIndex(star => star.id === newStar.id);
-          if (starIndex === -1) return prev;
-          
-          const updatedStars = [...prev];
-          updatedStars[starIndex] = { ...updatedStars[starIndex], opacity: 1 };
-          return updatedStars;
-        });
+        setStars(prev => ({
+          ...prev,
+          [newStar.id]: { ...prev[newStar.id], opacity: 1 }
+        }));
       });
     });
   };
 
+  const removeStar = () => {
+    setStars(prev => {
+      const starIds = Object.keys(prev).map(Number);
+      if (starIds.length === 0) return prev;
+      
+      const randomId = starIds[Math.floor(Math.random() * starIds.length)];
+      
+      // Fade out the star
+      const updatedStars = { ...prev };
+      updatedStars[randomId] = { ...updatedStars[randomId], opacity: 0 };
+      
+      // Remove the star after fade out completes
+      setTimeout(() => {
+        setStars(current => {
+          const { [randomId]: removed, ...remaining } = current;
+          return remaining;
+        });
+        setStarCount(current => current - 1);
+      }, 1000);
+      
+      return updatedStars;
+    });
+  };
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (stars.length < 100) {
+    const createInterval = setInterval(() => {
+      if (starCount < 100) {
         createStar();
       }
     }, 500);
-    return () => clearInterval(interval);
-  }, [stars.length]);
+
+    const removeInterval = setInterval(() => {
+      if (starCount > 80) {
+        removeStar();
+      }
+    }, 500);
+
+    return () => {
+      clearInterval(createInterval);
+      clearInterval(removeInterval);
+    };
+  }, [starCount]);
 
   return (
-    <div ref={containerRef} css={containerStyle}>
-      {stars.map(star => (
+    <div ref={containerRef} css={starBoxStyle}>
+      {Object.values(stars).map(star => (
         <div
           key={star.id}
           css={starStyle}
