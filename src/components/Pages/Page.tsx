@@ -1,4 +1,4 @@
-import { css } from '@emotion/css';
+/** @jsxImportSource @emotion/react */
 import React, { ReactNode, useEffect } from 'react';
 import { useCsrfCookie } from '../../hooks/CsrfCookieContext';
 import { useCurrentPage } from '../../hooks/PageNumberContext';
@@ -44,14 +44,14 @@ export function Page({ pageNumber, title, children }
 	}, [pageNumber, setCurrentPage]);
 
 	return (
-		<div className={css(containerStyles)}>
+		<div css={containerStyles}>
 			<Responsive Component='div' styles={pageStyles}>
 				<NavBar />
-				<div className={css(contentStyle)} id='main' tabIndex={-1} role='none'>
+				<div css={contentStyle} id='main' tabIndex={-1} role='none'>
 					{children}
 				</div>
 			</Responsive>
-			<a className={css(privacyPolicyLinkStyles)} href='/privacy-policy'>Privacy Policy</a>
+			<a css={privacyPolicyLinkStyles} href='/privacy-policy'>Privacy Policy</a>
 		</div>
 	);
 }

@@ -1,5 +1,6 @@
+/** @jsxImportSource @emotion/react */
+import { CSSObject } from '@emotion/react';
 import React from 'react';
-import { css, CSSObject } from '@emotion/css';
 import { ToggleProps } from '../../types/ResponsiveComponentTypes';
 
 export function Toggle({
@@ -24,7 +25,7 @@ export function Toggle({
 	}
 
 	return (
-		<Component className={css(statefulProps)} {...props}>{label}{children}</Component>
+		<Component css={statefulProps} {...props}>{label}{children}</Component>
 	);
 }
 

@@ -1,4 +1,5 @@
-import { css } from '@emotion/css';
+/** @jsxImportSource @emotion/react */
+import { CSSObject } from '@emotion/react';
 import React, { useState, useEffect, useRef } from 'react';
 
 interface Star {
@@ -8,23 +9,23 @@ interface Star {
   opacity: number;
 }
 
-const starStyle = css`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  background-color: white;
-  border-radius: 50%;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-`;
+const starStyle: CSSObject = {
+  position: 'absolute',
+  width: '1px',
+  height: '1px',
+  backgroundColor: 'white',
+  borderRadius: '50%',
+  opacity: 0,
+  transition: 'opacity 1s ease-in-out',
+};
 
-const containerStyle = css`
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  background-color: #000;
-  overflow: hidden;
-`;
+const containerStyle: CSSObject = {
+  position: 'relative',
+  width: '100vw',
+  height: '100vh',
+  backgroundColor: '#000',
+  overflow: 'hidden',
+};
 
 export default function Home(): React.JSX.Element {
   const [stars, setStars] = useState<Star[]>([]);
@@ -72,11 +73,11 @@ export default function Home(): React.JSX.Element {
   }, [stars.length]);
 
   return (
-    <div ref={containerRef} className={containerStyle}>
+    <div ref={containerRef} css={containerStyle}>
       {stars.map(star => (
         <div
           key={star.id}
-          className={starStyle}
+          css={starStyle}
           style={{
             left: `${star.x}px`,
             top: `${star.y}px`,

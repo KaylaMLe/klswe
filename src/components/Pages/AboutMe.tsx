@@ -1,4 +1,4 @@
-import { css } from '@emotion/css';
+/** @jsxImportSource @emotion/react */
 import React from 'react';
 import placeholder from '../../assets/images/portrait-placeholder.png';
 import { ABOUT_ME_TXT, ABOUT_ME_P2, PORTRAIT_URL } from '../../constants';
@@ -12,9 +12,9 @@ export default function AboutMe(): React.JSX.Element {
 		<Page pageNumber={ABOUT_ME.pageNumber} title='About me'>
 			<Responsive Component='div' styles={aboutMeStyles} data-testid='about-me'>
 				<Portrait />
-				<div className={css(paragraphBoxStyle)}>
-					<p className={css(paragraphStyle)}>{ABOUT_ME_TXT || 'Hi!'}</p>
-					<p className={css(paragraphStyle)}>{ABOUT_ME_P2 || 'I am a software engineer.'}</p>
+				<div css={paragraphBoxStyle}>
+					<p css={paragraphStyle}>{ABOUT_ME_TXT || 'Hi!'}</p>
+					<p css={paragraphStyle}>{ABOUT_ME_P2 || 'I am a software engineer.'}</p>
 				</div>
 			</Responsive>
 		</Page>
@@ -26,7 +26,7 @@ function Portrait(): React.JSX.Element {
 
 	return (
 		<img
-			className={css(portraitStyle)}
+			css={portraitStyle}
 			src={imgSrc}
 			alt='Professional head shot of myself'
 		/>

@@ -1,5 +1,5 @@
-import { CSSObject } from "@emotion/css";
-import { DynamicStyles } from "../../types/StyleTypes";
+import { CSSObject } from '@emotion/react';
+import { DynamicStyles } from '../../types/StyleTypes';
 
 export const headlineStyle: CSSObject = {
 	fontSize: '3rem',

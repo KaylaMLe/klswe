@@ -139,7 +139,6 @@ Lower-level components are designed as containers for primary content and specif
 
 The following dependencies are necessary to run the project.
 
-- `@emotion/css` (version ^11.11.2): CSS-in-JS library for styling
 - `js-cookie` (version ^3.0.4): Utility for retrieving cookies
 - `react` (version ^18.2.0): Core React library used to build the interface
 - `react-dom` (version ^18.2.0):Used to render React components to the DOM
