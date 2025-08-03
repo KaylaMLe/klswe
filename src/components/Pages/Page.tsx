@@ -13,9 +13,9 @@ export function Page({ pageNumber, title, children }
 	const { setCurrentPage } = useCurrentPage();
 
 	if (title !== undefined) {
-		document.title = title + ' | KL\'s Website';
+		document.title = title + ' | Kayla Le, Software Engineer';
 	} else {
-		document.title = 'KL\'s Website';
+		document.title = 'Kayla Le, Software Engineer';
 	}
 
 	useEffect(() => {
