@@ -2,8 +2,6 @@ import { CSSObject } from '@emotion/react';
 
 export const starStyle: CSSObject = {
   position: 'absolute',
-  width: '1px',
-  height: '1px',
   backgroundColor: 'white',
   borderRadius: '50%',
   opacity: 0,

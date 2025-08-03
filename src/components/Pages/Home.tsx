@@ -7,9 +7,18 @@ interface Star {
 	x: number;
 	y: number;
 	opacity: number;
+	size: number;
 }
 
 export default function Home(): React.JSX.Element {
+	return (
+		<div>
+			<StarBox />
+		</div>
+	);
+}
+
+function StarBox(): React.JSX.Element {
 	const [stars, setStars] = useState<Record<number, Star>>({});
 	const [starCount, setStarCount] = useState(0);
 	const [maxStars, setMaxStars] = useState(100);
@@ -21,6 +30,14 @@ export default function Home(): React.JSX.Element {
 		const area = window.innerWidth * window.innerHeight;
 		const starsPerArea = area / 20000;
 		return Math.floor(starsPerArea);
+	};
+
+	// Generate weighted random star size (50% 1px, 30% 2px, 20% 3px)
+	const generateStarSize = () => {
+		const random = Math.random();
+		if (random < 0.5) return 1; // 50% chance
+		if (random < 0.8) return 2; // 30% chance (0.5 + 0.3)
+		return 3; // 20% chance (remaining)
 	};
 
 	const createStar = () => {
@@ -35,6 +52,7 @@ export default function Home(): React.JSX.Element {
 			x,
 			y,
 			opacity: 0,
+			size: generateStarSize(), // Weighted random size
 		};
 
 		setStars((prev) => ({ ...prev, [newStar.id]: newStar }));
@@ -97,7 +115,7 @@ export default function Home(): React.JSX.Element {
 			if (starCount < maxStars) {
 				createStar();
 			}
-		}, 500);
+		}, Math.random() * 1000 + 500); // Random between 500-1500ms
 
 		const removeInterval = setInterval(() => {
 			const minStars = Math.floor(maxStars * 0.8); // 80% of max stars
@@ -105,7 +123,7 @@ export default function Home(): React.JSX.Element {
 			if (starCount > minStars) {
 				removeStar();
 			}
-		}, 500);
+		}, Math.random() * 1000 + 500);
 
 		return () => {
 			clearInterval(createInterval);
@@ -123,6 +141,8 @@ export default function Home(): React.JSX.Element {
 						left: `${star.x}px`,
 						top: `${star.y}px`,
 						opacity: star.opacity,
+						width: `${star.size}px`,
+						height: `${star.size}px`,
 					}}
 				/>
 			))}
