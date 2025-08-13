@@ -10,8 +10,26 @@ export const starStyle: CSSObject = {
 };
 
 export const starBoxStyle: CSSObject = {
-  position: 'relative',
+  position: 'absolute',
+  top: '0px',
+  left: '0px',
   width: '100vw',
   height: '100vh',
   overflow: 'hidden',
+};
+
+export const hexagonBoxStyle: CSSObject = {
+  position: 'absolute',
+  top: '0px',
+  left: '0px',
+  width: '100vw',
+  height: '100vh',
+};
+
+export const hexagonStyle: CSSObject = {
+  position: 'absolute',
+  top: '0px',
+  left: '0px',
+  height: '100%',
+  width: '100%',
 };

@@ -1,6 +1,11 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState, useEffect, useRef } from "react";
-import { starStyle, starBoxStyle } from "./Home.styles";
+import React, { useState, useEffect, useRef } from 'react';
+import {
+	starStyle,
+	starBoxStyle,
+	hexagonBoxStyle,
+	hexagonStyle,
+} from './Home.styles';
 
 interface Star {
 	id: number;
@@ -14,6 +19,7 @@ export default function Home(): React.JSX.Element {
 	return (
 		<div>
 			<StarBox />
+			<Hexagon />
 		</div>
 	);
 }
@@ -105,10 +111,10 @@ function StarBox(): React.JSX.Element {
 		updateMaxStars();
 
 		// Add resize listener
-		window.addEventListener("resize", updateMaxStars);
+		window.addEventListener('resize', updateMaxStars);
 
 		return () => {
-			window.removeEventListener("resize", updateMaxStars);
+			window.removeEventListener('resize', updateMaxStars);
 		};
 	}, []);
 
@@ -147,6 +153,32 @@ function StarBox(): React.JSX.Element {
 						height: `${star.size}px`,
 					}}
 				/>
+			))}
+		</div>
+	);
+}
+
+function Hexagon(): React.JSX.Element {
+	const VERTICES = [
+		'50% 0%',
+		'100% 24.5%',
+		'100% 75.5%',
+		'50% 100%',
+		'0% 75.5%',
+		'0% 24.5%',
+	];
+
+	const hexagonStyles = VERTICES.map((vertex, index) => ({
+		clipPath: `polygon(${vertex}, ${VERTICES[(index + 1) % 6]}, 50% 50%)`,
+		background: `linear-gradient(${
+			index * 60 + 30
+		}deg,rgb(1, 0, 43) 90%, transparent)`,
+	}));
+
+	return (
+		<div css={hexagonBoxStyle}>
+			{hexagonStyles.map((style, index) => (
+				<div css={{ ...hexagonStyle, ...style }} key={index} />
 			))}
 		</div>
 	);
