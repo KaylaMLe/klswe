@@ -58,7 +58,9 @@ function StarBox(): React.JSX.Element {
 		setStars((prev) => ({ ...prev, [newStar.id]: newStar }));
 		setStarCount((prev) => prev + 1);
 
+		// star created on our end -> star rendered/added to dom
 		requestAnimationFrame(() => {
+			// star rendered -> star fade in
 			requestAnimationFrame(() => {
 				setStars((prev) => ({
 					...prev,

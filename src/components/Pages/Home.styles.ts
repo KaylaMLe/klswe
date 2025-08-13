@@ -6,6 +6,7 @@ export const starStyle: CSSObject = {
   borderRadius: '50%',
   opacity: 0,
   transition: 'opacity 1s ease-in-out',
+  boxShadow: '0 0 4px rgba(255, 255, 255)',
 };
 
 export const starBoxStyle: CSSObject = {
