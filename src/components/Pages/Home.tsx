@@ -1,11 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState, useEffect, useRef } from 'react';
-import {
-	starStyle,
-	starBoxStyle,
-	hexagonBoxStyle,
-	hexagonStyle,
-} from './Home.styles';
+import { starStyle, starBoxStyle, hexagonBoxStyle, hexagonStyle } from './Home.styles';
 
 interface Star {
 	id: number;
@@ -17,7 +12,16 @@ interface Star {
 
 export default function Home(): React.JSX.Element {
 	return (
-		<div>
+		<div
+			css={{
+				display: 'flex',
+				justifyContent: 'center',
+				alignItems: 'center',
+				width: '100vw',
+				height: '100vh',
+				position: 'relative',
+			}}
+		>
 			<StarBox />
 			<Hexagon />
 		</div>
@@ -38,12 +42,10 @@ function StarBox(): React.JSX.Element {
 		return Math.floor(starsPerArea);
 	};
 
-	// Generate weighted random star size (50% 1px, 30% 2px, 20% 3px)
+	// Generate weighted random star size (70% 1px, 30% 2px)
 	const generateStarSize = () => {
 		const random = Math.random();
-		if (random < 0.5) return 1; // 50% chance
-		if (random < 0.8) return 2; // 30% chance (0.5 + 0.3)
-		return 3; // 20% chance (remaining)
+		return random < 0.7 ? 1 : 2;
 	};
 
 	const createStar = () => {
@@ -159,27 +161,9 @@ function StarBox(): React.JSX.Element {
 }
 
 function Hexagon(): React.JSX.Element {
-	const VERTICES = [
-		'50% 0%',
-		'100% 24.5%',
-		'100% 75.5%',
-		'50% 100%',
-		'0% 75.5%',
-		'0% 24.5%',
-	];
-
-	const hexagonStyles = VERTICES.map((vertex, index) => ({
-		clipPath: `polygon(${vertex}, ${VERTICES[(index + 1) % 6]}, 50% 50%)`,
-		background: `linear-gradient(${
-			index * 60 + 30
-		}deg,rgb(1, 0, 43) 90%, transparent)`,
-	}));
-
 	return (
 		<div css={hexagonBoxStyle}>
-			{hexagonStyles.map((style, index) => (
-				<div css={{ ...hexagonStyle, ...style }} key={index} />
-			))}
+			<div css={hexagonStyle} />
 		</div>
 	);
 }

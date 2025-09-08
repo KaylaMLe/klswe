@@ -19,17 +19,18 @@ export const starBoxStyle: CSSObject = {
 };
 
 export const hexagonBoxStyle: CSSObject = {
-  position: 'absolute',
-  top: '0px',
-  left: '0px',
-  width: '100vw',
-  height: '100vh',
+  width: '90vmin',
+  height: '90vmin',
+  display: 'grid',
+  gridTemplateColumns: '1fr',
+  gridTemplateRows: '1fr',
 };
 
 export const hexagonStyle: CSSObject = {
-  position: 'absolute',
-  top: '0px',
-  left: '0px',
   height: '100%',
   width: '100%',
+  gridColumn: '1',
+  gridRow: '1',
+  clipPath: 'polygon(50% 0%, 100% 24.5%, 100% 75.5%, 50% 100%, 0% 75.5%, 0% 24.5%)',
+  backgroundColor: '#010014',
 };
