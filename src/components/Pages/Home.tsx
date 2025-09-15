@@ -1,6 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState, useEffect, useRef } from 'react';
-import { starStyle, starBoxStyle, hexagonBoxStyle, hexagonSvgStyle } from './Home.styles';
+import {
+	pageStyle,
+	starStyle,
+	starBoxStyle,
+	hexagonBoxStyle,
+	hexagonSvgStyle,
+	heroTextStyle,
+	nameStyle,
+	titleStyle,
+	subtitleStyle,
+} from './Home.styles';
 import hexagonSvgUrl from '../../assets/images/hexagon.svg';
 
 interface Star {
@@ -13,16 +23,7 @@ interface Star {
 
 export default function Home(): React.JSX.Element {
 	return (
-		<div
-			css={{
-				display: 'flex',
-				justifyContent: 'center',
-				alignItems: 'center',
-				width: '100vw',
-				height: '100vh',
-				position: 'relative',
-			}}
-		>
+		<div css={pageStyle}>
 			<StarBox />
 			<Hexagon />
 		</div>
@@ -165,6 +166,12 @@ function Hexagon(): React.JSX.Element {
 	return (
 		<div css={hexagonBoxStyle}>
 			<img src={hexagonSvgUrl} alt="Decorative hexagon" css={hexagonSvgStyle} />
+			<div css={heroTextStyle}>
+				<h1 css={nameStyle}>Kayla Le</h1>
+				<h2 css={titleStyle}>Full-Stack</h2>
+				<h2 css={titleStyle}>Software Engineer</h2>
+				<h3 css={subtitleStyle}>I build things for the web.</h3>
+			</div>
 		</div>
 	);
 }
