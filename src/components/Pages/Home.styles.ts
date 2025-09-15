@@ -26,11 +26,10 @@ export const hexagonBoxStyle: CSSObject = {
   gridTemplateRows: '1fr',
 };
 
-export const hexagonStyle: CSSObject = {
+export const hexagonSvgStyle: CSSObject = {
   height: '100%',
   width: '100%',
   gridColumn: '1',
   gridRow: '1',
-  clipPath: 'polygon(50% 0%, 100% 24.5%, 100% 75.5%, 50% 100%, 0% 75.5%, 0% 24.5%)',
-  backgroundColor: '#010014',
+  zIndex: 2,
 };

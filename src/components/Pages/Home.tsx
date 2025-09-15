@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState, useEffect, useRef } from 'react';
-import { starStyle, starBoxStyle, hexagonBoxStyle, hexagonStyle } from './Home.styles';
+import { starStyle, starBoxStyle, hexagonBoxStyle, hexagonSvgStyle } from './Home.styles';
+import hexagonSvgUrl from '../../assets/images/hexagon.svg';
 
 interface Star {
 	id: number;
@@ -163,7 +164,7 @@ function StarBox(): React.JSX.Element {
 function Hexagon(): React.JSX.Element {
 	return (
 		<div css={hexagonBoxStyle}>
-			<div css={hexagonStyle} />
+			<img src={hexagonSvgUrl} alt="Decorative hexagon" css={hexagonSvgStyle} />
 		</div>
 	);
 }
