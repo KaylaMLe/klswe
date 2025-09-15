@@ -62,17 +62,22 @@ export const heroTextStyle: CSSObject = {
 export const nameStyle: CSSObject = {
   fontWeight: 900,
   fontSize: 'clamp(3rem, 12vmin, 20rem)',
-  margin: '0 0 1rem 0',
+  margin: '0 0 2rem 0',
 };
 
 export const titleStyle: CSSObject = {
   fontWeight: 600,
   fontSize: 'clamp(1.25rem, 6vmin, 15rem)',
+  color: '#B6ADFF',
+  lineHeight: '1.25',
+  letterSpacing: '0.1em',
+  textAlign: 'center',
   margin: 0,
 };
 
 export const subtitleStyle: CSSObject = {
-  fontWeight: 400,
+  fontWeight: 500,
   fontSize: 'clamp(1rem, 4vmin, 2rem)',
-  marginTop: '1rem',
+  color: '#8575FF',
+  marginTop: '2rem',
 };

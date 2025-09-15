@@ -168,8 +168,11 @@ function Hexagon(): React.JSX.Element {
 			<img src={hexagonSvgUrl} alt="Decorative hexagon" css={hexagonSvgStyle} />
 			<div css={heroTextStyle}>
 				<h1 css={nameStyle}>Kayla Le</h1>
-				<h2 css={titleStyle}>Full-Stack</h2>
-				<h2 css={titleStyle}>Software Engineer</h2>
+				<h2 css={titleStyle}>
+					Full-Stack
+					<br />
+					Software Engineer
+				</h2>
 				<h3 css={subtitleStyle}>I build things for the web.</h3>
 			</div>
 		</div>
