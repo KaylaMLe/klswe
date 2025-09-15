@@ -2,6 +2,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
 	pageStyle,
+	gradientBackgroundStyle,
+	blueSweepStyle,
+	purpleSweepStyle,
 	starStyle,
 	starBoxStyle,
 	hexagonBoxStyle,
@@ -24,6 +27,8 @@ interface Star {
 export default function Home(): React.JSX.Element {
 	return (
 		<div css={pageStyle}>
+			<div css={{ ...blueSweepStyle, ...gradientBackgroundStyle }} />
+			<div css={{ ...purpleSweepStyle, ...gradientBackgroundStyle }} />
 			<StarBox />
 			<Hexagon />
 		</div>

@@ -1,12 +1,43 @@
-import { CSSObject } from '@emotion/react';
+import { CSSObject, keyframes } from '@emotion/react';
 
 export const pageStyle: CSSObject = {
+  position: 'relative',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   width: '100vw',
   height: '100vh',
 };
+
+export const sweepGradientKeyframes = keyframes`
+0% {
+  background-position: 0% 50%;
+}
+100% {
+  background-position: 400% 50%;
+}
+`;
+
+export const gradientBackgroundStyle: CSSObject = {
+	position: 'absolute',
+	top: 0,
+	left: 0,
+	width: '100%',
+	height: '100%',
+	backgroundSize: '400% 100%',
+  zIndex: 0,
+};
+
+export const blueSweepStyle: CSSObject = {
+	background: 'repeating-linear-gradient(120deg, transparent 0%, transparent 20%,rgb(12, 0, 67) 50%, transparent 80%, transparent 100%)',
+	animation: `${sweepGradientKeyframes} 90s linear infinite`,
+};
+
+export const purpleSweepStyle: CSSObject = {
+	background: 'repeating-linear-gradient(210deg, transparent 0%, transparent 25%,rgba(34, 0, 67, 0.7) 50%, transparent 75%, transparent 100%)',
+	animation: `${sweepGradientKeyframes} 80s linear infinite`,
+};
+
 
 export const starStyle: CSSObject = {
   position: 'absolute',
