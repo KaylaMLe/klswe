@@ -11,10 +11,10 @@ export const pageStyle: CSSObject = {
 
 export const sweepGradientKeyframes = keyframes`
 0% {
-  background-position: 0% 50%;
+  background-position: 400% 50%;
 }
 100% {
-  background-position: 400% 50%;
+  background-position: 0% 50%;
 }
 `;
 
@@ -35,7 +35,7 @@ export const blueSweepStyle: CSSObject = {
 
 export const purpleSweepStyle: CSSObject = {
 	background: 'repeating-linear-gradient(210deg, transparent 0%, transparent 25%,rgba(34, 0, 67, 0.7) 50%, transparent 75%, transparent 100%)',
-	animation: `${sweepGradientKeyframes} 80s linear infinite`,
+	animation: `${sweepGradientKeyframes} 100s linear infinite`,
 };
 
 
