@@ -14,6 +14,9 @@ import {
 	titleStyle,
 	subtitleStyle,
 	aboutMeBoxStyle,
+	glassBlurStyle,
+	glassPanelStyle,
+	aboutMeTextContainerStyle,
 	aboutMeTitleStyle,
 	aboutMeTextStyle,
 } from './Home.styles';
@@ -191,23 +194,27 @@ function Hexagon(): React.JSX.Element {
 function AboutMe(): React.JSX.Element {
 	return (
 		<div css={aboutMeBoxStyle}>
-			<h2 css={aboutMeTitleStyle}>About me</h2>
-			<p css={aboutMeTextStyle}>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vehicula nisi eget mi auctor vestibulum. Nunc ut
-				molestie erat. Cras vitae dolor magna. Nullam fermentum velit id libero elementum tincidunt. Vestibulum
-				imperdiet euismod auctor. Cras aliquet lorem at arcu vestibulum imperdiet. Nullam molestie sollicitudin turpis
-				eget interdum. Nullam eu metus vitae mauris bibendum mollis. Cras eget commodo nunc, sed lacinia massa. Donec
-				commodo nisi nec maximus eleifend. Fusce hendrerit viverra ipsum nec accumsan. Aliquam sagittis felis venenatis
-				tortor ultrices, tempor venenatis nibh interdum. Nam viverra auctor mauris id iaculis. Praesent bibendum leo nec
-				accumsan commodo. Vivamus aliquet eros sit amet felis scelerisque, sit amet tempor nisi dignissim. Nam ac sapien
-				at neque aliquam vestibulum. Duis eget facilisis justo. Donec et urna leo. Quisque porta venenatis orci ac
-				ullamcorper. Duis malesuada consectetur nibh, vitae fermentum metus ornare quis. Vivamus eu libero non enim
-				consequat aliquet vel non libero. Nulla ut auctor lacus. Ut laoreet diam ac mauris tristique placerat. Aenean et
-				ultricies neque, in maximus lacus. Donec tincidunt, eros et condimentum pellentesque, augue erat tincidunt
-				lacus, ut suscipit lorem nibh euismod nulla. Fusce nec enim luctus, tempor tellus a, accumsan metus. Cras
-				dignissim non ligula non vehicula. Ut tincidunt mi sem, sed facilisis erat molestie non. Nunc sit amet est quis
-				dui fringilla posuere vitae gravida massa.
-			</p>
+			<div css={glassBlurStyle} />
+			<div css={glassPanelStyle} />
+			<div css={aboutMeTextContainerStyle}>
+				<h2 css={aboutMeTitleStyle}>About me</h2>
+				<p css={aboutMeTextStyle}>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vehicula nisi eget mi auctor vestibulum. Nunc
+					ut molestie erat. Cras vitae dolor magna. Nullam fermentum velit id libero elementum tincidunt. Vestibulum
+					imperdiet euismod auctor. Cras aliquet lorem at arcu vestibulum imperdiet. Nullam molestie sollicitudin turpis
+					eget interdum. Nullam eu metus vitae mauris bibendum mollis. Cras eget commodo nunc, sed lacinia massa. Donec
+					commodo nisi nec maximus eleifend. Fusce hendrerit viverra ipsum nec accumsan. Aliquam sagittis felis
+					venenatis tortor ultrices, tempor venenatis nibh interdum. Nam viverra auctor mauris id iaculis. Praesent
+					bibendum leo nec accumsan commodo. Vivamus aliquet eros sit amet felis scelerisque, sit amet tempor nisi
+					dignissim. Nam ac sapien at neque aliquam vestibulum. Duis eget facilisis justo. Donec et urna leo. Quisque
+					porta venenatis orci ac ullamcorper. Duis malesuada consectetur nibh, vitae fermentum metus ornare quis.
+					Vivamus eu libero non enim consequat aliquet vel non libero. Nulla ut auctor lacus. Ut laoreet diam ac mauris
+					tristique placerat. Aenean et ultricies neque, in maximus lacus. Donec tincidunt, eros et condimentum
+					pellentesque, augue erat tincidunt lacus, ut suscipit lorem nibh euismod nulla. Fusce nec enim luctus, tempor
+					tellus a, accumsan metus. Cras dignissim non ligula non vehicula. Ut tincidunt mi sem, sed facilisis erat
+					molestie non. Nunc sit amet est quis dui fringilla posuere vitae gravida massa.
+				</p>
+			</div>
 		</div>
 	);
 }

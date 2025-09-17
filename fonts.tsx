@@ -28,6 +28,14 @@ export function Fonts() {
 					font-style: italic;
 					font-display: swap;
 				}
+
+				@font-face {
+					font-family: 'Quicksand';
+					src: url('/fonts/Quicksand/Quicksand.woff2') format('woff2-variations');
+					font-weight: 100 900;
+					font-style: normal;
+					font-display: swap;
+				}
 			`}
 		/>
 	);
