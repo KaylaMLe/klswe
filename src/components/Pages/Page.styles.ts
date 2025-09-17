@@ -24,7 +24,7 @@ export const pageStyles: DynamicStyles = {
 };
 
 export const containerStyles: CSSObject = {
-	height: '100vh',
+	minHeight: '100vh',
 	width: '100vw',
 };
 

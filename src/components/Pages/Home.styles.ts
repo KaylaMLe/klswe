@@ -3,10 +3,11 @@ import { CSSObject, keyframes } from '@emotion/react';
 export const pageStyle: CSSObject = {
   position: 'relative',
   display: 'flex',
+  flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
   width: '100vw',
-  height: '100vh',
+  minHeight: '100vh',
 };
 
 export const sweepGradientKeyframes = keyframes`
@@ -25,7 +26,7 @@ export const gradientBackgroundStyle: CSSObject = {
 	width: '100%',
 	height: '100%',
 	backgroundSize: '400% 100%',
-  zIndex: 0,
+  zIndex: -1,
 };
 
 export const blueSweepStyle: CSSObject = {
@@ -111,4 +112,37 @@ export const subtitleStyle: CSSObject = {
   fontSize: 'clamp(1rem, 4vmin, 2rem)',
   color: '#8575FF',
   marginTop: '2rem',
+};
+
+export const aboutMeBoxStyle: CSSObject = {
+  marginBottom: '3rem',
+  padding: '3rem',
+  maxWidth: '800px',
+  borderRadius: '0.75rem',
+  background: 'rgba(255, 255, 255, 0.1)', // darker, more "glasslike"
+  backdropFilter: 'blur(20px) saturate(150%)',
+
+  // feathered edge using a color-matched shadow
+  boxShadow: `
+    0 0 40px 20px rgba(15, 10, 40, 0.5)
+  `,
+};
+
+export const aboutMeTitleStyle: CSSObject = {
+  fontWeight: 450,
+  fontSize: 'clamp(1.25rem, 6vmin, 15rem)',
+  fontFamily: 'Inter',
+  color: '#B3B9FF',
+  lineHeight: '1',
+  textAlign: 'center',
+  marginTop: 0,
+};
+
+export const aboutMeTextStyle: CSSObject = {
+  fontWeight: 400,
+  fontSize: 'clamp(1rem, 1.25rem, 2rem)',
+  fontFamily: 'Inter',
+  color: '#8381FE',
+  lineHeight: '1.6',
+  marginBottom: 0,
 };
