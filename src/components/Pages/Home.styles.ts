@@ -1,4 +1,5 @@
 import { CSSObject, keyframes } from '@emotion/react';
+import aboutMePanelUrl from '../../assets/images/aboutMePanel.svg';
 
 export const pageStyle: CSSObject = {
   position: 'relative',
@@ -115,17 +116,11 @@ export const subtitleStyle: CSSObject = {
 };
 
 export const aboutMeBoxStyle: CSSObject = {
-  marginBottom: '3rem',
-  padding: '3rem',
-  maxWidth: '800px',
-  borderRadius: '0.75rem',
-  background: 'rgba(255, 255, 255, 0.1)', // darker, more "glasslike"
-  backdropFilter: 'blur(20px) saturate(150%)',
-
-  // feathered edge using a color-matched shadow
-  boxShadow: `
-    0 0 40px 20px rgba(15, 10, 40, 0.5)
-  `,
+	marginBottom: '3rem',
+	padding: '3rem',
+	maxWidth: '800px',
+	background: `url(${aboutMePanelUrl}) no-repeat center`,
+	backgroundSize: 'cover',
 };
 
 export const aboutMeTitleStyle: CSSObject = {

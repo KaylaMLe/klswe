@@ -1,41 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"
+     viewBox="0 0 800 600" preserveAspectRatio="none" role="img" aria-label="decorative frosted panel">
   <defs>
-    <!-- Feathered frosted edges -->
-    <filter id="frostyRect" x="-50%" y="-50%" width="200%" height="200%">
-      <!-- Feather -->
-      <feGaussianBlur in="SourceAlpha" stdDeviation="20" result="blur" />
-      <feComposite in="blur" in2="SourceAlpha" operator="out" result="featheredEdge" />
-
-      <!-- Inner shadow -->
-      <feOffset dx="0" dy="2" result="shadowOffset" />
-      <feGaussianBlur in="shadowOffset" stdDeviation="8" result="shadowBlur" />
-      <feColorMatrix
-        in="shadowBlur"
-        type="matrix"
-        values="0 0 0 0 0
-                0 0 0 0 0
-                0 0 0 0 0
-                0 0 0 0.4 0"
-        result="shadow" />
-      <feComposite in="shadow" in2="SourceAlpha" operator="in" result="innerShadow" />
-
-      <!-- Merge everything -->
+    <filter id="glass" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blurred"/>
       <feMerge>
-        <feMergeNode in="featheredEdge" />
-        <feMergeNode in="innerShadow" />
-        <feMergeNode in="SourceGraphic" />
+        <feMergeNode in="blurred"/>
+        <feMergeNode in="SourceGraphic"/>
       </feMerge>
+    </filter>
+    <filter id="frost-edge" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" />
     </filter>
   </defs>
 
-  <rect
-    x="0"
-    y="0"
-    width="100%"
-    height="100%"
-    rx="12"
-    ry="12"
-    fill="rgba(255, 255, 255, 0.6)"
-    filter="url(#frostyRect)"
-  />
+  <!-- Larger, blurred rect for feathering -->
+  <rect x="2" y="32" width="796" height="536" rx="20"
+        fill="rgba(255,255,255,0.05)"
+        filter="url(#frost-edge)" />
+
+  <!-- Main crisp rect -->
+  <rect x="15" y="45" width="770" height="510" rx="12"
+        fill="rgba(255,255,255,0.07)"
+        filter="url(#glass)" />
 </svg>
