@@ -23,22 +23,21 @@ export const gradientBackgroundStyle: CSSObject = {
 	position: 'absolute',
 	top: 0,
 	left: 0,
-	width: '100%',
+	width: '400%',
 	height: '100%',
 	backgroundSize: '400% 100%',
 	zIndex: -2,
 };
 
 export const blueSweepStyle: CSSObject = {
-	background: 'repeating-linear-gradient(120deg, transparent 0%, transparent 20%,rgb(12, 0, 67) 50%, transparent 80%, transparent 100%)',
+	background: 'linear-gradient(120deg, transparent 0%, transparent 20%,rgb(12, 0, 67) 50%, transparent 80%, transparent 100%)',
 	animation: `${sweepGradientKeyframes} 90s linear infinite`,
 };
 
 export const purpleSweepStyle: CSSObject = {
-	background: 'repeating-linear-gradient(210deg, transparent 0%, transparent 25%,rgba(34, 0, 67, 0.7) 50%, transparent 75%, transparent 100%)',
+	background: 'linear-gradient(210deg, transparent 0%, transparent 25%,rgba(34, 0, 67, 0.7) 50%, transparent 75%, transparent 100%)',
 	animation: `${sweepGradientKeyframes} 100s linear infinite`,
 };
-
 
 export const starStyle: CSSObject = {
 	position: 'absolute',
