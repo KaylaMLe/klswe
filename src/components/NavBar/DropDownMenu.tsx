@@ -1,4 +1,4 @@
-import { css } from '@emotion/css';
+/** @jsxImportSource @emotion/react */
 import React, { ReactNode, useState } from 'react';
 import { ddBtnStyles, ddContainerStyles, ddContentStyles, iconStyles } from './DropDownMenu.styles';
 import { Responsive } from '../ResponsiveComponents/ResponsiveComponent';
@@ -23,7 +23,7 @@ export function DropDownMenu({ label, children }: { label: string, children: Rea
 				<Toggle Component='div' label='▼' condition={expanded} styles={iconStyles} />
 			</Toggle>
 			{expanded &&
-				<div className={css(ddContentStyles)} id='dropdown1'>
+				<div css={ddContentStyles} id='dropdown1'>
 					{children}
 				</div>
 			}

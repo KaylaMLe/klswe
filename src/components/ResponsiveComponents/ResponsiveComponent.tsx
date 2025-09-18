@@ -1,5 +1,6 @@
+/** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from 'react';
-import { css, CSSObject } from '@emotion/css';
+import { CSSObject } from '@emotion/react';
 import { ResponsiveProps } from '../../types/ResponsiveComponentTypes';
 import { useCurrentPage } from '../../hooks/PageNumberContext';
 import { HOME } from '../../hooks/PageNumbers';
@@ -29,7 +30,7 @@ export function Responsive({ Component, styles, children, ...props }
 			: styles.default;
 
 	return (
-		<Component className={css(style)} {...props}>
+		<Component css={style} {...props}>
 			{children}
 		</Component>
 	);

@@ -1,142 +1,220 @@
-import { css, keyframes } from '@emotion/css';
-import React, { useCallback, useState } from 'react';
-import chime from '../../assets/audio/chime.wav';
-import flower from '../../assets/images/flower.png';
-import tree from '../../assets/images/tree.png';
-import voloff from '../../assets/images/voloff.png';
-import volon from '../../assets/images/volon.png';
-import { HOME } from '../../hooks/PageNumbers';
-import { Responsive } from '../ResponsiveComponents/ResponsiveComponent';
-import { homeStyles, muteBtnStyles, treeBoxStyles, treeImgStyle } from './Home.styles';
-import { Page } from './Page';
+/** @jsxImportSource @emotion/react */
+import React, { useState, useEffect, useRef } from 'react';
+import {
+	pageStyle,
+	gradientWrapperStyle,
+	gradientBackgroundStyle,
+	blueSweepStyle,
+	purpleSweepStyle,
+	starStyle,
+	starBoxStyle,
+	hexagonBoxStyle,
+	hexagonSvgStyle,
+	heroTextStyle,
+	nameStyle,
+	titleStyle,
+	subtitleStyle,
+	aboutMeBoxStyle,
+	glassBlurStyle,
+	glassPanelStyle,
+	aboutMeTextContainerStyle,
+	aboutMeTitleStyle,
+	aboutMeTextStyle,
+} from './Home.styles';
+import hexagonSvgUrl from '../../assets/images/hexagon.svg';
 
-interface FlowerProps {
+interface Star {
 	id: number;
-	dX: number;
-	dY: number;
-	rotation: number;
-};
+	x: number;
+	y: number;
+	opacity: number;
+	size: number;
+}
 
 export default function Home(): React.JSX.Element {
-	const [muted, setMuted] = useState(false);
-
 	return (
-		<Page pageNumber={HOME.pageNumber}>
-			<Responsive Component='div' styles={homeStyles} data-testid='home'>
-				<MuteBtn onClick={() => { setMuted(!muted) }} muted={muted} />
-				<Tree muted={muted} />
-			</ Responsive>
-		</Page>
+		<div css={pageStyle}>
+			<div css={gradientWrapperStyle}>
+				<div css={{ ...blueSweepStyle, ...gradientBackgroundStyle }} />
+				<div css={{ ...purpleSweepStyle, ...gradientBackgroundStyle }} />
+			</div>
+			<StarBox />
+			<Hexagon />
+			<AboutMe />
+		</div>
 	);
 }
 
-function MuteBtn({ onClick, muted }: { onClick: () => void, muted: boolean }): React.JSX.Element {
-	return (
-		<Responsive
-			Component='button'
-			styles={muteBtnStyles}
-			onClick={onClick}
-		>
-			<img src={muted ? volon : voloff} alt='' />
-			{muted ? 'Unmute sound effects' : 'Mute sound effects'}
-		</Responsive>
-	);
-}
+function StarBox(): React.JSX.Element {
+	const [stars, setStars] = useState<Record<number, Star>>({});
+	const [starCount, setStarCount] = useState(0);
+	const [maxStars, setMaxStars] = useState(100);
+	const containerRef = useRef<HTMLDivElement>(null);
+	const nextId = useRef(0);
 
-function Tree({ muted }: { muted: boolean }): React.JSX.Element {
-	const [flowerProps, setFlowerProps] = useState<FlowerProps[]>([]);
-	const [flowerId, setFlowerId] = useState(0);
-
-	const FLOWER_LIMIT = 256;
-	// slice removes oldest flower props in list
-	const sliceInd = Number(flowerProps.length >= FLOWER_LIMIT);
-
-	const addFlower = useCallback(() => {
-		setFlowerProps([...flowerProps.slice(sliceInd, FLOWER_LIMIT),
-		{
-			id: flowerId,
-			// flower can be positioned across entire width of tree (100%)
-			dX: Math.random() * 100,
-			// flower height is limited to branches (top 50%)
-			dY: Math.random() * 50,
-			rotation: Math.floor(Math.random() * 360),
-		}]);
-
-		setFlowerId((flowerId + 1) % FLOWER_LIMIT);
-
-		if (!muted) {
-			const audioElement = document.getElementById('clickSound') as HTMLAudioElement;
-
-			if (audioElement) {
-				audioElement.play();
-			} else {
-				console.error('Audio element not found');
-			}
-		}
-	}, [flowerProps, flowerId, muted]);
-
-	const handleKeyDown = (event: React.KeyboardEvent) => {
-		if (event.key === 'Enter' || event.key === ' ') {
-			addFlower();
-		}
+	// Calculate max stars based on viewport area (1 star per 20000 pixels)
+	const calculateMaxStars = () => {
+		const area = window.innerWidth * window.innerHeight;
+		const starsPerArea = area / 22500;
+		return Math.floor(starsPerArea);
 	};
 
+	// Generate weighted random star size (70% 1px, 30% 2px)
+	const generateStarSize = () => {
+		const random = Math.random();
+		return random < 0.7 ? 1 : 2;
+	};
+
+	const createStar = () => {
+		if (!containerRef.current) return;
+
+		const container = containerRef.current;
+		const x = Math.random() * container.offsetWidth;
+		const y = Math.random() * container.offsetHeight;
+
+		const newStar: Star = {
+			id: nextId.current++,
+			x,
+			y,
+			opacity: 0,
+			size: generateStarSize(), // Weighted random size
+		};
+
+		setStars((prev) => ({ ...prev, [newStar.id]: newStar }));
+		setStarCount((prev) => prev + 1);
+
+		// star created on our end -> star rendered/added to dom
+		requestAnimationFrame(() => {
+			// star rendered -> star fade in
+			requestAnimationFrame(() => {
+				setStars((prev) => ({
+					...prev,
+					[newStar.id]: { ...prev[newStar.id], opacity: 1 },
+				}));
+			});
+		});
+	};
+
+	const removeStar = () => {
+		setStars((prev) => {
+			const starIds = Object.keys(prev).map(Number);
+			if (starIds.length === 0) return prev;
+
+			const randomId = starIds[Math.floor(Math.random() * starIds.length)];
+
+			// Fade out the star
+			const updatedStars = { ...prev };
+			updatedStars[randomId] = { ...updatedStars[randomId], opacity: 0 };
+
+			// Remove the star after fade out completes
+			setTimeout(() => {
+				setStars((current) => {
+					const { [randomId]: removed, ...remaining } = current;
+					return remaining;
+				});
+				setStarCount((current) => current - 1);
+			}, 1000);
+
+			return updatedStars;
+		});
+	};
+
+	// Initialize max stars and handle window resize
+	useEffect(() => {
+		const updateMaxStars = () => {
+			const newMaxStars = calculateMaxStars();
+			setMaxStars(newMaxStars);
+		};
+
+		// Set initial max stars
+		updateMaxStars();
+
+		// Add resize listener
+		window.addEventListener('resize', updateMaxStars);
+
+		return () => {
+			window.removeEventListener('resize', updateMaxStars);
+		};
+	}, []);
+
+	useEffect(() => {
+		const createInterval = setInterval(() => {
+			if (starCount < maxStars) {
+				createStar();
+			}
+		}, Math.random() * 1000 + 500); // Random between 500-1500ms
+
+		const removeInterval = setInterval(() => {
+			const minStars = Math.floor(maxStars * 0.8); // 80% of max stars
+
+			if (starCount > minStars) {
+				removeStar();
+			}
+		}, Math.random() * 1000 + 500);
+
+		return () => {
+			clearInterval(createInterval);
+			clearInterval(removeInterval);
+		};
+	}, [starCount, maxStars]);
+
 	return (
-		<Responsive
-			Component='button'
-			styles={treeBoxStyles}
-			onClick={addFlower}
-			onKeyDown={handleKeyDown}
-			aria-label='Press space or enter to play a chime and add a flower to the tree.'
-		>
-			<audio id='clickSound'>
-				<source src={chime}></source>
-				Your browser does not support the audio element.
-			</audio>
-			<img
-				className={css(treeImgStyle)}
-				src={tree}
-				alt={`Digital drawing of a bonsai tree${flowerProps.length === 1 ? ' with a light pink flower on it'
-					: flowerProps.length > 0 ? ` with ${flowerProps.length} light pink flowers on it` : ''}`}
-			/>
-			{flowerProps.map(props => (
-				<Flower
-					key={props.id}
-					id={props.id}
-					dX={props.dX}
-					dY={props.dY}
-					rotation={props.rotation}
+		<div ref={containerRef} css={starBoxStyle}>
+			{Object.values(stars).map((star) => (
+				<div
+					key={star.id}
+					css={starStyle}
+					style={{
+						left: `${star.x}px`,
+						top: `${star.y}px`,
+						opacity: star.opacity,
+						width: `${star.size}px`,
+						height: `${star.size}px`,
+					}}
 				/>
 			))}
-		</ Responsive>
+		</div>
 	);
 }
 
-function Flower({ id, dX, dY, rotation }
-	: { id: number, dX: number, dY: number, rotation: number }): React.JSX.Element {
-	const spinAnimation = keyframes`
-		from {
-			rotate: 0deg;
-		}
-		to {
-			rotate: ${rotation}deg;
-		}
-	`;
-
-	const flowerStyle = css({
-		position: 'absolute',
-		left: `${dX}%`,
-		top: `${dY}%`,
-		rotate: `${rotation}deg`,
-		animation: `${spinAnimation} 0.5s ease-in-out`
-	});
-
+function Hexagon(): React.JSX.Element {
 	return (
-		<img
-			id={id.toString()}
-			className={flowerStyle}
-			src={flower}
-			alt=''
-		/>
+		<div css={hexagonBoxStyle}>
+			<img src={hexagonSvgUrl} alt="Decorative hexagon" css={hexagonSvgStyle} />
+			<div css={heroTextStyle}>
+				<h1 css={nameStyle}>Kayla Le</h1>
+				<h2 css={titleStyle}>
+					Full-Stack
+					<br />
+					Software Engineer
+				</h2>
+				<h3 css={subtitleStyle}>I build things for the web.</h3>
+			</div>
+		</div>
+	);
+}
+
+function AboutMe(): React.JSX.Element {
+	return (
+		<div css={aboutMeBoxStyle}>
+			<div css={glassBlurStyle} />
+			<div css={glassPanelStyle} />
+			<div css={aboutMeTextContainerStyle}>
+				<h2 css={aboutMeTitleStyle}>Hello!</h2>
+				<p css={aboutMeTextStyle}>
+					I'm a software engineer who thrives in fast-moving environments where ideas turn into products quickly. I'm
+					happiest when the stakes are high and ideas are still taking shape.
+				</p>
+				<p css={aboutMeTextStyle}>
+					I have experience in rapid prototyping: the art of turning rough ideas into working demos that bring concepts
+					to life quickly. From hackathon projects to startup demos, I’ve tested feasibility, uncovered user value, and
+					sparked bigger conversations.
+				</p>
+				<p css={aboutMeTextStyle}>
+					I thrive in small teams where I can wear multiple hats and take ownership end-to-end. Startups energize me
+					because they reward this exact creativity, adaptability, and initiative.
+				</p>
+			</div>
+		</div>
 	);
 }

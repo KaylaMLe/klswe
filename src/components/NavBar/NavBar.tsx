@@ -1,4 +1,4 @@
-import { css } from '@emotion/css';
+/** @jsxImportSource @emotion/react */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useCurrentPage } from '../../hooks/PageNumberContext';
@@ -70,7 +70,7 @@ export function NavBar(): React.JSX.Element {
 function SkipToMain(): React.JSX.Element {
 	return (
 		<a
-			className={css(skipStyle)}
+			css={skipStyle}
 			href='#main'
 			onClick={() => { document.getElementById('main')?.focus() }}
 		>

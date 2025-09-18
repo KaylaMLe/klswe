@@ -1,0 +1,19 @@
+<svg width="100" height="100" viewBox="0 -12 100 124" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="decorative glowing hexagon">
+	<defs>
+		<filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+			<feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"/>
+			<feFlood flood-color="#0C00ED" flood-opacity="0.4" result="color"/>
+			<feComposite in="color" in2="blur" operator="in" result="softGlow"/>
+			<feMerge>
+				<feMergeNode in="softGlow"/>
+				<feMergeNode in="SourceGraphic"/>
+			</feMerge>
+		</filter>
+	</defs>
+
+	<polygon
+		points="50,0 93.3,25 93.3,75 50,100 6.7,75 6.7,25"
+		fill="#050047"
+		stroke="none"
+		filter="url(#glow)" />
+</svg>

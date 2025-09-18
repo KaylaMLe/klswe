@@ -1,4 +1,4 @@
-import { CSSObject } from '@emotion/css';
+import { CSSObject } from '@emotion/react';
 import { DynamicStyles } from '../../types/StyleTypes';
 
 export const ddBtnStyles: DynamicStyles = {

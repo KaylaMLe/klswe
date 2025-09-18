@@ -1,4 +1,4 @@
-import { css } from '@emotion/css';
+/** @jsxImportSource @emotion/react */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { PageType } from '../../hooks/PageNumbers';
@@ -9,7 +9,7 @@ import externalLink from '../../assets/images/external-link.png';
 export function ExternalLink({ text, link }: { text: string, link: string }): React.JSX.Element {
 	return (
 		<a
-			className={css(externalLinkStyle)}
+			css={externalLinkStyle}
 			href={link}
 			aria-label={`${text} (opens in a new tab)`}
 			target='_blank'

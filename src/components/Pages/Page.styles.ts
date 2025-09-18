@@ -1,4 +1,4 @@
-import { CSSObject } from '@emotion/css';
+import { CSSObject } from '@emotion/react';
 import { DynamicStyles } from '../../types/StyleTypes';
 
 export const contentStyle: CSSObject = {
@@ -24,7 +24,7 @@ export const pageStyles: DynamicStyles = {
 };
 
 export const containerStyles: CSSObject = {
-	height: '100vh',
+	minHeight: '100vh',
 	width: '100vw',
 };
 
