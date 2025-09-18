@@ -87,12 +87,11 @@ export const hexagonSvgStyle: CSSObject = {
 export const heroTextStyle: CSSObject = {
 	gridColumn: '1',
 	gridRow: '1',
-	zIndex: 3,
+	zIndex: 2,
 	display: 'flex',
 	flexDirection: 'column',
 	justifyContent: 'center',
 	alignItems: 'center',
-	color: 'white',
 	fontFamily: 'Space Grotesk',
 	alignSelf: 'center',
 	justifySelf: 'center',
@@ -104,6 +103,10 @@ export const nameStyle: CSSObject = {
 	fontWeight: 900,
 	fontSize: 'clamp(3rem, 12vmin, 20rem)',
 	margin: '0 0 2rem 0',
+	color: 'transparent',
+	filter: 'drop-shadow(0 0 3px rgba(255, 255, 255, 0.6))',
+	background: 'linear-gradient(180deg, #FFFFFF 0%,rgb(145, 140, 195) 100%)',
+	backgroundClip: 'text',
 };
 
 export const titleStyle: CSSObject = {
@@ -114,6 +117,7 @@ export const titleStyle: CSSObject = {
 	letterSpacing: '0.1em',
 	textAlign: 'center',
 	margin: 0,
+	textShadow: '0 0 3px #B6ADFF',
 };
 
 export const subtitleStyle: CSSObject = {
@@ -121,6 +125,7 @@ export const subtitleStyle: CSSObject = {
 	fontSize: 'clamp(1rem, 4vmin, 2rem)',
 	color: '#8575FF',
 	marginTop: '2rem',
+	textShadow: '0 0 2px rgba(148, 134, 255, 0.9)'
 };
 
 export const aboutMeBoxStyle: CSSObject = {
