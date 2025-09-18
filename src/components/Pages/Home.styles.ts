@@ -19,6 +19,16 @@ export const sweepGradientKeyframes = keyframes`
 }
 `;
 
+export const gradientWrapperStyle: CSSObject = {
+	position: 'absolute',
+	top: 0,
+	left: 0,
+	width: '100%',
+	height: '100%',
+	overflow: 'hidden',
+	zIndex: -2,
+};
+
 export const gradientBackgroundStyle: CSSObject = {
 	position: 'absolute',
 	top: 0,
@@ -26,7 +36,6 @@ export const gradientBackgroundStyle: CSSObject = {
 	width: '400%',
 	height: '100%',
 	backgroundSize: '400% 100%',
-	zIndex: -2,
 };
 
 export const blueSweepStyle: CSSObject = {
@@ -35,7 +44,7 @@ export const blueSweepStyle: CSSObject = {
 };
 
 export const purpleSweepStyle: CSSObject = {
-	background: 'linear-gradient(210deg, transparent 0%, transparent 25%,rgba(34, 0, 67, 0.7) 50%, transparent 75%, transparent 100%)',
+	background: 'linear-gradient(210deg, transparent 0%, transparent 25%,rgba(34, 0, 67, 0.65) 50%, transparent 75%, transparent 100%)',
 	animation: `${sweepGradientKeyframes} 100s linear infinite`,
 };
 

@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
 	pageStyle,
+	gradientWrapperStyle,
 	gradientBackgroundStyle,
 	blueSweepStyle,
 	purpleSweepStyle,
@@ -33,8 +34,10 @@ interface Star {
 export default function Home(): React.JSX.Element {
 	return (
 		<div css={pageStyle}>
-			<div css={{ ...blueSweepStyle, ...gradientBackgroundStyle }} />
-			<div css={{ ...purpleSweepStyle, ...gradientBackgroundStyle }} />
+			<div css={gradientWrapperStyle}>
+				<div css={{ ...blueSweepStyle, ...gradientBackgroundStyle }} />
+				<div css={{ ...purpleSweepStyle, ...gradientBackgroundStyle }} />
+			</div>
 			<StarBox />
 			<Hexagon />
 			<AboutMe />
@@ -52,7 +55,7 @@ function StarBox(): React.JSX.Element {
 	// Calculate max stars based on viewport area (1 star per 20000 pixels)
 	const calculateMaxStars = () => {
 		const area = window.innerWidth * window.innerHeight;
-		const starsPerArea = area / 20000;
+		const starsPerArea = area / 22500;
 		return Math.floor(starsPerArea);
 	};
 
