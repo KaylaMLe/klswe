@@ -129,7 +129,6 @@ export const glassBlurStyle: CSSObject = {
 	gridRow: '1',
 	height: '100%',
 	width: '100%',
-	position: 'relative',
 	background: 'linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.04) 100%)',
 	borderRadius: '20px',
 	filter: 'blur(6px)',
@@ -150,7 +149,7 @@ export const glassPanelStyle: CSSObject = {
 export const aboutMeTextContainerStyle: CSSObject = {
 	gridColumn: '1',
 	gridRow: '1',
-	padding: '3rem',
+	padding: '2rem 3rem 2rem 3rem',
 	display: 'flex',
 	flexDirection: 'column',
 	zIndex: 2,
@@ -163,6 +162,7 @@ export const aboutMeTitleStyle: CSSObject = {
 	lineHeight: '1',
 	textAlign: 'center',
 	marginTop: 0,
+	marginBottom: '0.6rem',
 	textShadow: `
 		0 0 2px rgba(174, 129, 255, 0.6),
 		0 0 6px rgba(174, 129, 255, 0.3)
@@ -176,6 +176,7 @@ export const aboutMeTextStyle: CSSObject = {
 	fontSize: 'clamp(1rem, 1.25rem, 2rem)',
 	color: '#8381FE',
 	textShadow: '0 0 2px rgba(131, 129, 254, 0.6)',
-	lineHeight: '1.6',
+	lineHeight: '1.5',
 	marginBottom: 0,
+	marginTop: '0.6rem',
 };
