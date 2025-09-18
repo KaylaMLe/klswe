@@ -100,9 +100,19 @@ To run a specific test file, include the `-- path/to/testfile.test.tsx` flag aft
 
 ## Project design
 
+### Architecture
+
+The project follows a modern React architecture with:
+
+- **Lazy Loading**: Routes are lazy-loaded using React's `lazy()` function for optimal performance
+- **Context Providers**: Multiple context providers wrap the application for state management (CSRF, page tracking, viewport detection)
+- **CSS-in-JS**: Emotion provides type-safe, component-scoped styling
+- **Custom Fonts**: Variable fonts are loaded via a dedicated `Fonts` component
+- **Environment Configuration**: Vite environment variables for flexible configuration
+
 ### Component design
 
-This project is structured with a modular component design, ensuring reusability and responsiveness across different pages. Key components are built to handle specific tasks, such as responsive layout adjustments, page metadata, and navigation, while smaller, focused components manage interactive elements like buttons and animations.
+This project is structured with a modular component design, ensuring reusability and responsiveness across different pages. The project uses Emotion CSS-in-JS for styling, providing type-safe and component-scoped styles. Key components are built to handle specific tasks, such as responsive layout adjustments, page metadata, and navigation, while smaller, focused components manage interactive elements like buttons and animations.
 
 #### Contexts
 
@@ -128,20 +138,20 @@ Layout components establish the core structure of each page and serve as contain
 
 Lower-level components are designed as containers for primary content and specific user interactions, focusing on delivering unique, immersive experiences. These components are primarily visual and are tailored to the specific needs of each page, not general reusability.
 
-**Current Pages:**
+**Pages:**
 
-- **Home**: Main landing area with a focus on visual appeal and user engagement
-- **About Me**: Personal information and professional background
-- **Login**: Authentication interface for user access
-- **Error Pages**: Handles 404 and other error states gracefully
+- **Home**: Main landing area featuring an interactive star field animation, gradient backgrounds, and an "About Me" section with glassmorphism design elements
+- **Error Pages**: Handles 404 and other error states gracefully with the NotFoundError component
 
 ### Production dependencies
 
 The following dependencies are necessary to run the project.
 
-- `js-cookie` (version ^3.0.4): Utility for retrieving cookies
+- `@emotion/react` (version ^11.14.0): CSS-in-JS library for styling React components
+- `emotion` (version ^11.0.0): Core Emotion library for CSS-in-JS functionality
+- `js-cookie` (version ^3.0.5): Utility for retrieving cookies
 - `react` (version ^18.2.0): Core React library used to build the interface
-- `react-dom` (version ^18.2.0):Used to render React components to the DOM
+- `react-dom` (version ^18.2.0): Used to render React components to the DOM
 - `react-router-dom` (version ^6.22.3): Provides routing for navigation between pages
 - `typescript` (version ^5.4.2): Adds static typing to JavaScript to help reduce runtime errors
 
@@ -178,36 +188,71 @@ The following dependencies are used in the development, testing, and deployment 
   - `eslint-plugin-react-hooks` (version ^4.6.0)
   - `eslint-plugin-react-refresh` (version ^0.4.5)
 
+### Styling and Design
+
+The project uses Emotion CSS-in-JS for all styling, providing type-safe and component-scoped styles. Custom fonts are loaded via the `Fonts` component using variable font files:
+
+- **Space Grotesk**: Primary display font with full weight range (100-900)
+- **Inter**: Body text font with normal and italic variants
+- **Quicksand**: Secondary font for specific UI elements
+
+All fonts are optimized with `font-display: swap` for better performance and user experience.
+
+### Environment Variables
+
+The project uses Vite environment variables for configuration:
+
+- `VITE_PORTRAIT_URL`: URL for portrait images
+- `VITE_ABOUT_ME_TXT`: Text content for about me sections
+- `VITE_ABOUT_ME_P2`: Additional about me paragraph content
+
+These are defined in `src/constants.ts` and typed in `src/types/env.d.ts`.
+
 ### File system
 
 This is a summary of the file structure of the project. It prioritizes clarity by detailing essential components and React configuration files while omitting other configuration, test, style, and auto-generated files.
 
 ```
 📁klswe/ - configuration files for development, testing, and production build tools
-├─📁.github/
-│ └─📁workflows/
-│   └─📜cicd.yml - GitHub Actions script for automated testing and deployment
-├─📁public/ - static favicon, logo, and manifest files
-└─📁src/
-  ├─📁assets/ - static audio and image files
-  ├─📁components/
-  │ ├─📁NavBar/ - components used in the navigation bar in every page
-  │ ├─📁Pages/
-  │ │ ├─📜Page.tsx - core layout component that consistently formats page content and renders navigaiton components
-  │ │ ├─📜Home.tsx - main landing page with interactive star field effect
-  │ │ ├─📜AboutMe.tsx - personal information and professional background
-  │ │ ├─📜Login.tsx - authentication interface
-  │ │ ├─📜NotFoundError.tsx - 404 error page
-  │ │ ├─📜utils.ts - shared utility functions
-  │ │ └─📜*.styles.ts - page-specific styling files
-  │ └─📁ResponsiveComponents/
-  │   ├─📜ResonsiveComponent.tsx - Applies styles conditionally based on the screen size
-  │   └─📜ToggleStyledComponent.tsx - Applies different styles based on a given condition
-  ├─📁hooks/ - custom hooks for providing access to the values of different contexts
-  ├─📁types/ - stores type definitions and interfaces for consistent data structures and improved type safety
-  ├─📜constants.ts - exports environment variables as constants for easy access
-  ├─📜index.css - CSS file containing global styles
-  └─📜routes.ts - sets up routing for the main page content components
+├─📁public/ - static favicon, logo, manifest files, and custom fonts
+│ └─📁fonts/ - custom font files (Space Grotesk, Inter, Quicksand)
+├─📁src/
+│ ├─📁assets/ - static audio and image files
+│ │ ├─📁audio/ - sound effects and audio files
+│ │ └─📁images/ - images and SVG assets
+│ ├─📁components/
+│ │ ├─📁NavBar/ - navigation bar components with dropdown menus and link buttons
+│ │ ├─📁Pages/
+│ │ │ ├─📜Page.tsx - core layout component with page tracking and navigation
+│ │ │ ├─📜Home.tsx - main landing page with interactive star field and glassmorphism
+│ │ │ ├─📜Login.tsx - authentication interface
+│ │ │ ├─📜NotFoundError.tsx - 404 error page
+│ │ │ ├─📜utils.ts - shared utility functions
+│ │ │ └─📜*.styles.ts - Emotion CSS-in-JS style definitions
+│ │ └─📁ResponsiveComponents/
+│ │   ├─📜ResponsiveComponent.tsx - Applies styles conditionally based on screen size
+│ │   └─📜ToggleStyledComponent.tsx - Applies different styles based on conditions
+│ ├─📁hooks/ - custom React hooks and context providers
+│ │ ├─📜CsrfCookieContext.tsx - CSRF token management
+│ │ ├─📜PageNumberContext.tsx - current page tracking
+│ │ ├─📜ViewPortContext.tsx - responsive viewport detection
+│ │ └─📜PageNumbers.ts - page configuration and routing constants
+│ ├─📁types/ - TypeScript type definitions
+│ │ ├─📜env.d.ts - environment variable types
+│ │ ├─📜images.d.ts - image import types
+│ │ ├─📜ResponsiveComponentTypes.ts - responsive component interfaces
+│ │ ├─📜sound.d.ts - audio file types
+│ │ └─📜StyleTypes.ts - Emotion CSS-in-JS type definitions
+│ ├─📜constants.ts - environment variables and configuration constants
+│ ├─📜fontStacks.ts - font family definitions
+│ ├─📜index.css - global CSS styles
+│ └─📜routes.ts - lazy-loaded route configuration
+├─📜fonts.tsx - custom font loading component using Emotion
+├─📜index.tsx - main application entry point with context providers
+├─📜jest.config.ts - Jest testing configuration
+├─📜jest.setup.ts - Jest test environment setup
+├─📜tsconfig.json - TypeScript configuration
+└─📜vite.config.js - Vite build tool configuration
 ```
 
 ## License
