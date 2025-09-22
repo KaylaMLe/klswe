@@ -52,9 +52,15 @@ function StarBox(): React.JSX.Element {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const nextId = useRef(0);
 
-	// Calculate max stars based on viewport area (1 star per 20000 pixels)
+	// Calculate max stars based on starBox dimensions
 	const calculateMaxStars = () => {
-		const area = window.innerWidth * window.innerHeight;
+		const starBoxWidth = window.innerWidth;
+		const starBoxHeight = Math.min(
+			window.innerWidth * 1.05, // 105vmin (innerHeight * 1.05 is always greater than 100vh)
+			window.innerHeight // cap at 100vh
+		);
+
+		const area = starBoxWidth * starBoxHeight;
 		const starsPerArea = area / 22500;
 		return Math.floor(starsPerArea);
 	};
