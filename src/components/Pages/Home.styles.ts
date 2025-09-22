@@ -63,7 +63,8 @@ export const starBoxStyle: CSSObject = {
 	top: '0px',
 	left: '0px',
 	width: '100vw',
-	height: '100vh',
+	height: '105vmin',
+	maxHeight: '100vh',
 	overflow: 'hidden',
 	zIndex: -1,
 };
