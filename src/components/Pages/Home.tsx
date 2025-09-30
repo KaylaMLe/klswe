@@ -229,7 +229,7 @@ function Hexagon(): React.JSX.Element {
 
 function AboutMe(): React.JSX.Element {
 	return (
-		<div css={aboutMeBoxStyle}>
+		<div css={aboutMeBoxStyle} id="about-me">
 			<div css={glassBlurStyle} />
 			<div css={glassPanelStyle} />
 			<div css={aboutMeTextContainerStyle}>

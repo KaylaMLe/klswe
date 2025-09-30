@@ -32,7 +32,7 @@ export function NavBar({ isOpen, onToggle }: NavBarProps): React.JSX.Element {
 			</button>
 			{isOpen && (
 				<div css={menuDropdownStyle}>
-					<a href="#about" css={menuItemStyle} onClick={onToggle}>
+					<a href="/#about-me" css={menuItemStyle} onClick={onToggle}>
 						About
 					</a>
 					<a href="#projects" css={menuItemStyle} onClick={onToggle}>

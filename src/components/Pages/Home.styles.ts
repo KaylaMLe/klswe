@@ -10,15 +10,6 @@ export const pageStyle: CSSObject = {
 	minHeight: '100vh',
 };
 
-export const sweepGradientKeyframes = keyframes`
-0% {
-	background-position: 400% 50%;
-}
-100% {
-	background-position: 0% 50%;
-}
-`;
-
 export const gradientWrapperStyle: CSSObject = {
 	position: 'absolute',
 	top: 0,
@@ -38,6 +29,15 @@ export const gradientBackgroundStyle: CSSObject = {
 	backgroundSize: '400% 100%',
 };
 
+export const sweepGradientKeyframes = keyframes`
+0% {
+	background-position: 400% 50%;
+}
+100% {
+	background-position: 0% 50%;
+}
+`;
+
 export const blueSweepStyle: CSSObject = {
 	background: 'linear-gradient(120deg, transparent 0%, transparent 20%,rgb(12, 0, 67) 50%, transparent 80%, transparent 100%)',
 	animation: `${sweepGradientKeyframes} 90s linear infinite`,
@@ -45,7 +45,7 @@ export const blueSweepStyle: CSSObject = {
 
 export const purpleSweepStyle: CSSObject = {
 	background: 'linear-gradient(210deg, transparent 0%, transparent 25%,rgba(34, 0, 67, 0.65) 50%, transparent 75%, transparent 100%)',
-	animation: `${sweepGradientKeyframes} 100s linear infinite`,
+	animation: `${sweepGradientKeyframes} 100s linear infinite reverse`,
 };
 
 export const starStyle: CSSObject = {
