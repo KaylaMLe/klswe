@@ -16,23 +16,15 @@ export function NavBar({ isOpen, onToggle }: NavBarProps): React.JSX.Element {
 				{bars.map((bar, i) => (
 					<span
 						key={bar}
-						css={{
-							...hamburgerBarStyle,
-							top: i * 8 + 13.5 + 'px',
-						}}
+						css={hamburgerBarStyle}
 						style={{
-							transform:
-								bar === 'top'
-									? isOpen
-										? 'translateY(8px) rotate(45deg)'
-										: 'none'
+							transform: isOpen
+								? bar === 'top'
+									? 'translateY(0) rotate(45deg)'
 									: bar === 'middle'
-									? isOpen
-										? 'scaleX(0)'
-										: 'none'
-									: isOpen
-									? 'translateY(-8px) rotate(-45deg)'
-									: 'none',
+									? 'scaleX(0)'
+									: 'translateY(0) rotate(-45deg)'
+								: `translateY(${(i - 1) * 6}px)`,
 							opacity: bar === 'middle' && isOpen ? 0 : 1,
 						}}
 					/>
