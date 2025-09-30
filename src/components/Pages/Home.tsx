@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X } from 'lucide-react';
 import {
 	pageStyle,
 	gradientWrapperStyle,
@@ -21,12 +20,9 @@ import {
 	aboutMeTextContainerStyle,
 	aboutMeTitleStyle,
 	aboutMeTextStyle,
-	hamburgerMenuStyle,
-	hamburgerButtonStyle,
-	menuDropdownStyle,
-	menuItemStyle,
 } from './Home.styles';
 import hexagonSvgUrl from '../../assets/images/hexagon.svg';
+import { NavBar } from '../NavBar/NavBar';
 
 interface Star {
 	id: number;
@@ -45,7 +41,7 @@ export default function Home(): React.JSX.Element {
 				<div css={{ ...blueSweepStyle, ...gradientBackgroundStyle }} />
 				<div css={{ ...purpleSweepStyle, ...gradientBackgroundStyle }} />
 			</div>
-			<HamburgerMenu isOpen={isMenuOpen} onToggle={() => setIsMenuOpen(!isMenuOpen)} />
+			<NavBar isOpen={isMenuOpen} onToggle={() => setIsMenuOpen(!isMenuOpen)} />
 			<StarBox />
 			<Hexagon />
 			<AboutMe />
@@ -252,34 +248,6 @@ function AboutMe(): React.JSX.Element {
 					because they reward this exact creativity, adaptability, and initiative.
 				</p>
 			</div>
-		</div>
-	);
-}
-
-interface HamburgerMenuProps {
-	isOpen: boolean;
-	onToggle: () => void;
-}
-
-function HamburgerMenu({ isOpen, onToggle }: HamburgerMenuProps): React.JSX.Element {
-	return (
-		<div css={hamburgerMenuStyle}>
-			<button css={hamburgerButtonStyle} onClick={onToggle} aria-label="Toggle menu">
-				{isOpen ? <X size={24} /> : <Menu size={24} />}
-			</button>
-			{isOpen && (
-				<div css={menuDropdownStyle}>
-					<a href="#about" css={menuItemStyle} onClick={onToggle}>
-						About
-					</a>
-					<a href="#projects" css={menuItemStyle} onClick={onToggle}>
-						Projects
-					</a>
-					<a href="#contact" css={menuItemStyle} onClick={onToggle}>
-						Contact
-					</a>
-				</div>
-			)}
 		</div>
 	);
 }

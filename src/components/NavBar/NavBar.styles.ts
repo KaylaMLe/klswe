@@ -1,87 +1,71 @@
-import { CSSObject } from '@emotion/react';
-import { DynamicStyles } from '../../types/StyleTypes';
+import { CSSObject } from "@emotion/react";
 
-export const aboutMeBtnStyles: DynamicStyles = {
-	default: {
-		backgroundColor: '#03030D',
-		color: '#11D45C',
-		textDecoration: 'none',
-		fontSize: '1.5rem',
-		borderRadius: '0rem',
-		boxSizing: 'border-box',
-		padding: '0.75rem',
-		marginRight: '0.1rem',
+export const navMenuStyle: CSSObject = {
+	position: 'fixed',
+	top: '1rem',
+	right: '1rem',
+	zIndex: 1000,
+};
+
+export const navButtonStyle: CSSObject = {
+	background: 'rgba(255, 255, 255, 0.09)',
+	border: 'none',
+	borderRadius: '8px',
+	padding: '0.75rem',
+	color: '#B6ADFF',
+	backdropFilter: 'blur(10px)',
+	boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+	transition: 'all 0.2s ease-in-out',
+	height: '45px',
+	width: '45px',
+	display: 'flex',
+	alignItems: 'center',
+	justifyContent: 'center',
+	'&:hover': {
+		background: 'rgba(255, 255, 255, 0.2)',
 	},
-	alternate: {
-		backgroundColor: '#11D45C',
-		color: '#03030D',
-		borderRadius: '0.75rem'
+	'&:active': {
+		background: 'rgba(255, 255, 255, 0.2)',
+	},
+	'& svg': {
+		transition: 'transform 0.3s ease-in-out, opacity 0.2s ease-in-out',
 	},
 };
 
-export const btnRowStyles: DynamicStyles = {
-	default: {
-		display: 'flex',
-		alignItems: 'flex-start',
-		justifyContent: 'flex-end',
-		width: '50%',
-	},
-	alternate: {
-		justifyContent: 'center',
-		width: '100%',
-	},
-	home: {
-		justifyContent: 'flex-start',
-		width: '100%',
-	},
-};
-
-export const flexboxFunBtnStyles: DynamicStyles = {
-	default: {
-		backgroundColor: '#009483',
-		color: '#03030D',
-		textDecoration: 'none',
-		textAlign: 'center',
-		borderRadius: '0.5rem',
-		boxSizing: 'border-box',
-		padding: '0.25rem',
-		display: 'block',
-		width: '100%',
-	},
-	alternate: {
-		backgroundColor: '#42FFE9',
-		color: '#03030D',
-	},
-};
-
-export const navBarStyles: DynamicStyles = {
-	default: {
-		color: '#1A2131',
-		display: 'flex',
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'space-between',
-		width: '100%',
-	},
-	alternate: {
-		flexDirection: 'column',
-		justifyContent: 'center',
-	},
-	home: {
-		flexDirection: 'column',
-		alignItems: 'flex-start',
-		justifyContent: '',
-		height: '100%',
-	},
-};
-
-export const skipStyle: CSSObject = {
-	color: 'white',
-	backgroundColor: 'black',
+export const hamburgerBarStyle: CSSObject = {
+	display: 'block',
 	position: 'absolute',
-	left: '-100%',
-	top: '55px',
-	':focus': {
-		left: 'auto',
+	height: '3px',
+	width: '24px',
+	backgroundColor: '#7E76A7',
+	borderRadius: '2px',
+	transition: 'all 0.3s ease',
+};
+
+export const menuDropdownStyle: CSSObject = {
+	position: 'absolute',
+	top: '100%',
+	right: 0,
+	marginTop: '0.5rem',
+	background: 'rgba(255, 255, 255, 0.1)',
+	backdropFilter: 'blur(10px)',
+	borderRadius: '8px',
+	padding: '0.5rem 0',
+	minWidth: '150px',
+	boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2)',
+	animation: 'fadeInDown 0.2s ease-out',
+};
+
+export const menuItemStyle: CSSObject = {
+	display: 'block',
+	padding: '0.75rem 1rem',
+	color: '#B6ADFF',
+	textDecoration: 'none',
+	fontSize: '0.9rem',
+	fontWeight: 500,
+	transition: 'all 0.2s ease-in-out',
+	'&:hover': {
+		background: 'rgba(255, 255, 255, 0.1)',
+		color: '#FFFFFF',
 	},
 };

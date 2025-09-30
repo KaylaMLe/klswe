@@ -1,69 +1,56 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useCurrentPage } from '../../hooks/PageNumberContext';
-import { FLEXBOX_FUN, TRANSLATE, PDF_TO_FORM } from '../../hooks/PageNumbers';
-import { Responsive } from '../ResponsiveComponents/ResponsiveComponent';
-import { Toggle } from '../ResponsiveComponents/ToggleStyledComponent';
-import { DropDownMenu } from './DropDownMenu';
-import { ExternalLink } from './LinkButtons';
-import { MainTitle } from './MainTitle';
-import { aboutMeBtnStyles, btnRowStyles, flexboxFunBtnStyles, navBarStyles, skipStyle } from './NavBar.styles';
+import { navMenuStyle, navButtonStyle, hamburgerBarStyle, menuDropdownStyle, menuItemStyle } from './NavBar.styles';
 
-export function NavBar(): React.JSX.Element {
-	const { currentPage } = useCurrentPage();
-
-	return (
-		<Responsive Component="nav" styles={navBarStyles} data-testid="nav-bar">
-			<SkipToMain />
-			<MainTitle />
-			<Responsive Component="div" styles={btnRowStyles}>
-				{/* <Toggle
-					Component={Link}
-					label='Log in'
-					condition={currentPage === LOGIN.pageNumber}
-					styles={aboutMeBtnStyles}
-					to={LOGIN.link}
-				/> */}
-				<DropDownMenu label="Projects">
-					<ExternalLink text="Check out my GitHub profile" link="https://github.com/KaylaMLe" />
-					<Toggle
-						Component={Link}
-						label="Flexbox Fun"
-						condition={currentPage === FLEXBOX_FUN.pageNumber}
-						styles={flexboxFunBtnStyles}
-						to={FLEXBOX_FUN.link}
-					/>
-					<Toggle
-						Component={Link}
-						label="Translate JS to TS"
-						condition={currentPage === TRANSLATE.pageNumber}
-						styles={flexboxFunBtnStyles}
-						to={TRANSLATE.link}
-					/>
-					<Toggle
-						Component={Link}
-						label="PDF to Form"
-						condition={currentPage === PDF_TO_FORM.pageNumber}
-						styles={flexboxFunBtnStyles}
-						to={PDF_TO_FORM.link}
-					/>
-				</DropDownMenu>
-			</Responsive>
-		</Responsive>
-	);
+interface NavBarProps {
+	isOpen: boolean;
+	onToggle: () => void;
 }
 
-function SkipToMain(): React.JSX.Element {
+export function NavBar({ isOpen, onToggle }: NavBarProps): React.JSX.Element {
+	const bars: Array<'top' | 'middle' | 'bottom'> = ['top', 'middle', 'bottom'];
+
 	return (
-		<a
-			css={skipStyle}
-			href="#main"
-			onClick={() => {
-				document.getElementById('main')?.focus();
-			}}
-		>
-			Skip to main content
-		</a>
+		<div css={navMenuStyle}>
+			<button css={navButtonStyle} onClick={onToggle} aria-label="Toggle navigation menu">
+				{bars.map((bar, i) => (
+					<span
+						key={bar}
+						css={{
+							...hamburgerBarStyle,
+							top: i * 8 + 13.5 + 'px',
+						}}
+						style={{
+							transform:
+								bar === 'top'
+									? isOpen
+										? 'translateY(8px) rotate(45deg)'
+										: 'none'
+									: bar === 'middle'
+									? isOpen
+										? 'scaleX(0)'
+										: 'none'
+									: isOpen
+									? 'translateY(-8px) rotate(-45deg)'
+									: 'none',
+							opacity: bar === 'middle' && isOpen ? 0 : 1,
+						}}
+					/>
+				))}
+			</button>
+			{isOpen && (
+				<div css={menuDropdownStyle}>
+					<a href="#about" css={menuItemStyle} onClick={onToggle}>
+						About
+					</a>
+					<a href="#projects" css={menuItemStyle} onClick={onToggle}>
+						Projects
+					</a>
+					<a href="#contact" css={menuItemStyle} onClick={onToggle}>
+						Contact
+					</a>
+				</div>
+			)}
+		</div>
 	);
 }
