@@ -4,7 +4,7 @@ import {
 	NOT_FOUND_ERROR
 } from './hooks/PageNumbers';
 
-const Home = lazy(() => import('./components/Pages/Home'));
+const Home = lazy(() => import('./components/Pages/Home/Home'));
 const NotFoundError = lazy(() => import('./components/Pages/NotFoundError'));
 
 const routes = [
