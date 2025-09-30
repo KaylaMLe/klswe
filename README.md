@@ -244,7 +244,6 @@ This is a summary of the file structure of the project. It prioritizes clarity b
 │ │ ├─📜sound.d.ts - audio file types
 │ │ └─📜StyleTypes.ts - Emotion CSS-in-JS type definitions
 │ ├─📜constants.ts - environment variables and configuration constants
-│ ├─📜fontStacks.ts - font family definitions
 │ ├─📜index.css - global CSS styles
 │ └─📜routes.ts - lazy-loaded route configuration
 ├─📜fonts.tsx - custom font loading component using Emotion

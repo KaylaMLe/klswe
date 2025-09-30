@@ -1,6 +1,11 @@
+:root {
+	/* Font stack variables */
+	--font-sans-serif: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 body {
 	background-color: #01000D;
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-family: var(--font-sans-serif);
 	font-size: 1.25rem;
 	margin: 0;
 	padding: 0;

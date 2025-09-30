@@ -1,5 +1,4 @@
 import { CSSObject, keyframes } from '@emotion/react';
-import { sansSerifStack } from '../../fontStacks';
 
 export const pageStyle: CSSObject = {
 	position: 'relative',
@@ -94,7 +93,7 @@ export const heroTextStyle: CSSObject = {
 	flexDirection: 'column',
 	justifyContent: 'center',
 	alignItems: 'center',
-	fontFamily: 'Space Grotesk, ' + sansSerifStack,
+	fontFamily: 'Space Grotesk, var(--font-sans-serif)',
 	alignSelf: 'center',
 	justifySelf: 'center',
 	height: '85%',
@@ -137,7 +136,7 @@ export const aboutMeBoxStyle: CSSObject = {
 	placeItems: 'center',
 	margin: '3rem',
 	maxWidth: '800px',
-	fontFamily: 'Quicksand, "Arial Rounded MT Light", ' + sansSerifStack,
+	fontFamily: 'Quicksand, "Arial Rounded MT Light", var(--font-sans-serif)',
 };
 
 export const glassBlurStyle: CSSObject = {
