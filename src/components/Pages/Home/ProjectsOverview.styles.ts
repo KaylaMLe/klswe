@@ -62,10 +62,14 @@ export const mainContentStyle: CSSObject = {
 	alignItems: 'center',
 	flexGrow: 1,
 	gap: '2rem',
+	[`@media (max-width: 600px)`]: {
+		flexDirection: 'column',
+	},
 };
 
 export const cardImageStyle: CSSObject = {
 	height: '100%',
+	maxHeight: '50vmin',
 	objectFit: 'cover',
 };
 
