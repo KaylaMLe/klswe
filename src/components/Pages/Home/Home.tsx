@@ -18,6 +18,7 @@ import {
 import hexagonSvgUrl from '../../../assets/images/hexagon.svg';
 import { GradientSweeps, StarBox } from './HomeBackground';
 import { NavBar } from '../../NavBar/NavBar';
+import { ProjectsOverview } from './ProjectsOverview';
 
 export default function Home(): React.JSX.Element {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,6 +30,7 @@ export default function Home(): React.JSX.Element {
 			<StarBox />
 			<Hexagon />
 			<AboutMe />
+			<ProjectsOverview />
 		</div>
 	);
 }
