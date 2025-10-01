@@ -1,13 +1,11 @@
 import { CSSObject } from '@emotion/react';
 
-export const slideshowContainerStyle: CSSObject = {
+export const overviewContainerStyle: CSSObject = {
 	display: 'flex',
 	flexDirection: 'column',
 	alignItems: 'flex-start',
 	width: '90vw',
 	maxWidth: '100vw',
-	height: '70vh',
-	minHeight: '300px',
 	margin: '2rem auto',
 	fontFamily: 'Quicksand, "Arial Rounded MT Light", var(--font-sans-serif)',
 };
@@ -29,7 +27,8 @@ export const overviewTitleStyle: CSSObject = {
 export const cardsWrapperStyle: CSSObject = {
 	position: 'relative',
 	width: '100%',
-	height: '100%',
+	height: '70vh',
+	minHeight: '300px',
 	overflow: 'hidden',
 	marginBottom: '2rem',
 };
@@ -41,23 +40,48 @@ export const cardStyle: CSSObject = {
 	boxSizing: 'border-box',
 	width: '100%',
 	height: '100%',
+	display: 'flex',
+	flexDirection: 'column',
+	justifyContent: 'space-between',
 	transition: 'all 0.5s ease-in-out',
 	background: 'linear-gradient(to bottom, rgba(0,255,255,0.1) 0%, rgba(0,255,255,0.05) 100%)',
 	border: '1px solid rgba(255,255,255,0.08)',
 	borderRadius: '6px',
 	backdropFilter: 'blur(10px)',
 	boxShadow: `
-		inset 0 1px rgba(255,255,255,0.25),  /* top highlight */
-		inset 0 -1px rgba(0,255,255,0.12)   /* bottom edge tint */
+		inset 0 1px rgba(255,255,255,0.25),
+		inset 0 -1px rgba(0,255,255,0.12)
 	`,
+	padding: '2rem',
+	gap: '2rem',
 };
 
-export const cardContentStyle: CSSObject = {
-	padding: '2rem',
+export const mainContentStyle: CSSObject = {
+	display: 'flex',
+	flexDirection: 'row',
+	alignItems: 'center',
+	flexGrow: 1,
+	gap: '2rem',
+};
+
+export const cardImageStyle: CSSObject = {
 	height: '100%',
+	objectFit: 'cover',
+};
+
+export const cardTextContainerStyle: CSSObject = {
 	display: 'flex',
 	flexDirection: 'column',
 	justifyContent: 'center',
+	height: '80%',
+};
+
+export const cardTechBubblesStyle: CSSObject = {
+	width: '100%',
+	display: 'flex',
+	flexWrap: 'wrap',
+	gap: '0.5rem',
+	justifyContent: 'flex-start',
 };
 
 export const cardTitleStyle: CSSObject = {
@@ -67,7 +91,7 @@ export const cardTitleStyle: CSSObject = {
 	background: 'linear-gradient(180deg, #dfe4ff 0%, #8c8ccf 100%)',
 	backgroundClip: 'text',
 	margin: '0 0 1rem 0',
-	textAlign: 'center',
+	textAlign: 'left',
 };
 
 export const cardDescriptionStyle: CSSObject = {
@@ -75,7 +99,7 @@ export const cardDescriptionStyle: CSSObject = {
 	color: '#B6ADFF',
 	lineHeight: '1.6',
 	margin: '0 0 1rem 0',
-	textAlign: 'center',
+	textAlign: 'left',
 	textShadow: '0 0 2px rgba(182, 173, 255, 0.3)',
 };
 

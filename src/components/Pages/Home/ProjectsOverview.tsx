@@ -1,13 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import React, { useState } from 'react';
 import {
-	slideshowContainerStyle,
+	overviewContainerStyle,
 	overviewTitleStyle,
 	cardsWrapperStyle,
 	cardStyle,
-	cardContentStyle,
+	mainContentStyle,
+	cardImageStyle,
+	cardTextContainerStyle,
 	cardTitleStyle,
 	cardDescriptionStyle,
+	cardTechBubblesStyle,
 	navigationContainerStyle,
 	arrowButtonStyle,
 	arrowIconStyle,
@@ -21,6 +24,7 @@ interface ProjectCard {
 	title: string;
 	description: string;
 	technologies: string[];
+	image: string;
 }
 
 const projectCards: ProjectCard[] = [
@@ -30,6 +34,7 @@ const projectCards: ProjectCard[] = [
 		description:
 			'A full-stack e-commerce solution built with React, Node.js, and PostgreSQL. Features include user authentication, payment processing, and inventory management.',
 		technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe API'],
+		image: '/src/assets/images/project-placeholder.png',
 	},
 	{
 		id: 2,
@@ -37,6 +42,7 @@ const projectCards: ProjectCard[] = [
 		description:
 			'A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
 		technologies: ['Vue.js', 'Socket.io', 'MongoDB', 'Express'],
+		image: '/src/assets/images/project-placeholder.png',
 	},
 	{
 		id: 3,
@@ -44,6 +50,7 @@ const projectCards: ProjectCard[] = [
 		description:
 			'A personal portfolio website built with React, TypeScript, and Emotion. Features include a responsive design, smooth animations, and a contact form.',
 		technologies: ['React', 'TypeScript', 'Emotion', 'Vite'],
+		image: '/src/assets/images/project-placeholder.png',
 	},
 ];
 
@@ -63,7 +70,7 @@ export function ProjectsOverview(): React.JSX.Element {
 	};
 
 	return (
-		<div css={slideshowContainerStyle} id="projects-overview">
+		<div css={overviewContainerStyle} id="projects-overview">
 			<h2 css={overviewTitleStyle}>My work</h2>
 			<div css={cardsWrapperStyle}>
 				{projectCards.map((card, index) => (
@@ -77,26 +84,29 @@ export function ProjectsOverview(): React.JSX.Element {
 							},
 						]}
 					>
-						<div css={cardContentStyle}>
-							<h3 css={cardTitleStyle}>{card.title}</h3>
-							<p css={cardDescriptionStyle}>{card.description}</p>
-							<div css={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '1rem' }}>
-								{card.technologies.map((tech) => (
-									<span
-										key={tech}
-										css={{
-											background: 'rgba(182, 173, 255, 0.2)',
-											border: '1px solid rgba(182, 173, 255, 0.3)',
-											borderRadius: '12px',
-											padding: '0.25rem 0.75rem',
-											fontSize: '0.875rem',
-											color: '#B6ADFF',
-										}}
-									>
-										{tech}
-									</span>
-								))}
+						<div css={mainContentStyle}>
+							<img src={card.image} alt={card.title} css={cardImageStyle} />
+							<div css={cardTextContainerStyle}>
+								<h3 css={cardTitleStyle}>{card.title}</h3>
+								<p css={cardDescriptionStyle}>{card.description}</p>
 							</div>
+						</div>
+						<div css={cardTechBubblesStyle}>
+							{card.technologies.map((tech) => (
+								<span
+									key={tech}
+									css={{
+										background: 'rgba(182, 173, 255, 0.2)',
+										border: '1px solid rgba(182, 173, 255, 0.3)',
+										borderRadius: '12px',
+										padding: '0.25rem 0.75rem',
+										fontSize: '0.875rem',
+										color: '#B6ADFF',
+									}}
+								>
+									{tech}
+								</span>
+							))}
 						</div>
 					</div>
 				))}
