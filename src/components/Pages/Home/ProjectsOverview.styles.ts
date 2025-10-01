@@ -3,14 +3,16 @@ import { CSSObject } from '@emotion/react';
 export const slideshowContainerStyle: CSSObject = {
 	display: 'flex',
 	flexDirection: 'column',
-	alignItems: 'center',
-	width: '100%',
-	maxWidth: '800px',
+	alignItems: 'flex-start',
+	width: '90vw',
+	maxWidth: '100vw',
+	height: '70vh',
+	minHeight: '300px',
 	margin: '2rem auto',
 	fontFamily: 'Quicksand, "Arial Rounded MT Light", var(--font-sans-serif)',
 };
 
-export const projectsTitleStyle: CSSObject = {
+export const overviewTitleStyle: CSSObject = {
 	fontWeight: 550,
 	fontSize: 'clamp(1.25rem, 6vmin, 15rem)',
 	color: 'rgb(0, 255, 255)',
@@ -24,12 +26,11 @@ export const projectsTitleStyle: CSSObject = {
 	`,
 };
 
-export const slideshowWrapperStyle: CSSObject = {
+export const cardsWrapperStyle: CSSObject = {
 	position: 'relative',
 	width: '100%',
-	height: '300px',
+	height: '100%',
 	overflow: 'hidden',
-	borderRadius: '16px',
 	marginBottom: '2rem',
 };
 
@@ -37,14 +38,18 @@ export const cardStyle: CSSObject = {
 	position: 'absolute',
 	top: 0,
 	left: 0,
+	boxSizing: 'border-box',
 	width: '100%',
 	height: '100%',
 	transition: 'all 0.5s ease-in-out',
-	background: 'linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.04) 100%)',
-	border: '1px solid rgba(182, 173, 255, 0.1)',
-	borderRadius: '16px',
+	background: 'linear-gradient(to bottom, rgba(0,255,255,0.1) 0%, rgba(0,255,255,0.05) 100%)',
+	border: '1px solid rgba(255,255,255,0.08)',
+	borderRadius: '6px',
 	backdropFilter: 'blur(10px)',
-	boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+	boxShadow: `
+		inset 0 1px rgba(255,255,255,0.25),  /* top highlight */
+		inset 0 -1px rgba(0,255,255,0.12)   /* bottom edge tint */
+	`,
 };
 
 export const cardContentStyle: CSSObject = {

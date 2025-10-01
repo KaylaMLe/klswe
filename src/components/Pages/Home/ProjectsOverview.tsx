@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import {
 	slideshowContainerStyle,
-	projectsTitleStyle,
-	slideshowWrapperStyle,
+	overviewTitleStyle,
+	cardsWrapperStyle,
 	cardStyle,
 	cardContentStyle,
 	cardTitleStyle,
@@ -64,8 +64,8 @@ export function ProjectsOverview(): React.JSX.Element {
 
 	return (
 		<div css={slideshowContainerStyle} id="projects-overview">
-			<h2 css={projectsTitleStyle}>My work</h2>
-			<div css={slideshowWrapperStyle}>
+			<h2 css={overviewTitleStyle}>My work</h2>
+			<div css={cardsWrapperStyle}>
 				{projectCards.map((card, index) => (
 					<div
 						key={card.id}
