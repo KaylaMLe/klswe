@@ -62,7 +62,7 @@ export const mainContentStyle: CSSObject = {
 	alignItems: 'center',
 	flexGrow: 1,
 	gap: '2rem',
-	[`@media (max-width: 600px)`]: {
+	[`@media (max-width: 951px)`]: {
 		flexDirection: 'column',
 	},
 };
@@ -89,7 +89,7 @@ export const cardTechBubblesStyle: CSSObject = {
 };
 
 export const cardTitleStyle: CSSObject = {
-	fontSize: '1.5rem',
+	fontSize: '2.5rem',
 	fontWeight: 600,
 	color: 'transparent',
 	background: 'linear-gradient(180deg, #dfe4ff 0%, #8c8ccf 100%)',
@@ -99,7 +99,7 @@ export const cardTitleStyle: CSSObject = {
 };
 
 export const cardDescriptionStyle: CSSObject = {
-	fontSize: '1rem',
+	fontSize: '2rem',
 	color: '#B6ADFF',
 	lineHeight: '1.6',
 	margin: '0 0 1rem 0',
