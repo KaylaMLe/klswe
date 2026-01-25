@@ -1,6 +1,5 @@
 interface ImportMetaEnv {
-	readonly VITE_PORTRAIT_URL: string;
-	readonly VITE_ABOUT_ME_TXT: string;
+	readonly VITE_API_URL: string;
 }
 
 interface ImportMeta {

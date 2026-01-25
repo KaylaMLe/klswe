@@ -15,7 +15,6 @@ My personal website is a centralized platform to display my professional portfol
    - [Component design](#component-design)
      - [Contexts](#contexts)
      - [Higher-order components](#higher-order-components)
-     - [Layout components](#layout-components)
      - [Page-specific interactive components](#page-specific-interactive-components)
    - [Production dependencies](#production-dependencies)
    - [Development dependencies](#development-dependencies)
@@ -105,18 +104,18 @@ To run a specific test file, include the `-- path/to/testfile.test.tsx` flag aft
 The project follows a modern React architecture with:
 
 - **Lazy Loading**: Routes are lazy-loaded using React's `lazy()` function for optimal performance
-- **Context Providers**: Multiple context providers wrap the application for state management (CSRF, page tracking, viewport detection)
+- **Context Providers**: Context providers wrap the application for state management (page tracking, viewport detection)
 - **CSS-in-JS**: Emotion provides type-safe, component-scoped styling
 - **Custom Fonts**: Variable fonts are loaded via a dedicated `Fonts` component
 - **Environment Configuration**: Vite environment variables for flexible configuration
+- **API Integration**: Fetches project data from a backend API to display dynamic content
 
 ### Component design
 
-This project is structured with a modular component design, ensuring reusability and responsiveness across different pages. The project uses Emotion CSS-in-JS for styling, providing type-safe and component-scoped styles. Key components are built to handle specific tasks, such as responsive layout adjustments, page metadata, and navigation, while smaller, focused components manage interactive elements like buttons and animations.
+This project is structured with a modular component design, ensuring reusability and responsiveness across different pages. The project uses Emotion CSS-in-JS for styling, providing type-safe and component-scoped styles. Key components are built to handle specific tasks, such as responsive layout adjustments and navigation, while smaller, focused components manage interactive elements like buttons, animations, and dynamic content fetching.
 
 #### Contexts
 
-- `CsrfCookieContext`: Manages the CSRF token for requests to the backend API. The `CsrfCookieProvider` checks for an existing CSRF token in cookies or local storage; if none is found, it fetches a new token from the backend and updates the context.
 - `PageNumberContext`: Tracks the current page number, making it easy for components to identify and update the active page. The `CurrentPageProvider` exposes `currentPage` and `setCurrentPage` to child components, enabling them to highlight active pages and apply page-specific styles.
 - `ViewPortContext`: Manages a boolean `isMobile` state, which adjusts based on the viewport width ("mobile" defined as <= 600px). The `IsMobileProvider` listens for window resizing events and updates `isMobile` accordingly, allowing components to conditionally render or style content based on the device type.
 
@@ -127,21 +126,17 @@ Higher-order components are designed to wrap other components to add functionali
 - `Responsive`: A versatile wrapper component used to apply conditional styling based on screen size, enabling seamless transitions between mobile and desktop layouts.
 - `Toggle`: This component is designed to conditionally style elements. Toggle accepts a Component prop (allowing any component to be wrapped) and applies a default style by default, switching to an alternate style when the condition passed in is true. CSS transitions are used to create a smooth effect when the style changes. If the condition is false, the component applies the alternate style on hover and focus for added interactivity.
 
-#### Layout components
-
-Layout components establish the core structure of each page and serve as containers for page content, handling key tasks such as navigation, page metadata, and overall layout consistency.
-
-- `Page`: This component acts as a wrapper for each main page's content, setting up a consistent layout across the application. It includes page-level setup such as setting the document title and logging page views via API requests to track user engagement.
-- `NavBar`: This component provides the main navigation for the application, with links to key pages and various projects. It includes a dropdown menu for organizing project links and uses the `Toggle` component to highlight the currently active page.
-
 #### Page-specific interactive components
 
 Lower-level components are designed as containers for primary content and specific user interactions, focusing on delivering unique, immersive experiences. These components are primarily visual and are tailored to the specific needs of each page, not general reusability.
 
 **Pages:**
 
-- **Home**: Main landing area featuring an interactive star field animation, gradient backgrounds, and an "About Me" section with glassmorphism design elements
-- **Error Pages**: Handles 404 and other error states gracefully with the NotFoundError component
+- **Home**: Main landing area featuring:
+  - Gradient background sweeps with stars fading in and out
+  - Hero section with name and title displayed in a decorative hexagon
+  - "About Me" section with glassmorphism design elements
+  - Projects overview carousel that fetches and displays project cards from the backend API
 
 ### Production dependencies
 
@@ -149,7 +144,6 @@ The following dependencies are necessary to run the project.
 
 - `@emotion/react` (version ^11.14.0): CSS-in-JS library for styling React components
 - `emotion` (version ^11.0.0): Core Emotion library for CSS-in-JS functionality
-- `js-cookie` (version ^3.0.5): Utility for retrieving cookies
 - `react` (version ^18.2.0): Core React library used to build the interface
 - `react-dom` (version ^18.2.0): Used to render React components to the DOM
 - `react-router-dom` (version ^6.22.3): Provides routing for navigation between pages
@@ -202,9 +196,7 @@ All fonts are optimized with `font-display: swap` for better performance and use
 
 The project uses Vite environment variables for configuration:
 
-- `VITE_PORTRAIT_URL`: URL for portrait images
-- `VITE_ABOUT_ME_TXT`: Text content for about me sections
-- `VITE_ABOUT_ME_P2`: Additional about me paragraph content
+- `VITE_API_URL`: The link to the backend
 
 These are defined in `src/constants.ts` and typed in `src/types/env.d.ts`.
 
@@ -217,36 +209,40 @@ This is a summary of the file structure of the project. It prioritizes clarity b
 ├─📁public/ - static favicon, logo, manifest files, and custom fonts
 │ └─📁fonts/ - custom font files (Space Grotesk, Inter, Quicksand)
 ├─📁src/
-│ ├─📁assets/ - static audio and image files
-│ │ ├─📁audio/ - sound effects and audio files
-│ │ └─📁images/ - images and SVG assets
+│ ├─📁assets/ - static image files
+│ │ └─📁images/ - images and SVG assets (hexagon.svg, external-link.png, project-placeholder.png)
 │ ├─📁components/
-│ │ ├─📁NavBar/ - navigation bar components with dropdown menus and link buttons
-│ │ ├─📁Pages/
-│ │ │ ├─📜Page.tsx - core layout component with page tracking and navigation
-│ │ │ ├─📜Home.tsx - main landing page with interactive star field and glassmorphism
-│ │ │ ├─📜Login.tsx - authentication interface
-│ │ │ ├─📜NotFoundError.tsx - 404 error page
-│ │ │ ├─📜utils.ts - shared utility functions
+│ │ ├─📁NavBar/ - navigation bar components
+│ │ │ ├─📜NavBar.tsx - hamburger menu navigation component
+│ │ │ ├─📜MainTitle.tsx - site title component
+│ │ │ ├─📜DropDownMenu.tsx - dropdown menu component
+│ │ │ ├─📜LinkButtons.tsx - navigation link buttons
 │ │ │ └─📜*.styles.ts - Emotion CSS-in-JS style definitions
+│ │ ├─📁Pages/
+│ │ │ ├─📁Home/ - home page components
+│ │ │ │ ├─📜Home.tsx - main landing page with hero, about, and projects sections
+│ │ │ │ ├─📜HomeBackground.tsx - star field and gradient background components
+│ │ │ │ ├─📜ProjectsOverview.tsx - carousel component that fetches and displays projects
+│ │ │ │ └─📜*.styles.ts - Emotion CSS-in-JS style definitions
+│ │ │ ├─📜NotFoundError.tsx - 404 error page
+│ │ │ └─📜utils.ts - shared utility functions
 │ │ └─📁ResponsiveComponents/
 │ │   ├─📜ResponsiveComponent.tsx - Applies styles conditionally based on screen size
 │ │   └─📜ToggleStyledComponent.tsx - Applies different styles based on conditions
 │ ├─📁hooks/ - custom React hooks and context providers
-│ │ ├─📜CsrfCookieContext.tsx - CSRF token management
 │ │ ├─📜PageNumberContext.tsx - current page tracking
 │ │ ├─📜ViewPortContext.tsx - responsive viewport detection
-│ │ └─📜PageNumbers.ts - page configuration and routing constants
+│ │ ├─📜PageNumbers.ts - page configuration and routing constants
+│ │ └─📜ContextProviderProps.ts - shared context provider prop types
 │ ├─📁types/ - TypeScript type definitions
 │ │ ├─📜env.d.ts - environment variable types
 │ │ ├─📜images.d.ts - image import types
 │ │ ├─📜ResponsiveComponentTypes.ts - responsive component interfaces
-│ │ ├─📜sound.d.ts - audio file types
 │ │ └─📜StyleTypes.ts - Emotion CSS-in-JS type definitions
 │ ├─📜constants.ts - environment variables and configuration constants
-│ ├─📜fontStacks.ts - font family definitions
 │ ├─📜index.css - global CSS styles
-│ └─📜routes.ts - lazy-loaded route configuration
+│ ├─📜routes.ts - lazy-loaded route configuration
+│ └─📜fontStacks.ts - font family definitions
 ├─📜fonts.tsx - custom font loading component using Emotion
 ├─📜index.tsx - main application entry point with context providers
 ├─📜jest.config.ts - Jest testing configuration
