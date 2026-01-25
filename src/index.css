@@ -27,3 +27,8 @@ button {
 		animation: none !important;
 	}
 }
+
+.hidden {
+	display: none;
+	aria-hidden: true;
+}

@@ -4,6 +4,7 @@ const config: Config.InitialOptions = {
 	preset: 'ts-jest',
 	moduleNameMapper: {
 		'\\.(jpg|jpeg|png|gif|webp|svg|wav)$': '<rootDir>/__mocks__/fileMock.js',
+		'^(.+)\\.js$': '$1',
 	},
 	testEnvironment: 'jsdom',
 	setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],

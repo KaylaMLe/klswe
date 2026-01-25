@@ -18,6 +18,7 @@ import {
 	dotStyle,
 	activeDotStyle,
 } from './ProjectsOverview.styles.js';
+import { CSSObject } from '@emotion/react';
 
 interface ProjectCard {
 	slug: string,
@@ -58,8 +59,18 @@ export function ProjectsOverview(): React.JSX.Element {
 		setCurrentSlide(index);
 	};
 
+	const props: React.HTMLAttributes<HTMLDivElement> & { css?: CSSObject } = {
+		id: 'projects-overview',
+	}
+
+	if (slides.length > 0) {
+		props.css = overviewContainerStyle;
+	} else {
+		props['className'] = 'hidden';
+	}
+
 	return (
-		<div css={overviewContainerStyle} id="projects-overview">
+		<div {...props}>
 			<h2 css={overviewTitleStyle}>My work</h2>
 			<div css={cardsWrapperStyle}>
 				{slides.length > 0 && Array.from(slides, (card: ProjectCard, index: number) => (
@@ -84,7 +95,7 @@ export function ProjectsOverview(): React.JSX.Element {
 				))}
 			</div>
 
-			<div css={navigationContainerStyle}>
+			{slides.length > 1 && <div css={navigationContainerStyle}>
 				<button css={arrowButtonStyle} onClick={prevSlide} aria-label="Previous project">
 					<svg css={arrowIconStyle} viewBox="0 0 24 24" fill="none" stroke="currentColor">
 						<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -92,7 +103,7 @@ export function ProjectsOverview(): React.JSX.Element {
 				</button>
 
 				<div css={dotsContainerStyle}>
-					{slides.length > 1 && Array.from({ length: slides.length }, (_, i) => (
+					{Array.from({ length: slides.length }, (_, i) => (
 						<button
 							key={i}
 							css={[dotStyle, i === currentSlide && activeDotStyle]}
@@ -107,7 +118,7 @@ export function ProjectsOverview(): React.JSX.Element {
 						<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
 					</svg>
 				</button>
-			</div>
+			</div>}
 		</div>
 	);
 }
