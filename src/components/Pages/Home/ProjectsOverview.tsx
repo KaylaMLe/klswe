@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { API_URL } from '../../../constants.js';
 import {
 	overviewContainerStyle,
 	overviewTitleStyle,
@@ -10,7 +11,6 @@ import {
 	cardTextContainerStyle,
 	cardTitleStyle,
 	cardDescriptionStyle,
-	cardTechBubblesStyle,
 	navigationContainerStyle,
 	arrowButtonStyle,
 	arrowIconStyle,
@@ -20,49 +20,38 @@ import {
 } from './ProjectsOverview.styles.js';
 
 interface ProjectCard {
-	id: number;
-	title: string;
-	description: string;
-	technologies: string[];
-	image: string;
+	slug: string,
+	type: string,
+	title: string,
+	hero_image_url: string,
+	body: string,
+	status: string,
+	published_at: Date,
+	updated_at: Date,
 }
-
-const projectCards: ProjectCard[] = [
-	{
-		id: 1,
-		title: 'E-Commerce Platform',
-		description:
-			'A full-stack e-commerce solution built with React, Node.js, and PostgreSQL. Features include user authentication, payment processing, and inventory management.',
-		technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe API'],
-		image: '/src/assets/images/project-placeholder.png',
-	},
-	{
-		id: 2,
-		title: 'Task Management App',
-		description:
-			'A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
-		technologies: ['Vue.js', 'Socket.io', 'MongoDB', 'Express'],
-		image: '/src/assets/images/project-placeholder.png',
-	},
-	{
-		id: 3,
-		title: 'Portfolio Website',
-		description:
-			'A personal portfolio website built with React, TypeScript, and Emotion. Features include a responsive design, smooth animations, and a contact form.',
-		technologies: ['React', 'TypeScript', 'Emotion', 'Vite'],
-		image: '/src/assets/images/project-placeholder.png',
-	},
-];
 
 export function ProjectsOverview(): React.JSX.Element {
 	const [currentSlide, setCurrentSlide] = useState(0);
+	const [slides, setSlides] = useState<ProjectCard[]>([]);
+
+	useEffect(() => {
+		fetch(`${API_URL}/entries/cards`)
+			.then(async (response) => {
+				if (!response.ok) {
+					throw new Error(`HTTP error! status: ${response.status}`);
+				}
+				const data = await response.json();
+				setSlides(data);
+			})
+			.catch((error) => console.error('Error fetching projects:', error));
+	}, []);
 
 	const nextSlide = () => {
-		setCurrentSlide((prev) => (prev + 1) % projectCards.length);
+		setCurrentSlide((prev) => (prev + 1) % slides.length);
 	};
 
 	const prevSlide = () => {
-		setCurrentSlide((prev) => (prev - 1 + projectCards.length) % projectCards.length);
+		setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
 	};
 
 	const goToSlide = (index: number) => {
@@ -73,9 +62,9 @@ export function ProjectsOverview(): React.JSX.Element {
 		<div css={overviewContainerStyle} id="projects-overview">
 			<h2 css={overviewTitleStyle}>My work</h2>
 			<div css={cardsWrapperStyle}>
-				{projectCards.map((card, index) => (
+				{slides.length > 0 && Array.from(slides, (card: ProjectCard, index: number) => (
 					<div
-						key={card.id}
+						key={index}
 						css={[
 							cardStyle,
 							{
@@ -85,28 +74,11 @@ export function ProjectsOverview(): React.JSX.Element {
 						]}
 					>
 						<div css={mainContentStyle}>
-							<img src={card.image} alt={card.title} css={cardImageStyle} />
+							<img src={card.hero_image_url} alt={card.title} css={cardImageStyle} />
 							<div css={cardTextContainerStyle}>
 								<h3 css={cardTitleStyle}>{card.title}</h3>
-								<p css={cardDescriptionStyle}>{card.description}</p>
+								<p css={cardDescriptionStyle}>{card.body}</p>
 							</div>
-						</div>
-						<div css={cardTechBubblesStyle}>
-							{card.technologies.map((tech) => (
-								<span
-									key={tech}
-									css={{
-										background: 'rgba(182, 173, 255, 0.2)',
-										border: '1px solid rgba(182, 173, 255, 0.3)',
-										borderRadius: '12px',
-										padding: '0.25rem 0.75rem',
-										fontSize: '0.875rem',
-										color: '#B6ADFF',
-									}}
-								>
-									{tech}
-								</span>
-							))}
 						</div>
 					</div>
 				))}
@@ -120,12 +92,12 @@ export function ProjectsOverview(): React.JSX.Element {
 				</button>
 
 				<div css={dotsContainerStyle}>
-					{projectCards.map((_, index) => (
+					{slides.length > 1 && Array.from({ length: slides.length }, (_, i) => (
 						<button
-							key={index}
-							css={[dotStyle, index === currentSlide && activeDotStyle]}
-							onClick={() => goToSlide(index)}
-							aria-label={`Go to slide ${index + 1}`}
+							key={i}
+							css={[dotStyle, i === currentSlide && activeDotStyle]}
+							onClick={() => goToSlide(i)}
+							aria-label={`Go to slide ${i + 1}`}
 						/>
 					))}
 				</div>
