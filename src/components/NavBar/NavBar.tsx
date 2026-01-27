@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
 import { navMenuStyle, navButtonStyle, hamburgerBarStyle, menuDropdownStyle, menuItemStyle } from './NavBar.styles';
+import { MainTitle } from './MainTitle';
 
 interface NavBarProps {
 	isOpen: boolean;
@@ -11,7 +12,8 @@ export function NavBar({ isOpen, onToggle }: NavBarProps): React.JSX.Element {
 	const bars: Array<'top' | 'middle' | 'bottom'> = ['top', 'middle', 'bottom'];
 
 	return (
-		<div css={navMenuStyle}>
+		<nav css={navMenuStyle}>
+			<MainTitle />
 			<button css={navButtonStyle} onClick={onToggle} aria-label="Toggle navigation menu">
 				{bars.map((bar, i) => (
 					<span
@@ -40,6 +42,6 @@ export function NavBar({ isOpen, onToggle }: NavBarProps): React.JSX.Element {
 					</a>
 				</div>
 			)}
-		</div>
+		</nav>
 	);
 }

@@ -1,24 +1,21 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useCurrentPage } from '../../hooks/PageNumberContext';
-import { HOME } from '../../hooks/PageNumbers';
-import { Responsive } from '../ResponsiveComponents/ResponsiveComponent';
-import { headlineStyle, linkStyles, nameStyle, titleStyles } from './MainTitle.styles';
+import { hexagonBoxStyle, hexagonSvgStyle, heroTextStyle, nameStyle, titleStyle, subtitleStyle } from './MainTitle.styles';
+import hexagonSvgUrl from '../../assets/images/hexagon.svg';
 
 export function MainTitle(): React.JSX.Element {
-	const { currentPage } = useCurrentPage();
-
 	return (
-		<Responsive Component='div' styles={titleStyles}>
-			<Responsive Component={Link} styles={linkStyles} to={HOME.link}>
-				<h1 css={nameStyle}>
-					Kayla Le
-				</h1>
-			</Responsive>
-			{currentPage === HOME.pageNumber &&
-				<h2 css={headlineStyle}>Software Engineer</h2>
-			}
-		</Responsive>
+		<div css={hexagonBoxStyle}>
+			<img src={hexagonSvgUrl} alt="Decorative hexagon" css={hexagonSvgStyle} />
+			<div css={heroTextStyle}>
+				<h1 css={nameStyle}>Kayla Le</h1>
+				<h2 css={titleStyle}>
+					Full-Stack
+					<br />
+					Software Engineer
+				</h2>
+				<h3 css={subtitleStyle}>I build things for the web.</h3>
+			</div>
+		</div>
 	);
 }

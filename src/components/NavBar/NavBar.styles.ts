@@ -1,13 +1,16 @@
 import { CSSObject } from "@emotion/react";
 
 export const navMenuStyle: CSSObject = {
-	position: 'fixed',
-	top: '1rem',
-	right: '1rem',
 	zIndex: 1000,
+	display: 'flex',
+	justifyContent: 'flex-end',
+	alignItems: 'flex-start',
 };
 
 export const navButtonStyle: CSSObject = {
+	position: 'fixed',
+	top: '1rem',
+	right: '1rem',
 	background: 'rgba(255, 255, 255, 0.09)',
 	border: 'none',
 	borderRadius: '8px',

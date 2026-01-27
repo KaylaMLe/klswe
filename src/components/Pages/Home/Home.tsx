@@ -2,12 +2,6 @@
 import React, { useState } from 'react';
 import {
 	pageStyle,
-	hexagonBoxStyle,
-	hexagonSvgStyle,
-	heroTextStyle,
-	nameStyle,
-	titleStyle,
-	subtitleStyle,
 	aboutMeBoxStyle,
 	glassBlurStyle,
 	glassPanelStyle,
@@ -15,7 +9,6 @@ import {
 	aboutMeTitleStyle,
 	aboutMeTextStyle,
 } from './Home.styles';
-import hexagonSvgUrl from '../../../assets/images/hexagon.svg';
 import { GradientSweeps, StarBox } from './HomeBackground';
 import { NavBar } from '../../NavBar/NavBar';
 import { ProjectsOverview } from './ProjectsOverview';
@@ -28,26 +21,8 @@ export default function Home(): React.JSX.Element {
 			<GradientSweeps />
 			<NavBar isOpen={isMenuOpen} onToggle={() => setIsMenuOpen(!isMenuOpen)} />
 			<StarBox />
-			<Hexagon />
 			<AboutMe />
 			<ProjectsOverview />
-		</div>
-	);
-}
-
-function Hexagon(): React.JSX.Element {
-	return (
-		<div css={hexagonBoxStyle}>
-			<img src={hexagonSvgUrl} alt="Decorative hexagon" css={hexagonSvgStyle} />
-			<div css={heroTextStyle}>
-				<h1 css={nameStyle}>Kayla Le</h1>
-				<h2 css={titleStyle}>
-					Full-Stack
-					<br />
-					Software Engineer
-				</h2>
-				<h3 css={subtitleStyle}>I build things for the web.</h3>
-			</div>
 		</div>
 	);
 }
