@@ -1,21 +1,33 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
-import { hexagonBoxStyle, hexagonSvgStyle, heroTextStyle, nameStyle, titleStyle, subtitleStyle } from './MainTitle.styles';
+import { Responsive } from '../ResponsiveComponents/ResponsiveComponent';
+import {
+	hexagonBoxStyles,
+	hexagonSvgStyles,
+	heroTextStyles,
+	nameStyles,
+	titleStyles,
+	subtitleStyles,
+} from './MainTitle.styles';
 import hexagonSvgUrl from '../../assets/images/hexagon.svg';
 
 export function MainTitle(): React.JSX.Element {
 	return (
-		<div css={hexagonBoxStyle}>
-			<img src={hexagonSvgUrl} alt="Decorative hexagon" css={hexagonSvgStyle} />
-			<div css={heroTextStyle}>
-				<h1 css={nameStyle}>Kayla Le</h1>
-				<h2 css={titleStyle}>
+		<Responsive Component="div" styles={hexagonBoxStyles}>
+			<Responsive Component="img" src={hexagonSvgUrl} alt="Decorative hexagon" styles={hexagonSvgStyles} />
+			<Responsive Component="div" styles={heroTextStyles}>
+				<Responsive Component="h1" styles={nameStyles}>
+					Kayla Le
+				</Responsive>
+				<Responsive Component="h2" styles={titleStyles}>
 					Full-Stack
 					<br />
 					Software Engineer
-				</h2>
-				<h3 css={subtitleStyle}>I build things for the web.</h3>
-			</div>
-		</div>
+				</Responsive>
+				<Responsive Component="h3" styles={subtitleStyles}>
+					I build things for the web.
+				</Responsive>
+			</Responsive>
+		</Responsive>
 	);
 }

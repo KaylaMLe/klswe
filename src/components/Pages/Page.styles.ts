@@ -10,8 +10,8 @@ export const pageStyles: DynamicStyles = {
     default: {
         display: 'grid',
         gridTemplateRows: 'auto 1fr',
-        height: '100%',
-        width: '100%',
+        width: '100vw',
+        minHeight: '100vh',
         boxSizing: 'border-box',
         gap: '5vmin',
         padding: '5vmin',
@@ -23,8 +23,6 @@ export const pageStyles: DynamicStyles = {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        width: '100vw',
-        minHeight: '100vh',
     },
 };
 

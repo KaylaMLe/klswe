@@ -1,10 +1,18 @@
 import { CSSObject } from "@emotion/react";
+import { DynamicStyles } from "../../types/StyleTypes";
 
-export const navMenuStyle: CSSObject = {
-	zIndex: 1000,
-	display: 'flex',
-	justifyContent: 'flex-end',
-	alignItems: 'flex-start',
+export const navMenuStyle: DynamicStyles = {
+	default: {
+		zIndex: 1000,
+		display: 'flex',
+		width: '100%',
+		justifyContent: 'space-between',
+		alignItems: 'flex-start',
+	},
+	alternate: {},
+	home: {
+		justifyContent: 'center',
+	},
 };
 
 export const navButtonStyle: CSSObject = {

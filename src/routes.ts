@@ -1,15 +1,18 @@
 import { lazy } from 'react';
 import {
+	NOT_FOUND_ERROR,
 	HOME,
-	NOT_FOUND_ERROR
+	POST
 } from './hooks/PageNumbers';
 
-const Home = lazy(() => import('./components/Pages/Home/Home'));
 const NotFoundError = lazy(() => import('./components/Pages/NotFoundError'));
+const Home = lazy(() => import('./components/Pages/Home/Home'));
+const Post = lazy(() => import('./components/Pages/Post/Post'));
 
 const routes = [
-	{ path: HOME.link, component: Home },
 	{ path: NOT_FOUND_ERROR.link, component: NotFoundError },
+	{ path: HOME.link, component: Home },
+	{ path: POST.link, component: Post },
 ];
 
 export default routes;

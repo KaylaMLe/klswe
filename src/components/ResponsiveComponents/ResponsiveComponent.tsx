@@ -5,8 +5,12 @@ import { ResponsiveProps } from '../../types/ResponsiveComponentTypes';
 import { useCurrentPage } from '../../hooks/PageNumberContext';
 import { HOME } from '../../hooks/PageNumbers';
 
-export function Responsive({ Component, styles, children, ...props }
-	: React.PropsWithChildren<ResponsiveProps>): React.JSX.Element {
+export function Responsive({
+	Component,
+	styles,
+	children,
+	...props
+}: React.PropsWithChildren<ResponsiveProps>): React.JSX.Element {
 	const [isMobile, setIsMobile] = useState<boolean>(false);
 	const { currentPage } = useCurrentPage();
 
@@ -25,9 +29,11 @@ export function Responsive({ Component, styles, children, ...props }
 		};
 	}, []);
 
-	const style: CSSObject = isMobile ? { ...styles.default, ...styles.alternate }
-		: styles.home && currentPage === HOME.pageNumber ? { ...styles.default, ...styles.home }
-			: styles.default;
+	const style: CSSObject = isMobile
+		? { ...styles.default, ...styles.alternate }
+		: styles.home && currentPage === HOME.pageNumber
+		? { ...styles.default, ...styles.home }
+		: styles.default;
 
 	return (
 		<Component css={style} {...props}>
