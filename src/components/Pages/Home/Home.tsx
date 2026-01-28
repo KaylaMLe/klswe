@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import React, { useState } from 'react';
+import React from 'react';
 import {
-	pageStyle,
 	aboutMeBoxStyle,
 	glassBlurStyle,
 	glassPanelStyle,
@@ -9,21 +8,19 @@ import {
 	aboutMeTitleStyle,
 	aboutMeTextStyle,
 } from './Home.styles';
+import { HOME } from '../../../hooks/PageNumbers';
 import { GradientSweeps, StarBox } from './HomeBackground';
-import { NavBar } from '../../NavBar/NavBar';
+import { Page } from '../Page';
 import { ProjectsOverview } from './ProjectsOverview';
 
 export default function Home(): React.JSX.Element {
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
-
 	return (
-		<div css={pageStyle}>
+		<Page pageNumber={HOME.pageNumber}>
 			<GradientSweeps />
-			<NavBar isOpen={isMenuOpen} onToggle={() => setIsMenuOpen(!isMenuOpen)} />
 			<StarBox />
 			<AboutMe />
 			<ProjectsOverview />
-		</div>
+		</Page>
 	);
 }
 

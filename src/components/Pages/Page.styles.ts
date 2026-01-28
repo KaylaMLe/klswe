@@ -18,8 +18,13 @@ export const pageStyles: DynamicStyles = {
     },
     alternate: {},
     home: {
-        gridTemplateRows: 'auto',
-        gridTemplateColumns: '3fr 2fr',
+        position: 'relative',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100vw',
+        minHeight: '100vh',
     },
 };
 

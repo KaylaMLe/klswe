@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from 'react';
 import { API_URL } from '../../../constants.js';
+import { Entry } from '../entry.js';
 import {
 	overviewContainerStyle,
 	overviewTitleStyle,
@@ -20,20 +21,9 @@ import {
 } from './ProjectsOverview.styles.js';
 import { CSSObject } from '@emotion/react';
 
-interface ProjectCard {
-	slug: string,
-	type: string,
-	title: string,
-	hero_image_url: string,
-	body: string,
-	status: string,
-	published_at: Date,
-	updated_at: Date,
-}
-
 export function ProjectsOverview(): React.JSX.Element {
 	const [currentSlide, setCurrentSlide] = useState(0);
-	const [slides, setSlides] = useState<ProjectCard[]>([]);
+	const [slides, setSlides] = useState<Entry[]>([]);
 
 	useEffect(() => {
 		fetch(`${API_URL}/entries/cards`)
@@ -73,7 +63,7 @@ export function ProjectsOverview(): React.JSX.Element {
 		<div {...props}>
 			<h2 css={overviewTitleStyle}>My work</h2>
 			<div css={cardsWrapperStyle}>
-				{slides.length > 0 && Array.from(slides, (card: ProjectCard, index: number) => (
+				{slides.length > 0 && Array.from(slides, (card: Entry, index: number) => (
 					<div
 						key={index}
 						css={[

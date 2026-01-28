@@ -1,15 +1,5 @@
 import { CSSObject } from '@emotion/react';
 
-export const pageStyle: CSSObject = {
-	position: 'relative',
-	display: 'flex',
-	flexDirection: 'column',
-	justifyContent: 'center',
-	alignItems: 'center',
-	width: '100vw',
-	minHeight: '100vh',
-};
-
 export const aboutMeBoxStyle: CSSObject = {
 	display: 'grid',
 	gridTemplateColumns: '1fr',

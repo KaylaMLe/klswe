@@ -1,20 +1,26 @@
 /** @jsxImportSource @emotion/react */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { navMenuStyle, navButtonStyle, hamburgerBarStyle, menuDropdownStyle, menuItemStyle } from './NavBar.styles';
 import { MainTitle } from './MainTitle';
+import { useCurrentPage } from '../../hooks/PageNumberContext';
 
-interface NavBarProps {
-	isOpen: boolean;
-	onToggle: () => void;
-}
-
-export function NavBar({ isOpen, onToggle }: NavBarProps): React.JSX.Element {
+export function NavBar(): React.JSX.Element {
+	const [isOpen, setIsOpen] = useState(false);
+	const { currentPage } = useCurrentPage();
 	const bars: Array<'top' | 'middle' | 'bottom'> = ['top', 'middle', 'bottom'];
+
+	useEffect(() => {
+		setIsOpen(false);
+	}, [currentPage]);
+
+	const handleToggle = () => {
+		setIsOpen(!isOpen);
+	};
 
 	return (
 		<nav css={navMenuStyle}>
 			<MainTitle />
-			<button css={navButtonStyle} onClick={onToggle} aria-label="Toggle navigation menu">
+			<button css={navButtonStyle} onClick={handleToggle} aria-label="Toggle navigation menu">
 				{bars.map((bar, i) => (
 					<span
 						key={bar}
@@ -34,10 +40,10 @@ export function NavBar({ isOpen, onToggle }: NavBarProps): React.JSX.Element {
 			</button>
 			{isOpen && (
 				<div css={menuDropdownStyle}>
-					<a href="/#about-me" css={menuItemStyle} onClick={onToggle}>
+					<a href="/#about-me" css={menuItemStyle} >
 						About
 					</a>
-					<a href="/#projects-overview" css={menuItemStyle} onClick={onToggle}>
+					<a href="/#projects-overview" css={menuItemStyle} >
 						Projects
 					</a>
 				</div>
