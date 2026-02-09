@@ -17,8 +17,8 @@ export const navMenuStyle: DynamicStyles = {
 
 export const navButtonStyle: CSSObject = {
 	position: 'fixed',
-	top: '1rem',
-	right: '1rem',
+	top: '1.5rem',
+	right: '1.5rem',
 	background: 'rgba(255, 255, 255, 0.09)',
 	border: 'none',
 	borderRadius: '8px',
