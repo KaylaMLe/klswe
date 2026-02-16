@@ -1,11 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+
 import { POST } from '../../../hooks/PageNumbers';
 import { Entry } from '../entry.js';
 import { API_URL } from '../../../constants';
-import { Page } from '../Page';
 
+import { Responsive } from '../../ResponsiveComponents/ResponsiveComponent';
+import { Page } from '../Page';
+import { titleStyle, bodyStyle, contentStyle } from './Post.styles';
 
 export default function Post(): React.JSX.Element {
 	const { slug } = useParams<{ slug: string }>();
@@ -25,7 +28,10 @@ export default function Post(): React.JSX.Element {
 
 	return (
 		<Page pageNumber={POST.pageNumber} title={post?.title}>
-			<h1>{post?.title}</h1>
+			<Responsive Component="div" styles={contentStyle}>
+				<h2 css={titleStyle}>{post?.title}</h2>
+				<div css={bodyStyle}>{post?.body}</div>
+			</Responsive>
 		</Page>
 	);
 }

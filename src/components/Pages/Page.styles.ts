@@ -8,8 +8,9 @@ export const contentStyle: CSSObject = {
 
 export const pageStyles: DynamicStyles = {
     default: {
-        display: 'grid',
-        gridTemplateRows: 'auto 1fr',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
         width: '100vw',
         minHeight: '100vh',
         boxSizing: 'border-box',
@@ -18,11 +19,9 @@ export const pageStyles: DynamicStyles = {
     },
     alternate: {},
     home: {
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        position: 'relative',
     },
 };
 
