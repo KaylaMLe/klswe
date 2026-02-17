@@ -17,7 +17,7 @@ export const overviewTitleStyle: CSSObject = {
 	lineHeight: '1',
 	textAlign: 'center',
 	marginTop: 0,
-	marginBottom: '0.6rem',
+	marginBottom: '1.25rem',
 	textShadow: `
 		0 0 5px rgba(0, 255, 255, 0.5),
 		0 0 10px rgba(0, 143, 143, 0.5)
@@ -57,6 +57,7 @@ export const cardStyle: CSSObject = {
 };
 
 export const mainContentStyle: CSSObject = {
+	width: '100%',
 	display: 'flex',
 	flexDirection: 'row',
 	alignItems: 'center',
@@ -68,16 +69,17 @@ export const mainContentStyle: CSSObject = {
 };
 
 export const cardImageStyle: CSSObject = {
-	height: '100%',
 	maxHeight: '50vmin',
+	width: '50%',
 	objectFit: 'cover',
 };
 
 export const cardTextContainerStyle: CSSObject = {
 	display: 'flex',
 	flexDirection: 'column',
-	justifyContent: 'center',
+	justifyContent: 'flex-start',
 	height: '80%',
+	width: '50%',
 };
 
 export const cardTechBubblesStyle: CSSObject = {
@@ -89,7 +91,7 @@ export const cardTechBubblesStyle: CSSObject = {
 };
 
 export const cardTitleStyle: CSSObject = {
-	fontSize: '2.5rem',
+	fontSize: 'clamp(1rem, 5vmin, 10rem)',
 	fontWeight: 600,
 	color: 'transparent',
 	background: 'linear-gradient(180deg, #dfe4ff 0%, #8c8ccf 100%)',
@@ -99,7 +101,7 @@ export const cardTitleStyle: CSSObject = {
 };
 
 export const cardDescriptionStyle: CSSObject = {
-	fontSize: '2rem',
+	fontSize: 'clamp(0.75rem, 4vmin, 8rem)',
 	color: '#B6ADFF',
 	lineHeight: '1.6',
 	margin: '0 0 1rem 0',
