@@ -11,6 +11,7 @@ export const hexagonBoxStyles: DynamicStyles = {
 	},
 	alternate: {},
 	home: {
+		justifySelf: 'center',
 		top: '1rem',
 		left: '1rem',
 		display: 'grid',
