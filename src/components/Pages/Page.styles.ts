@@ -11,7 +11,7 @@ export const pageStyles: DynamicStyles = {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
-        width: '100vw',
+        width: '100%',
         minHeight: '100vh',
         boxSizing: 'border-box',
         gap: '5vmin',

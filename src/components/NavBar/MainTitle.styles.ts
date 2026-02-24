@@ -2,6 +2,7 @@ import { DynamicStyles } from '../../types/StyleTypes';
 
 export const hexagonBoxStyles: DynamicStyles = {
 	default: {
+		marginRight: 'auto',
 		display: 'flex',
 		flexDirection: 'row',
 		alignItems: 'center',
@@ -11,7 +12,7 @@ export const hexagonBoxStyles: DynamicStyles = {
 	},
 	alternate: {},
 	home: {
-		justifySelf: 'center',
+		marginRight: 'none',
 		top: '1rem',
 		left: '1rem',
 		display: 'grid',

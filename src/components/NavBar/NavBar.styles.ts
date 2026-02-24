@@ -4,8 +4,7 @@ export const navMenuStyle: CSSObject = {
 	zIndex: 1000,
 	display: 'flex',
 	width: '100%',
-	justifyContent: 'space-between',
-	alignItems: 'flex-start',
+	justifyContent: 'center',
 };
 
 export const navButtonStyle: CSSObject = {

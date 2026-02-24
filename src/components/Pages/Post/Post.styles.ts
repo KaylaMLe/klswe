@@ -14,7 +14,6 @@ export const bodyStyle: CSSObject = {
 
 export const contentStyle: DynamicStyles = {
     default: {
-        alignSelf: 'center',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
