@@ -49,7 +49,7 @@ export const hamburgerBarStyle: CSSObject = {
 export const menuDropdownStyle: CSSObject = {
 	position: 'fixed',
 	top: 'calc(1rem + 38px)',
-	right: '1rem',
+	right: '1.5rem',
 	marginTop: '0.5rem',
 	background: 'rgba(255, 255, 255, 0.1)',
 	backdropFilter: 'blur(10px)',

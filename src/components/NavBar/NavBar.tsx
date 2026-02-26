@@ -16,7 +16,7 @@ export function NavBar(): React.JSX.Element {
 	const handleToggle = () => {
 		setIsOpen(!isOpen);
 	};
-
+	//TODO: add inline dropdown for all posts?
 	return (
 		<nav css={navMenuStyle}>
 			<MainTitle />
@@ -30,8 +30,8 @@ export function NavBar(): React.JSX.Element {
 								? bar === 'top'
 									? 'translateY(0) rotate(45deg)'
 									: bar === 'middle'
-									? 'scaleX(0)'
-									: 'translateY(0) rotate(-45deg)'
+										? 'scaleX(0)'
+										: 'translateY(0) rotate(-45deg)'
 								: `translateY(${(i - 1) * 6}px)`,
 							opacity: bar === 'middle' && isOpen ? 0 : 1,
 						}}
@@ -40,10 +40,10 @@ export function NavBar(): React.JSX.Element {
 			</button>
 			{isOpen && (
 				<div css={menuDropdownStyle}>
-					<a href="/#about-me" css={menuItemStyle} >
+					<a href="/#about-me" css={menuItemStyle}>
 						About
 					</a>
-					<a href="/#projects-overview" css={menuItemStyle} >
+					<a href="/#projects-overview" css={menuItemStyle}>
 						Projects
 					</a>
 				</div>
