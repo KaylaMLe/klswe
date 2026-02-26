@@ -5,6 +5,7 @@ import { ResponsiveProps } from '../../types/ResponsiveComponentTypes';
 import { useCurrentPage } from '../../hooks/PageNumberContext';
 import { HOME } from '../../hooks/PageNumbers';
 
+//TODO: refactor to use @media (max-width: 951px) instead of context
 export function Responsive({
 	Component,
 	styles,
@@ -32,8 +33,8 @@ export function Responsive({
 	const style: CSSObject = isMobile
 		? { ...styles.default, ...styles.alternate }
 		: styles.home && currentPage === HOME.pageNumber
-		? { ...styles.default, ...styles.home }
-		: styles.default;
+			? { ...styles.default, ...styles.home }
+			: styles.default;
 
 	return (
 		<Component css={style} {...props}>

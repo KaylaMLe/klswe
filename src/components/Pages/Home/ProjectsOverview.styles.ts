@@ -41,8 +41,6 @@ export const cardStyle: CSSObject = {
 	width: '100%',
 	height: '100%',
 	display: 'flex',
-	flexDirection: 'column',
-	justifyContent: 'space-between',
 	transition: 'all 0.5s ease-in-out',
 	background: 'linear-gradient(to bottom, rgba(0,255,255,0.1) 0%, rgba(0,255,255,0.05) 100%)',
 	border: '1px solid rgba(255,255,255,0.08)',
@@ -56,14 +54,14 @@ export const cardStyle: CSSObject = {
 	gap: '2rem',
 };
 
+//TODO: revise to use responsive component
 export const mainContentStyle: CSSObject = {
 	width: '100%',
 	display: 'flex',
 	flexDirection: 'row',
 	alignItems: 'center',
-	flexGrow: 1,
 	gap: '2rem',
-	[`@media (max-width: 951px)`]: {
+	[`@media (max-width: 600px)`]: {
 		flexDirection: 'column',
 	},
 };
@@ -75,23 +73,16 @@ export const cardImageStyle: CSSObject = {
 };
 
 export const cardTextContainerStyle: CSSObject = {
+	containerType: 'size',
 	display: 'flex',
 	flexDirection: 'column',
 	justifyContent: 'flex-start',
-	height: '80%',
+	height: '100%',
 	width: '50%',
 };
 
-export const cardTechBubblesStyle: CSSObject = {
-	width: '100%',
-	display: 'flex',
-	flexWrap: 'wrap',
-	gap: '0.5rem',
-	justifyContent: 'flex-start',
-};
-
 export const cardTitleStyle: CSSObject = {
-	fontSize: 'clamp(1rem, 5vmin, 10rem)',
+	fontSize: 'clamp(0.5rem, 6.5cqmax, 10rem)',
 	fontWeight: 600,
 	color: 'transparent',
 	background: 'linear-gradient(180deg, #dfe4ff 0%, #8c8ccf 100%)',
@@ -101,12 +92,19 @@ export const cardTitleStyle: CSSObject = {
 };
 
 export const cardDescriptionStyle: CSSObject = {
-	fontSize: 'clamp(0.75rem, 4vmin, 8rem)',
+	fontSize: 'clamp(0.4rem, 5cqmax, 8rem)',
 	color: '#B6ADFF',
 	lineHeight: '1.6',
 	margin: '0 0 1rem 0',
 	textAlign: 'left',
 	textShadow: '0 0 2px rgba(182, 173, 255, 0.3)',
+};
+
+export const readMoreStyle: CSSObject = {
+	width: 'fit-content',
+	fontSize: 'clamp(0.5rem, 3vmin, 7rem)',
+	color: '#6B6BFF',
+	lineHeight: '1.6',
 };
 
 export const navigationContainerStyle: CSSObject = {

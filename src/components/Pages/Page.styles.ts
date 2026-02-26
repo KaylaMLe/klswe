@@ -10,6 +10,7 @@ export const pageStyles: DynamicStyles = {
     default: {
         display: 'flex',
         flexDirection: 'column',
+        alignItems: 'center',
         justifyContent: 'flex-start',
         width: '100%',
         minHeight: '100vh',
@@ -20,7 +21,6 @@ export const pageStyles: DynamicStyles = {
     alternate: {},
     home: {
         justifyContent: 'center',
-        alignItems: 'center',
         position: 'relative',
     },
 };

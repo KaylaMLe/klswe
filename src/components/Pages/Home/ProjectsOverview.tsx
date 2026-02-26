@@ -12,6 +12,7 @@ import {
 	cardTextContainerStyle,
 	cardTitleStyle,
 	cardDescriptionStyle,
+	readMoreStyle,
 	navigationContainerStyle,
 	arrowButtonStyle,
 	arrowIconStyle,
@@ -51,7 +52,7 @@ export function ProjectsOverview(): React.JSX.Element {
 
 	const props: React.HTMLAttributes<HTMLDivElement> & { css?: CSSObject } = {
 		id: 'projects-overview',
-	}
+	};
 
 	if (slides.length > 0) {
 		props.css = overviewContainerStyle;
@@ -63,52 +64,64 @@ export function ProjectsOverview(): React.JSX.Element {
 		<div {...props}>
 			<h2 css={overviewTitleStyle}>My work</h2>
 			<div css={cardsWrapperStyle}>
-				{slides.length > 0 && Array.from(slides, (card: Entry, index: number) => (
-					<div
-						key={index}
-						css={[
-							cardStyle,
-							{
-								transform: `translateX(${(index - currentSlide) * 100}%)`,
-								opacity: index === currentSlide ? 1 : 0.7,
-							},
-						]}
-					>
-						<div css={mainContentStyle}>
-							<img src={card.hero_image_url} alt={card.title} css={cardImageStyle} />
-							<div css={cardTextContainerStyle}>
-								<h3 css={cardTitleStyle}>{card.title}</h3>
-								<p css={cardDescriptionStyle}>{card.body}</p>
+				{slides.length > 0 &&
+					Array.from(slides, (card: Entry, index: number) => (
+						<div
+							key={index}
+							css={[
+								cardStyle,
+								{
+									transform: `translateX(${(index - currentSlide) * 100}%)`,
+									opacity: index === currentSlide ? 1 : 0.7,
+								},
+							]}
+						>
+							<div css={mainContentStyle}>
+								<img src={card.hero_image_url} alt={card.title} css={cardImageStyle} />
+								<div css={cardTextContainerStyle}>
+									<h3 css={cardTitleStyle}>{card.title}</h3>
+									<p css={cardDescriptionStyle}>{card.body}</p>
+									<a href={`/post/${toKebabCase(card.title)}`} css={readMoreStyle}>
+										Read More &gt;
+									</a>
+								</div>
 							</div>
 						</div>
-					</div>
-				))}
+					))}
 			</div>
 
-			{slides.length > 1 && <div css={navigationContainerStyle}>
-				<button css={arrowButtonStyle} onClick={prevSlide} aria-label="Previous project">
-					<svg css={arrowIconStyle} viewBox="0 0 24 24" fill="none" stroke="currentColor">
-						<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-					</svg>
-				</button>
+			{slides.length > 1 && (
+				<div css={navigationContainerStyle}>
+					<button css={arrowButtonStyle} onClick={prevSlide} aria-label="Previous project">
+						<svg css={arrowIconStyle} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+							<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+						</svg>
+					</button>
 
-				<div css={dotsContainerStyle}>
-					{Array.from({ length: slides.length }, (_, i) => (
-						<button
-							key={i}
-							css={[dotStyle, i === currentSlide && activeDotStyle]}
-							onClick={() => goToSlide(i)}
-							aria-label={`Go to slide ${i + 1}`}
-						/>
-					))}
+					<div css={dotsContainerStyle}>
+						{Array.from({ length: slides.length }, (_, i) => (
+							<button
+								key={i}
+								css={[dotStyle, i === currentSlide && activeDotStyle]}
+								onClick={() => goToSlide(i)}
+								aria-label={`Go to slide ${i + 1}`}
+							/>
+						))}
+					</div>
+
+					<button css={arrowButtonStyle} onClick={nextSlide} aria-label="Next project">
+						<svg css={arrowIconStyle} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+							<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+						</svg>
+					</button>
 				</div>
-
-				<button css={arrowButtonStyle} onClick={nextSlide} aria-label="Next project">
-					<svg css={arrowIconStyle} viewBox="0 0 24 24" fill="none" stroke="currentColor">
-						<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-					</svg>
-				</button>
-			</div>}
+			)}
 		</div>
 	);
+}
+
+/** Hyphen-joined alphanumeric words only; punctuation and spaces omitted. */
+function toKebabCase(str: string): string {
+	const words = str.match(/[a-zA-Z0-9]+/g) ?? [];
+	return words.map((w) => w.toLowerCase()).join('-');
 }
