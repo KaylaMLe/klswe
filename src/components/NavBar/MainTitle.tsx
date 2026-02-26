@@ -11,11 +11,12 @@ import {
 } from './MainTitle.styles';
 import hexagonSvgUrl from '../../assets/images/hexagon.svg';
 
+//TODO: loading flashes default layout briefly before loading home layout
 export function MainTitle(): React.JSX.Element {
 	return (
 		<Responsive Component="div" styles={hexagonBoxStyles}>
 			<Responsive Component="img" src={hexagonSvgUrl} alt="Decorative hexagon" styles={hexagonSvgStyles} />
-			<Responsive Component="div" styles={heroTextStyles}>
+			<Responsive Component="a" styles={heroTextStyles} href="/">
 				<Responsive Component="h1" styles={nameStyles}>
 					Kayla Le
 				</Responsive>

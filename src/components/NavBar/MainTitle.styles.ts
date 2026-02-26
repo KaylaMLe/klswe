@@ -50,6 +50,7 @@ export const heroTextStyles: DynamicStyles = {
 		width: 'auto',
 		paddingLeft: '0.25rem',
 		paddingTop: '0.25rem',
+		textDecoration: 'none',
 	},
 	alternate: {},
 	home: {
