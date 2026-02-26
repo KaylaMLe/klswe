@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
-import { POST } from '../../../hooks/PageNumbers';
+import { POST, HOME } from '../../../hooks/PageNumbers';
 import { Entry } from '../entry.js';
 import { API_URL } from '../../../constants';
 
@@ -12,19 +12,21 @@ import { titleStyle, bodyStyle, contentStyle } from './Post.styles';
 
 export default function Post(): React.JSX.Element {
 	const { slug } = useParams<{ slug: string }>();
+	const navigate = useNavigate();
 	const [post, setPost] = useState<Entry | null>(null);
 
 	useEffect(() => {
 		fetch(API_URL + '/entries/post/' + slug)
 			.then(async (response) => {
 				if (!response.ok) {
-					throw new Error(`HTTP error! status: ${response.status}`);
+					navigate(HOME.link, { replace: true });
+					return;
 				}
 				const data = await response.json();
 				setPost(data);
 			})
-			.catch((error) => console.error('Error fetching post:', error));
-	}, []);
+			.catch(() => navigate(HOME.link, { replace: true }));
+	}, [slug, navigate]);
 
 	return (
 		<Page pageNumber={POST.pageNumber} title={post?.title}>
