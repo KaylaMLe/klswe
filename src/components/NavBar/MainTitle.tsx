@@ -1,24 +1,34 @@
 /** @jsxImportSource @emotion/react */
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useCurrentPage } from '../../hooks/PageNumberContext';
-import { HOME } from '../../hooks/PageNumbers';
 import { Responsive } from '../ResponsiveComponents/ResponsiveComponent';
-import { headlineStyle, linkStyles, nameStyle, titleStyles } from './MainTitle.styles';
+import {
+	hexagonBoxStyles,
+	hexagonSvgStyles,
+	heroTextStyles,
+	nameStyles,
+	titleStyles,
+	subtitleStyles,
+} from './MainTitle.styles';
+import hexagonSvgUrl from '../../assets/images/hexagon.svg';
 
+//TODO: loading flashes default layout briefly before loading home layout
 export function MainTitle(): React.JSX.Element {
-	const { currentPage } = useCurrentPage();
-
 	return (
-		<Responsive Component='div' styles={titleStyles}>
-			<Responsive Component={Link} styles={linkStyles} to={HOME.link}>
-				<h1 css={nameStyle}>
+		<Responsive Component="div" styles={hexagonBoxStyles}>
+			<Responsive Component="img" src={hexagonSvgUrl} alt="Decorative hexagon" styles={hexagonSvgStyles} />
+			<Responsive Component="a" styles={heroTextStyles} href="/">
+				<Responsive Component="h1" styles={nameStyles}>
 					Kayla Le
-				</h1>
+				</Responsive>
+				<Responsive Component="h2" styles={titleStyles}>
+					Full-Stack
+					<br />
+					Software Engineer
+				</Responsive>
+				<Responsive Component="h3" styles={subtitleStyles}>
+					I build things for the web.
+				</Responsive>
 			</Responsive>
-			{currentPage === HOME.pageNumber &&
-				<h2 css={headlineStyle}>Software Engineer</h2>
-			}
 		</Responsive>
 	);
 }

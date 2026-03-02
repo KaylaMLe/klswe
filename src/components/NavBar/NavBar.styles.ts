@@ -1,13 +1,16 @@
 import { CSSObject } from "@emotion/react";
 
 export const navMenuStyle: CSSObject = {
-	position: 'fixed',
-	top: '1rem',
-	right: '1rem',
 	zIndex: 1000,
+	display: 'flex',
+	width: '100%',
+	justifyContent: 'center',
 };
 
 export const navButtonStyle: CSSObject = {
+	position: 'fixed',
+	top: '1.5rem',
+	right: '1.5rem',
 	background: 'rgba(255, 255, 255, 0.09)',
 	border: 'none',
 	borderRadius: '8px',
@@ -44,9 +47,9 @@ export const hamburgerBarStyle: CSSObject = {
 };
 
 export const menuDropdownStyle: CSSObject = {
-	position: 'absolute',
-	top: '100%',
-	right: 0,
+	position: 'fixed',
+	top: 'calc(1rem + 38px)',
+	right: '1.5rem',
 	marginTop: '0.5rem',
 	background: 'rgba(255, 255, 255, 0.1)',
 	backdropFilter: 'blur(10px)',

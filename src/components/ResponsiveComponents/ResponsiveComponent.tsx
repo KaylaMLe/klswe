@@ -5,8 +5,13 @@ import { ResponsiveProps } from '../../types/ResponsiveComponentTypes';
 import { useCurrentPage } from '../../hooks/PageNumberContext';
 import { HOME } from '../../hooks/PageNumbers';
 
-export function Responsive({ Component, styles, children, ...props }
-	: React.PropsWithChildren<ResponsiveProps>): React.JSX.Element {
+//TODO: refactor to use @media (max-width: 951px) instead of context
+export function Responsive({
+	Component,
+	styles,
+	children,
+	...props
+}: React.PropsWithChildren<ResponsiveProps>): React.JSX.Element {
 	const [isMobile, setIsMobile] = useState<boolean>(false);
 	const { currentPage } = useCurrentPage();
 
@@ -25,8 +30,10 @@ export function Responsive({ Component, styles, children, ...props }
 		};
 	}, []);
 
-	const style: CSSObject = isMobile ? { ...styles.default, ...styles.alternate }
-		: styles.home && currentPage === HOME.pageNumber ? { ...styles.default, ...styles.home }
+	const style: CSSObject = isMobile
+		? { ...styles.default, ...styles.alternate }
+		: styles.home && currentPage === HOME.pageNumber
+			? { ...styles.default, ...styles.home }
 			: styles.default;
 
 	return (

@@ -51,7 +51,7 @@ export const starBoxStyle: CSSObject = {
 	position: 'absolute',
 	top: '0px',
 	left: '0px',
-	width: '100vw',
+	width: '100%',
 	height: '105vmin',
 	maxHeight: '100vh',
 	overflow: 'hidden',
