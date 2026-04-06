@@ -24,7 +24,7 @@ export default function Post(): React.JSX.Element {
 					return;
 				}
 				const data = await response.json();
-				setPost(data);
+				setPost({...data, title: DOMPurify.sanitize(data.title), body: DOMPurify.sanitize(data.body)});
 			})
 			.catch(() => navigate(HOME.link, { replace: true }));
 	}, [slug, navigate]);
@@ -40,7 +40,5 @@ export default function Post(): React.JSX.Element {
 }
 
 function RenderedPostBody({ body }: { body: string }): React.JSX.Element {
-	const sanitizedBody = DOMPurify.sanitize(body);
-
-	return <div css={bodyStyle} dangerouslySetInnerHTML={{ __html: sanitizedBody }} />;
+	return <div css={bodyStyle} dangerouslySetInnerHTML={{ __html: body }} />;
 }
