@@ -10,6 +10,8 @@ export const titleStyle: CSSObject = {
 export const bodyStyle: CSSObject = {
     fontSize: '1.25rem',
     color: '#F4F0FF',
+    width: '80vw',
+    minWidth: '100%',
 
     th: {
         outline: '1px solid #F4F0FF',
@@ -18,6 +20,7 @@ export const bodyStyle: CSSObject = {
     },
     td: {
         outline: '1px solid #F4F0FF',
+        backgroundColor: '#525252',
         padding: '0.5rem 1rem 0.5rem 1rem',
     }
 };
