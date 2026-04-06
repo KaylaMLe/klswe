@@ -36,3 +36,5 @@ __pycache__/
 
 # Database files
 *.sqlite3
+
+.hidden
