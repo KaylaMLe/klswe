@@ -13,6 +13,12 @@ export const bodyStyle: CSSObject = {
     width: '80vw',
     minWidth: '100%',
 
+    a: {
+        color: '#2E69FF',
+        ':visited': {
+            color: '#8052FF'
+        }
+    },
     th: {
         outline: '1px solid #F4F0FF',
         backgroundColor: '#2E2E2E',
