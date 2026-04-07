@@ -17,7 +17,7 @@ export default function Post(): React.JSX.Element {
 	const [post, setPost] = useState<Entry | null>(null);
 
 	useEffect(() => {
-		fetch(API_URL + '/entries/post/' + slug)
+		fetch(API_URL + '/post/' + slug)
 			.then(async (response) => {
 				if (!response.ok) {
 					navigate(HOME.link, { replace: true });
