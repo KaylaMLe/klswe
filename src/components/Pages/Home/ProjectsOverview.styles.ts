@@ -26,7 +26,7 @@ export const overviewTitleStyle: CSSObject = {
 export const cardsWrapperStyle: CSSObject = {
 	position: 'relative',
 	width: '100%',
-	height: '70vh',
+	height: '80vh',
 	minHeight: '300px',
 	overflow: 'hidden',
 	marginBottom: '2rem',
