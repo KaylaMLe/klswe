@@ -120,8 +120,13 @@ export function ProjectsOverview(): React.JSX.Element {
 	);
 }
 
-/** Hyphen-joined alphanumeric words only; punctuation and spaces omitted. */
+/** Slug: lowercase; only spaces become `-` between words. Other punctuation is dropped; `-` and `_` stay. */
 function toKebabCase(str: string): string {
-	const words = str.match(/[a-zA-Z0-9]+/g) ?? [];
-	return words.map((w) => w.toLowerCase()).join('-');
+	return str
+		.toLowerCase()
+		.replace(/[^a-z0-9\s_-]/g, '')
+		.trim()
+		.split(/\s+/)
+		.filter(Boolean)
+		.join('-');
 }
