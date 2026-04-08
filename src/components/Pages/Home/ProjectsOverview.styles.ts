@@ -5,7 +5,6 @@ export const overviewContainerStyle: CSSObject = {
 	flexDirection: 'column',
 	alignItems: 'flex-start',
 	width: '90vw',
-	maxWidth: '100vw',
 	margin: '2rem auto',
 	fontFamily: 'Quicksand, "Arial Rounded MT Light", var(--font-sans-serif)',
 };
@@ -31,6 +30,10 @@ export const cardsWrapperStyle: CSSObject = {
 	minHeight: '300px',
 	overflow: 'hidden',
 	marginBottom: '2rem',
+	[`@media (max-width: 600px)`]: {
+		height: '75vh',
+		overflow: 'visible',
+	},
 };
 
 export const cardStyle: CSSObject = {
@@ -40,6 +43,9 @@ export const cardStyle: CSSObject = {
 	boxSizing: 'border-box',
 	width: '100%',
 	height: '100%',
+	[`@media (max-width: 600px)`]: {
+		height: 'fit-content',
+	},
 	display: 'flex',
 	transition: 'all 0.5s ease-in-out',
 	background: 'linear-gradient(to bottom, rgba(0,255,255,0.1) 0%, rgba(0,255,255,0.05) 100%)',
@@ -70,6 +76,10 @@ export const cardImageStyle: CSSObject = {
 	maxHeight: '50vmin',
 	width: '50%',
 	objectFit: 'cover',
+	[`@media (max-width: 600px)`]: {
+		width: '90%',
+		maxHeight: '30vh',
+	},
 };
 
 export const cardTextContainerStyle: CSSObject = {
@@ -79,10 +89,15 @@ export const cardTextContainerStyle: CSSObject = {
 	justifyContent: 'flex-start',
 	height: '100%',
 	width: '50%',
+	[`@media (max-width: 600px)`]: {
+		containerType: 'normal',
+		height: 'auto',
+		width: '100%',
+	},
 };
 
 export const cardTitleStyle: CSSObject = {
-	fontSize: 'clamp(0.5rem, 6.5cqmax, 10rem)',
+	fontSize: 'clamp(20px, calc(3vi + 0.4rem), 2rem)',
 	fontWeight: 600,
 	color: 'transparent',
 	background: 'linear-gradient(180deg, #dfe4ff 0%, #8c8ccf 100%)',
@@ -92,7 +107,7 @@ export const cardTitleStyle: CSSObject = {
 };
 
 export const cardDescriptionStyle: CSSObject = {
-	fontSize: 'clamp(0.4rem, 5cqmax, 8rem)',
+	fontSize: 'clamp(15px, calc(1.6vi + 0.3rem), 1.5rem)',
 	color: '#B6ADFF',
 	lineHeight: '1.6',
 	margin: '0 0 1rem 0',
